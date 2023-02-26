@@ -6,7 +6,7 @@ backend/release.properties
 backend/dependency-reduced-pom.xml
 backend/buildNumber.properties
 backend/.mvn/timing.properties
-backend/.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/wrapper
 
 
 # Ignore log files
