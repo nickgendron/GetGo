@@ -1,0 +1,33 @@
+backend/pom.xml.tag
+backend/pom.xml.releaseBackup
+backend/pom.xml.versionsBackup
+backend/pom.xml.next
+backend/release.properties
+backend/dependency-reduced-pom.xml
+backend/buildNumber.properties
+backend/.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Ignore IDE-specific files
+backend/.idea/
+*.iml
+*.iws
+*.ipr
+
+# Ignore log files
+backend/log/
+
+# Ignore compiled Java classes
+backend/*.class
+
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+
+# Eclipse m2e generated files
+# Eclipse Core
+backend/.idea
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+.
