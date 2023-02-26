@@ -1,6 +1,2 @@
-# CSC-3380
-Repo to hold CSC 3380 Project
-
-
-Dependancies:
-- Node.js (v. 18.13.0)
+# CSC-3380-RainbowTeam
+Repository for team project in CSC 3380
