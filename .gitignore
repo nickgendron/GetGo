@@ -21,7 +21,7 @@ backend/mvnw.cmd
 
 backend/.idea
 
-
+**/.DS_Store
 .DS_Store
 
 frontend/node_modules
