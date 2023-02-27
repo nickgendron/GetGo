@@ -1,10 +1,11 @@
 package com.springbackend.app.rest.Flights;
+
 import com.springbackend.app.rest.Flights.FlightsConfig;
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
-
+import java.util.UUID;
 import com.amadeus.resources.FlightOfferSearch.AirportInfo;
 
 import com.amadeus.resources.FlightOfferSearch.Itinerary;
@@ -49,79 +50,22 @@ public class FlightsController {
                         .and("adults", adults)
                         .and("max", numFlights)
                         .and("currencyCode", "USD"));
-//        String aircraftCode;
-//        String departingAirportCode;
-//        String arrivingAirportCode;
-//        String departureTime;
-//        String arrivalTime;
-//        String flightTime;
-//        String aircraft;
-//        String carrierCode;
-        //ArrayList<String> info = new ArrayList<>();
 
         JsonArray flightOfferArray = new JsonArray();
 
         if(flightOffers.length > 0){
 
             Gson gson = new Gson();
-            //JsonArray flightOfferArray = new JsonArray();
-
-//            for(int i = 0; i < flightOffers.length; i++){
-//                FlightOfferSearch offer = flightOffers[i];
-//                double total = offer.getPrice().getGrandTotal();
-//
-//                JsonObject offerJson = new JsonObject();
-//                offerJson.addProperty("ID", i+1);
-//                JsonArray itineraryArray = new JsonArray();
-//
-//                for(Itinerary itinerary : offer.getItineraries()){
-//
-//                    JsonObject itineraryJson = new JsonObject();
-//                    JsonArray segmentArray = new JsonArray();
-//
-//                    for(SearchSegment segment : itinerary.getSegments()){
-//
-//                        JsonObject segmentJson = new JsonObject();
-//
-//                        AirportInfo departure = segment.getDeparture();
-//                        AirportInfo arrival = segment.getArrival();
-//                        FlightOfferSearch.Aircraft plane = segment.getAircraft();
-//
-//                        aircraftCode = segment.getAircraft().getCode().toString();
-//                        departingAirportCode = departure.getIataCode().toString();
-//                        arrivingAirportCode = arrival.getIataCode();
-//                        departureTime = departure.getAt();
-//                        arrivalTime = arrival.getAt();
-//                        flightTime = segment.getDuration();
-//                        aircraft = plane.getCode().toString();
-//                        carrierCode = segment.getCarrierCode();
-//
-//                        segmentJson.addProperty("price", offer.getPrice().getGrandTotal());
-//                        segmentJson.addProperty("aircraftCode", segment.getAircraft().getCode().toString());
-//                        segmentJson.addProperty("departingAirportCode", departingAirportCode);
-//                        segmentJson.addProperty("arrivingAirportCode", arrivingAirportCode);
-//                        segmentJson.addProperty("departureTime", departureTime);
-//                        segmentJson.addProperty("arrivalTime", arrivalTime);
-//                        segmentJson.addProperty("flightTime", flightTime);
-//                        segmentJson.addProperty("aircraft", aircraft);
-//                        segmentJson.addProperty("carrierCode", carrierCode);
-//
-//                        segmentArray.add(segmentJson);
-//
-//                    }
-//                    itineraryJson.add("segments", segmentArray);
-//                    itineraryArray.add(itineraryJson);
-//                }
-//                offerJson.add("itineraries", itineraryArray);
-//                flightOfferArray.add(offerJson);
-//            }
 
             for (int i = 0; i < flightOffers.length; i++) {
+
                 FlightOfferSearch offer = flightOffers[i];
                 double total = offer.getPrice().getGrandTotal();
+                String uuid = UUID.randomUUID().toString();
 
                 JsonObject offerJson = new JsonObject();
-                offerJson.addProperty("ID", i + 1);
+                offerJson.addProperty("optionNumber", i + 1);
+                offerJson.addProperty("flightID", uuid);
                 JsonArray itineraryArray = new JsonArray();
 
                 for (Itinerary itinerary : offer.getItineraries()) {
