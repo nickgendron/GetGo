@@ -11,7 +11,7 @@
  */
 public class Hotels {
 
-    /* Testing git repo */
+    
     private String hotelName;
 
     private String checkInDate;
