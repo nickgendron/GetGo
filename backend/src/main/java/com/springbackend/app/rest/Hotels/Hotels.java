@@ -11,7 +11,7 @@
  */
 public class Hotels {
 
-    
+
     private String hotelName;
 
     private String checkInDate;
