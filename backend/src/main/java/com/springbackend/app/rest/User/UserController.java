@@ -34,25 +34,22 @@ public class UserController {
         return gson.toJson(users);
     }
 
-    @GetMapping(path="/oauth2/google")
-    public User googleOAuth2(Model model, @AuthenticationPrincipal OAuth2User principal){
-        Map<String, Object> attributes = principal.getAttributes();
-
-        String email = (String) attributes.get("email");
-        String firstName = (String) attributes.get("given_name");
-        String lastName = (String) attributes.get("family_name");
-
-         User user = userRepoOAuth.findByEmail(email);
-        if (user == null) {
-            user = new User();
-            user.setEmail(email);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            userRepoOAuth.save(user);
-        }
-
-        return user;
-
-    }
+//    @GetMapping(path="/oauth2/google")
+//    public User googleOAuth2(Model model, @AuthenticationPrincipal OAuth2User principal){
+//        Map<String, Object> attributes = principal.getAttributes();
+//
+//        String email = (String) attributes.get("email");
+//        String firstName = (String) attributes.get("given_name");
+//        String lastName = (String) attributes.get("family_name");
+//
+//         User user = userRepoOAuth.findByEmail(email);
+//        if (user == null) {
+//            user = new User(firstName, lastName, email);
+//            userRepoOAuth.save(user);
+//        }
+//
+//        return user;
+//
+//    }
 
 }
