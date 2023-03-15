@@ -8,5 +8,5 @@ import java.util.stream.*;
 import java.util.List;
 
 public class HotelController {
-    
+
 }
