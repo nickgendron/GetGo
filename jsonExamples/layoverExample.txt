@@ -1,0 +1,333 @@
+This is an example of an API return with layovers present
+Flight originates from New Orleans (MSY) and ends in Sydney, Australia (SYD)
+
+[
+    {
+        "optionNumber": 1,
+        "flightID": "54c18d8b-5191-43dd-9fca-cc5c2ca166b1",
+        "itineraries": [
+            {
+                Origin flight (MSY->SYD)
+                "segments": [
+                    {
+                        First flight
+                        "price": 2413.25,
+                        "aircraftCode": "757",
+                        "departingAirportCode": "MSY",
+                        "arrivingAirportCode": "ATL",
+                        "departureTime": "2023-09-01T09:02:00",
+                        "arrivalTime": "2023-09-01T11:32:00",
+                        "flightTime": "PT1H30M",
+                        "aircraft": "757",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        Layover 
+                        "price": 2413.25,
+                        "aircraftCode": "74H",
+                        "departingAirportCode": "ATL",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-01T12:30:00",
+                        "arrivalTime": "2023-09-02T16:20:00",
+                        "flightTime": "PT14H50M",
+                        "aircraft": "74H",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        Final flight
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "SYD",
+                        "departureTime": "2023-09-02T18:40:00",
+                        "arrivalTime": "2023-09-03T06:15:00",
+                        "flightTime": "PT10H35M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    }
+                ]
+            },
+            {
+                Returning leg
+                "segments": [
+                    {
+                        First flight
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "SYD",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-08T07:50:00",
+                        "arrivalTime": "2023-09-08T17:45:00",
+                        "flightTime": "PT10H55M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        Layover
+                        "price": 2413.25,
+                        "aircraftCode": "359",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "ATL",
+                        "departureTime": "2023-09-08T18:40:00",
+                        "arrivalTime": "2023-09-08T19:05:00",
+                        "flightTime": "PT13H25M",
+                        "aircraft": "359",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        Final flight
+                        "price": 2413.25,
+                        "aircraftCode": "757",
+                        "departingAirportCode": "ATL",
+                        "arrivingAirportCode": "MSY",
+                        "departureTime": "2023-09-08T20:30:00",
+                        "arrivalTime": "2023-09-08T21:03:00",
+                        "flightTime": "PT1H33M",
+                        "aircraft": "757",
+                        "carrierCode": "KE"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "optionNumber": 2,
+        "flightID": "0bcc5907-0794-424d-9510-fdbf78762a42",
+        "itineraries": [
+            {
+                "segments": [
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "738",
+                        "departingAirportCode": "MSY",
+                        "arrivingAirportCode": "LAX",
+                        "departureTime": "2023-09-01T06:30:00",
+                        "arrivalTime": "2023-09-01T08:26:00",
+                        "flightTime": "PT3H56M",
+                        "aircraft": "738",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "388",
+                        "departingAirportCode": "LAX",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-01T12:30:00",
+                        "arrivalTime": "2023-09-02T17:50:00",
+                        "flightTime": "PT13H20M",
+                        "aircraft": "388",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "SYD",
+                        "departureTime": "2023-09-02T18:40:00",
+                        "arrivalTime": "2023-09-03T06:15:00",
+                        "flightTime": "PT10H35M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    }
+                ]
+            },
+            {
+                "segments": [
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "SYD",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-08T07:50:00",
+                        "arrivalTime": "2023-09-08T17:45:00",
+                        "flightTime": "PT10H55M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "359",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "ATL",
+                        "departureTime": "2023-09-08T18:40:00",
+                        "arrivalTime": "2023-09-08T19:05:00",
+                        "flightTime": "PT13H25M",
+                        "aircraft": "359",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "757",
+                        "departingAirportCode": "ATL",
+                        "arrivingAirportCode": "MSY",
+                        "departureTime": "2023-09-08T20:30:00",
+                        "arrivalTime": "2023-09-08T21:03:00",
+                        "flightTime": "PT1H33M",
+                        "aircraft": "757",
+                        "carrierCode": "KE"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "optionNumber": 3,
+        "flightID": "564b2e65-697d-46ee-9305-63e0c7ed0401",
+        "itineraries": [
+            {
+                "segments": [
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "757",
+                        "departingAirportCode": "MSY",
+                        "arrivingAirportCode": "ATL",
+                        "departureTime": "2023-09-01T09:02:00",
+                        "arrivalTime": "2023-09-01T11:32:00",
+                        "flightTime": "PT1H30M",
+                        "aircraft": "757",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "74H",
+                        "departingAirportCode": "ATL",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-01T12:30:00",
+                        "arrivalTime": "2023-09-02T16:20:00",
+                        "flightTime": "PT14H50M",
+                        "aircraft": "74H",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "SYD",
+                        "departureTime": "2023-09-02T18:40:00",
+                        "arrivalTime": "2023-09-03T06:15:00",
+                        "flightTime": "PT10H35M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    }
+                ]
+            },
+            {
+                "segments": [
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "SYD",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-08T07:50:00",
+                        "arrivalTime": "2023-09-08T17:45:00",
+                        "flightTime": "PT10H55M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "74H",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "LAX",
+                        "departureTime": "2023-09-08T19:40:00",
+                        "arrivalTime": "2023-09-08T14:50:00",
+                        "flightTime": "PT11H10M",
+                        "aircraft": "74H",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "738",
+                        "departingAirportCode": "LAX",
+                        "arrivingAirportCode": "MSY",
+                        "departureTime": "2023-09-08T18:40:00",
+                        "arrivalTime": "2023-09-09T00:27:00",
+                        "flightTime": "PT3H47M",
+                        "aircraft": "738",
+                        "carrierCode": "KE"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "optionNumber": 4,
+        "flightID": "2f9bff54-5ed4-456b-b6f4-439ac5163b98",
+        "itineraries": [
+            {
+                "segments": [
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "738",
+                        "departingAirportCode": "MSY",
+                        "arrivingAirportCode": "LAX",
+                        "departureTime": "2023-09-01T06:30:00",
+                        "arrivalTime": "2023-09-01T08:26:00",
+                        "flightTime": "PT3H56M",
+                        "aircraft": "738",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "388",
+                        "departingAirportCode": "LAX",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-01T12:30:00",
+                        "arrivalTime": "2023-09-02T17:50:00",
+                        "flightTime": "PT13H20M",
+                        "aircraft": "388",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "SYD",
+                        "departureTime": "2023-09-02T18:40:00",
+                        "arrivalTime": "2023-09-03T06:15:00",
+                        "flightTime": "PT10H35M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    }
+                ]
+            },
+            {
+                "segments": [
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "333",
+                        "departingAirportCode": "SYD",
+                        "arrivingAirportCode": "ICN",
+                        "departureTime": "2023-09-08T07:50:00",
+                        "arrivalTime": "2023-09-08T17:45:00",
+                        "flightTime": "PT10H55M",
+                        "aircraft": "333",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "74H",
+                        "departingAirportCode": "ICN",
+                        "arrivingAirportCode": "LAX",
+                        "departureTime": "2023-09-08T19:40:00",
+                        "arrivalTime": "2023-09-08T14:50:00",
+                        "flightTime": "PT11H10M",
+                        "aircraft": "74H",
+                        "carrierCode": "KE"
+                    },
+                    {
+                        "price": 2413.25,
+                        "aircraftCode": "738",
+                        "departingAirportCode": "LAX",
+                        "arrivingAirportCode": "MSY",
+                        "departureTime": "2023-09-08T18:40:00",
+                        "arrivalTime": "2023-09-09T00:27:00",
+                        "flightTime": "PT3H47M",
+                        "aircraft": "738",
+                        "carrierCode": "KE"
+                    }
+                ]
+            }
+        ]
+    }
+]

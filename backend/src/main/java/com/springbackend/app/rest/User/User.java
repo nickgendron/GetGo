@@ -20,8 +20,8 @@ public class User {
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    private String userID;
 
     private String firstName;
 
@@ -29,42 +29,19 @@ public class User {
 
     private String email;
 
+    public User() {}
 
-    public User() {
+    public User(String firstName, String lastName,
+                String email){
+<<<<<<< HEAD
+        this.userID = UUID.randomUUID().toString();
+=======
 
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
+>>>>>>> 928bae0b27fae4e8dcf5989ff29e02849d326d08
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
+
 
 }
