@@ -34,7 +34,7 @@ public class UserController {
         return gson.toJson(users);
     }
 
-<<<<<<< HEAD
+
 //    @GetMapping(path="/oauth2/google")
 //    public User googleOAuth2(Model model, @AuthenticationPrincipal OAuth2User principal){
 //        Map<String, Object> attributes = principal.getAttributes();
@@ -52,7 +52,7 @@ public class UserController {
 //        return user;
 //
 //    }
-=======
+
     @GetMapping(path="/oauth2/google")
     public User googleOAuth2(Model model, @AuthenticationPrincipal OAuth2User principal){
         Map<String, Object> attributes = principal.getAttributes();
@@ -73,6 +73,6 @@ public class UserController {
         return user;
 
     }
->>>>>>> 928bae0b27fae4e8dcf5989ff29e02849d326d08
+
 
 }
