@@ -20,8 +20,8 @@ public class User {
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    private String userID;
 
     private String firstName;
 
@@ -33,7 +33,7 @@ public class User {
 
     public User(String firstName, String lastName,
                 String email){
-
+        this.userID = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

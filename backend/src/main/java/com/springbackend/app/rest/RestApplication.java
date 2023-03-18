@@ -4,6 +4,7 @@ import lombok.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
 @SpringBootApplication
 @ComponentScan(basePackageClasses = RestApplication.class)
@@ -15,6 +16,5 @@ public class RestApplication {
 		SpringApplication.run(RestApplication.class, args);
 
 	}
-
 
 }
