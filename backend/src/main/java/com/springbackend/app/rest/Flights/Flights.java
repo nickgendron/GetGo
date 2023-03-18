@@ -29,6 +29,7 @@ public class Flights {
     private String flightNumber;
     private String aircraftCode;
 
+
     public Flights(JsonObject flight) {
         this.flightUUID = flight.get("flightUUID").getAsString();
         //this.segmentUUID = flight.get("segmentUUID").getAsString();
@@ -44,6 +45,8 @@ public class Flights {
         this.flightNumber = flight.get("flightNumber").getAsString();
         this.aircraftCode = flight.get("aircraftCode").getAsString();
     }
+
+
 
 
 }

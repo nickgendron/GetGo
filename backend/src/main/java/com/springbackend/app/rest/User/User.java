@@ -33,11 +33,7 @@ public class User {
 
     public User(String firstName, String lastName,
                 String email){
-<<<<<<< HEAD
         this.userID = UUID.randomUUID().toString();
-=======
-
->>>>>>> 928bae0b27fae4e8dcf5989ff29e02849d326d08
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
