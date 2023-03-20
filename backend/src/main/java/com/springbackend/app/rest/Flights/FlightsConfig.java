@@ -28,7 +28,6 @@ public class FlightsConfig {
     public Amadeus getAmadeusBean() {
         return Amadeus.builder(AMADEUS_CLIENT_ID, AMADEUS_CLIENT_SECRET).setLogLevel("debug").build();
     }
-
     @PostConstruct
     public void init() {
         logger.info("Loading environment variables:");
