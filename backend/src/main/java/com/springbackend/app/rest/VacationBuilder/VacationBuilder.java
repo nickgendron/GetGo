@@ -1,4 +1,4 @@
-//package com.springbackend.app.rest.VacationBuilder;
+package com.springbackend.app.rest.VacationBuilder;
 
 
 /*
@@ -11,38 +11,20 @@
         - Move the selected data into a new object/SQL table to be stored for future viewing
         - Have methods in place for CRUD operations on selected data to be performed
  */
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Data
+@Entity
 public class VacationBuilder {
-    private int flightId;
-    private int hotelId;
-    private int userId;
 
-    public VacationBuilder(int flightId, int hotelId, int userId) {
-        this.flightId = flightId;
-        this.hotelId = hotelId;
-        this.userId = userId;
-    }
+    @Id
+    private String vacationID;
+    private int flightID;
+    private int hotelID;
+    private int userID;
 
-    public int getFlightId() {
-        return flightId;
-    }
 
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
-    }
-
-    public int getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }

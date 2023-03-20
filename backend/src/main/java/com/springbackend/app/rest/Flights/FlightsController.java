@@ -10,7 +10,6 @@ import com.amadeus.resources.FlightOfferSearch.AirportInfo;
 import com.amadeus.resources.FlightOfferSearch.Itinerary;
 import com.google.gson.*;
 import com.springbackend.app.rest.Flights.FlightObjects.Flights;
-import com.springbackend.app.rest.Flights.FlightObjects.FlightsRepo;
 import com.springbackend.app.rest.Flights.ItineraryObjects.Itineraries;
 import com.springbackend.app.rest.Flights.ItineraryObjects.ItinerariesRepo;
 import com.springbackend.app.rest.Flights.SegmentObject.Segments;

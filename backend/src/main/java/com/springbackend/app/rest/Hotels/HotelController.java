@@ -20,7 +20,9 @@ public class HotelController {
     @Autowired
     private HotelsRepo hotelsRepo;
 
-    @GetMapping(path="/latlong")
+
+
+    @GetMapping(path = "/latlong")
     public String getLatLong(@RequestParam String fullAddress) throws IOException {
 
         /* Encode the address */
@@ -59,6 +61,7 @@ public class HotelController {
 
         return returnString;
     }
+
 
     @GetMapping(path = "nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
@@ -105,6 +108,7 @@ public class HotelController {
             /* Extract the desired fields from the data object */
             String locationId = dataObject.get("location_id").getAsString();
             String name = dataObject.get("name").getAsString();
+
             String fullAddress = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
             String addressString = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
 
@@ -185,7 +189,7 @@ public class HotelController {
             }
 
 
-            /* Extract the link to the hotel's website and hand-off to Bob */
+
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 hotelJsonObject.addProperty("website_url", websiteURL);
@@ -210,7 +214,6 @@ public class HotelController {
 
 
         /* Add the instance of hotelJsonObject to the returning json array */
-
         return hotelArray;
     }
 
