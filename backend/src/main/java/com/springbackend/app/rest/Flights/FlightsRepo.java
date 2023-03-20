@@ -1,13 +1,10 @@
-package com.springbackend.app.rest.Flights.FlightObjects;
+package com.springbackend.app.rest.Flights;
 
 import com.springbackend.app.rest.Flights.FlightObjects.Flights;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
-@Repository
 public interface FlightsRepo extends CrudRepository<Flights, String>{
 
     @Query("SELECT f FROM Flights f WHERE f.flightID = ?1")
