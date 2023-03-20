@@ -4,6 +4,7 @@ import com.google.gson.*;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,9 @@ import java.net.URLEncoder;
 @RequestMapping(path="/api/hotel")
 @RestController
 public class HotelController {
+
+    @Autowired
+    private HotelsRepo hotelsRepo;
 
     @GetMapping(path="/latlong")
     public String getLatLong(@RequestParam String fullAddress) throws IOException {
@@ -57,10 +61,10 @@ public class HotelController {
     }
 
     @GetMapping(path="nearbyHotels")
-    public JsonArray nearbyHotels(@RequestParam String fullAddress) throws IOException {
+    public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
-        /* Determine the coordinates of fullAddress */
-        String destCords = getLatLong(fullAddress);
+        /* Determine the coordinates of location */
+        String destCords = getLatLong(location);
 
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
@@ -87,6 +91,9 @@ public class HotelController {
 
         for(JsonElement jsonIterator : nearbyLocationSearchArray){
 
+            /* Meet Bob! He will help you build your hotel! */
+            Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
+
             /* Create a new hotelJsonObject each iteration to add to hotelArray */
             JsonObject hotelJsonObject = new JsonObject();
 
@@ -95,12 +102,17 @@ public class HotelController {
             /* Extract the desired fields from the data object */
             String locationId = dataObject.get("location_id").getAsString();
             String name = dataObject.get("name").getAsString();
-            String addressString = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
+            String fullAddress = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
 
             /* Add properties to hotelJsonObject */
             hotelJsonObject.addProperty("location_id", locationId);
             hotelJsonObject.addProperty("name", name);
-            hotelJsonObject.addProperty("address_string", addressString);
+            hotelJsonObject.addProperty("address_string", fullAddress);
+
+            /* Give Bob some information to pick up */
+            bob.locationID(locationId);
+            bob.hotelName(name);
+            bob.fullAddress(fullAddress);
 
             /*
                 Getting more information on each hotel returned by nearby_search API.
@@ -110,14 +122,13 @@ public class HotelController {
             OkHttpClient locationDetailsClient = new OkHttpClient();
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
+                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
                     .build();
 
             /* Raw API nearbySearchResponse */
             Response locationDetailsResponse = locationDetailsClient.newCall(locationSearchRequest).execute();
-
 
             /* Converting raw nearbySearchResponse to string */
             String locationDetailsResponseString = locationDetailsResponse.body().string();
@@ -126,42 +137,68 @@ public class HotelController {
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
 
-
-            /* Extract the description field*/
+            /* Extract the description field and hand-off to Bob */
             if(locationSearchJsonObject.has("description")){
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
                 hotelJsonObject.addProperty("description", description);
+
+                bob.description(description);
             }
-            /* Extract the rating field */
+
+
+            /* Extract the rating field and hand-off to Bob */
             if(locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 hotelJsonObject.addProperty("rating", rating);
+
+                bob.rating(rating);
             }
 
-            /* Extract the link to view more photos */
+
+            /* Extract the link to view more photos and hand-off to Bob */
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 hotelJsonObject.addProperty("images_url", imagesUrl);
+
+                bob.photosURL(imagesUrl);
             }
 
-            /* Extract the price level */
+
+            /* Extract the price level and hand-off to Bob */
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 hotelJsonObject.addProperty("price_level", priceLevel);
+
+                bob.priceLevel(priceLevel);
             }
 
-            /* Extract the link to the hotel's website */
+
+            /* Extract the link to the hotel's website and hand-off to Bob */
             if(locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 hotelJsonObject.addProperty("website_url", websiteURL);
 
+                bob.websiteURL(websiteURL);
             }
+
+            
+            /* Use the information Bob has gathered to build our hotel */
+            Hotels hotel = bob.build();
+
+            /* Save the new hotel to the database */
+            hotelsRepo.save(hotel);
+
+            cleanDatabase();
 
             /* Add the instance of hotelJsonObject to the returning json array */
             hotelArray.add(hotelJsonObject);
         }
         return hotelArray;
+    }
+
+    private void cleanDatabase(){
+
     }
 
 }
