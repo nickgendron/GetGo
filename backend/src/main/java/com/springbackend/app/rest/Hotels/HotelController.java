@@ -20,7 +20,7 @@ public class HotelController {
     @Autowired
     private HotelsRepo hotelsRepo;
 
-    @GetMapping(path = "/latlong")
+    @GetMapping(path="/latlong")
     public String getLatLong(@RequestParam String fullAddress) throws IOException {
 
         /* Encode the address */
@@ -92,8 +92,10 @@ public class HotelController {
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
+
             /* Meet Bob! He will help you build your hotel! */
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
+
 
             /* Create a new hotelJsonObject each iteration to add to hotelArray */
             JsonObject hotelJsonObject = new JsonObject();
@@ -109,12 +111,14 @@ public class HotelController {
             /* Add properties to hotelJsonObject */
             hotelJsonObject.addProperty("location_id", locationId);
             hotelJsonObject.addProperty("name", name);
+
             hotelJsonObject.addProperty("address_string", fullAddress);
 
             /* Give Bob some information to pick up */
             bob.locationID(locationId);
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
+
             hotelJsonObject.addProperty("address_string", addressString);
 
             /*
@@ -126,6 +130,7 @@ public class HotelController {
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
                             + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
+                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
                             + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
@@ -134,6 +139,7 @@ public class HotelController {
             /* Raw API nearbySearchResponse */
             Response locationDetailsResponse = locationDetailsClient.newCall(locationSearchRequest).execute();
 
+
             /* Converting raw nearbySearchResponse to string */
             String locationDetailsResponseString = locationDetailsResponse.body().string();
 
@@ -141,19 +147,19 @@ public class HotelController {
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
 
-            /* Extract the description field and hand-off to Bob */
 
-            /* Extract the description field*/
-            if (locationSearchJsonObject.has("description")) {
+            /* Extract the description field and hand-off to Bob */
+            if(locationSearchJsonObject.has("description")){
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
                 hotelJsonObject.addProperty("description", description);
+
                 bob.description(description);
             }
 
 
             /* Extract the rating field and hand-off to Bob */
-            if (locationSearchJsonObject.has("rating")) {
+            if(locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 hotelJsonObject.addProperty("rating", rating);
 
@@ -162,7 +168,7 @@ public class HotelController {
 
 
             /* Extract the link to view more photos and hand-off to Bob */
-            if (locationSearchJsonObject.has("see_all_photos")) {
+            if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 hotelJsonObject.addProperty("images_url", imagesUrl);
 
@@ -171,7 +177,7 @@ public class HotelController {
 
 
             /* Extract the price level and hand-off to Bob */
-            if (locationSearchJsonObject.has("price_level")) {
+            if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 hotelJsonObject.addProperty("price_level", priceLevel);
 
@@ -180,24 +186,6 @@ public class HotelController {
 
 
             /* Extract the link to the hotel's website and hand-off to Bob */
-            if (locationSearchJsonObject.has("rating")) {
-                String rating = locationSearchJsonObject.get("rating").getAsString();
-                hotelJsonObject.addProperty("rating", rating);
-            }
-
-            /* Extract the link to view more photos */
-            if (locationSearchJsonObject.has("see_all_photos")) {
-                String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
-                hotelJsonObject.addProperty("images_url", imagesUrl);
-            }
-
-            /* Extract the price level */
-            if (locationSearchJsonObject.has("price_level")) {
-                String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
-                hotelJsonObject.addProperty("price_level", priceLevel);
-            }
-
-            /* Extract the link to the hotel's website */
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 hotelJsonObject.addProperty("website_url", websiteURL);
@@ -206,23 +194,28 @@ public class HotelController {
             }
 
 
+            
             /* Use the information Bob has gathered to build our hotel */
             Hotels hotel = bob.build();
 
             /* Save the new hotel to the database */
             hotelsRepo.save(hotel);
 
+            /* Add the instance of hotelJsonObject to the returning json array */
             hotelArray.add(hotelJsonObject);
 
-        }
+            }
+
+
+
 
         /* Add the instance of hotelJsonObject to the returning json array */
 
         return hotelArray;
     }
 
-    private void cleanDatabase() {
 
-    }
 }
+
+
 
