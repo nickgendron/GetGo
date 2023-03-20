@@ -21,7 +21,7 @@ public class HotelController {
     private HotelsRepo hotelsRepo;
 
 
-    @GetMapping(path="/latlong")
+    @GetMapping(path = "/latlong")
     public String getLatLong(@RequestParam String fullAddress) throws IOException {
 
         /* Encode the address */
@@ -50,7 +50,7 @@ public class HotelController {
         String returnString = new String();
 
         /* Iterate over latLongArray and extract lat/long values */
-        for(JsonElement jsonIterator : latLongArray){
+        for (JsonElement jsonIterator : latLongArray) {
             JsonObject dataObject = jsonIterator.getAsJsonObject();
             String latitude = dataObject.get("latitude").getAsString();
             String longitude = dataObject.get("longitude").getAsString();
@@ -61,11 +61,13 @@ public class HotelController {
         return returnString;
     }
 
-    @GetMapping(path="nearbyHotels")
+
+    @GetMapping(path = "nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
+
 
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
@@ -90,7 +92,7 @@ public class HotelController {
         /* JsonArray that will be returned containing information of hotels at a given location */
         JsonArray hotelArray = new JsonArray();
 
-        for(JsonElement jsonIterator : nearbyLocationSearchArray){
+        for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
             /* Meet Bob! He will help you build your hotel! */
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
@@ -145,6 +147,9 @@ public class HotelController {
 
             /* Extract the description field and hand-off to Bob */
             if(locationSearchJsonObject.has("description")){
+
+            /* Extract the description field*/
+            if (locationSearchJsonObject.has("description")) {
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
                 hotelJsonObject.addProperty("description", description);
@@ -153,7 +158,7 @@ public class HotelController {
 
 
             /* Extract the rating field and hand-off to Bob */
-            if(locationSearchJsonObject.has("rating")) {
+            if (locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 hotelJsonObject.addProperty("rating", rating);
 
@@ -162,7 +167,7 @@ public class HotelController {
 
 
             /* Extract the link to view more photos and hand-off to Bob */
-            if(locationSearchJsonObject.has("see_all_photos")) {
+            if (locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 hotelJsonObject.addProperty("images_url", imagesUrl);
 
@@ -171,7 +176,7 @@ public class HotelController {
 
 
             /* Extract the price level and hand-off to Bob */
-            if(locationSearchJsonObject.has("price_level")) {
+            if (locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 hotelJsonObject.addProperty("price_level", priceLevel);
 
@@ -181,53 +186,56 @@ public class HotelController {
 
             /* Extract the link to the hotel's website and hand-off to Bob */
 
-            /* Extract the rating field */
-            if(locationSearchJsonObject.has("rating")) {
+
+            if (locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 hotelJsonObject.addProperty("rating", rating);
             }
 
             /* Extract the link to view more photos */
-            if(locationSearchJsonObject.has("see_all_photos")) {
+            if (locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 hotelJsonObject.addProperty("images_url", imagesUrl);
             }
 
             /* Extract the price level */
-            if(locationSearchJsonObject.has("price_level")) {
+            if (locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 hotelJsonObject.addProperty("price_level", priceLevel);
             }
 
             /* Extract the link to the hotel's website */
-            if(locationSearchJsonObject.has("website")) {
+
+            if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 hotelJsonObject.addProperty("website_url", websiteURL);
 
                 bob.websiteURL(websiteURL);
             }
 
-            
+
             /* Use the information Bob has gathered to build our hotel */
             Hotels hotel = bob.build();
 
             /* Save the new hotel to the database */
             hotelsRepo.save(hotel);
 
-            cleanDatabase();
             /* Add the instance of hotelJsonObject to the returning json array */
             hotelArray.add(hotelJsonObject);
 
             }
 
+            /* Add the instance of hotelJsonObject to the returning json array */
+            hotelArray.add(hotelJsonObject);
 
+        }
 
+        /* Add the instance of hotelJsonObject to the returning json array */
         return hotelArray;
     }
 
-    private void cleanDatabase(){
 
-    }
 
 
 }
+
