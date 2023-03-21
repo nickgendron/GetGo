@@ -12,10 +12,12 @@ package com.springbackend.app.rest.Vacation;
         - Have methods in place for CRUD operations on selected data to be performed
  */
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -24,8 +26,17 @@ public class Vacation {
 
     @Id
     private String vacationID;
+    @Nullable
     private String flightID;
+
+    @Nullable
+    private List<String> attractionID;
+
+    @Nullable
+    private List<String> restaurantID;
+    @Nullable
     private String hotelID;
+    @Nullable
     private String userID;
 
     public Vacation() {
@@ -41,6 +52,10 @@ public class Vacation {
         this.userID = userID;
     }
 
+    public Vacation addToAttractionsList(String attractionID){
+        this.attractionID.add(attractionID);
+        return this;
+    }
     public String getVacationID() {
         return vacationID;
     }
