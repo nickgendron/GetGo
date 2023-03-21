@@ -1,4 +1,4 @@
-package com.springbackend.app.rest.Attractions;
+package com.springbackend.app.rest.Restaurants;
 import com.google.gson.*;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-@RequestMapping(path="/api/attraction")
+@RequestMapping(path="/api/restaurants")
 @RestController
-public class AttractionsController {
-
+public class RestaurantsController {
     @Autowired
-    private AttractionsRepo attractionsRepo;
+    private RestaurantsRepo restaurantsRepo;
 
     //LatLong?
 
-    @GetMapping(path = "nearbyAttractions")
-    public JsonArray nearbyAttractions(@RequestParam String location) throws IOException{
+    @GetMapping(path = "nearbyRestaurants")
+    public JsonArray nearbyRestaurants(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
         //String destCords = getLatLong(location);
         String destCords = "30.4515, -91.1871";
@@ -32,7 +31,7 @@ public class AttractionsController {
         OkHttpClient nearbySearchClient = new OkHttpClient();
         Request nearbySearchRequest = new Request.Builder()
                 .url("https://api.content.tripadvisor.com/api/v1/location/nearby_search?latLong=" + destCords + "&key="
-                        + tripAdvisorAPI + "&category=attractions&radius=20&radiusUnit=mi&language=en")
+                        + tripAdvisorAPI + "&category=restaurants&radius=20&radiusUnit=mi&language=en")
                 .get()
                 .addHeader("accept", "application/json")
                 .build();
@@ -45,15 +44,15 @@ public class AttractionsController {
         JsonObject nearbySearchJsonObject = new Gson().fromJson(nearbySearchResponseString, JsonObject.class);
         JsonArray nearbyLocationSearchArray = nearbySearchJsonObject.getAsJsonArray("data");
 
-        JsonArray attractionArray = new JsonArray();
+        JsonArray restaurantArray = new JsonArray();
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
-            /*Bob is man and lame, so this is Kim and she's better at building */
-            Attractions.AttractionsBuilder kim = new Attractions.AttractionsBuilder();
+            /*Bob is man and lame, so this is Kim's bestie Eve and she's better at building */
+            Restaurants.RestaurantsBuilder eve = new Restaurants.RestaurantsBuilder();
 
-            /* Create a new attractionJsonObject each iteration to add to attractionArray */
-            JsonObject attractionJsonObject = new JsonObject();
+            /* Create a new restaurantsJsonObject each iteration to add to restaurantArray */
+            JsonObject restaurantJsonObject = new JsonObject();
             JsonObject dataObject = jsonIterator.getAsJsonObject();
 
             /* Extract the desired fields from the data object */
@@ -63,19 +62,19 @@ public class AttractionsController {
             String fullAddress = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
             String addressString = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
 
-            /* Add properties to attractionJsonObject */
-            attractionJsonObject.addProperty("location_id", locationId);
-            attractionJsonObject.addProperty("name", name);
-            attractionJsonObject.addProperty("address_string", fullAddress);
+            /* Add properties to restaurantJsonObject */
+            restaurantJsonObject.addProperty("location_id", locationId);
+            restaurantJsonObject.addProperty("name", name);
+            restaurantJsonObject.addProperty("address_string", fullAddress);
 
-            /* Slay Kim pick up that information */
-            kim.locationID(locationId);
-            kim.attrName(name);
-            kim.fullAddress(fullAddress);
+            /* Slay Eve pick up that information */
+            eve.locationID(locationId);
+            eve.restName(name);
+            eve.fullAddress(fullAddress);
             //WHAT
-            attractionJsonObject.addProperty("address_string", addressString);
+            restaurantJsonObject.addProperty("address_string", addressString);
             /*
-                Getting more information on each attraction returned by nearby_search API.
+                Getting more information on each restaurant returned by nearby_search API.
                 Use the location_id to query the location_details API and extract
                 desired values.
              */
@@ -99,58 +98,57 @@ public class AttractionsController {
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
 
-            /* Kim supremacy, Extract the description field and hand-off to KIM!! */
+            /* Go Eve, extract the description field!! */
             if(locationSearchJsonObject.has("description")){
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
-                attractionJsonObject.addProperty("description", description);
-                kim.description(description);
+                restaurantJsonObject.addProperty("description", description);
+                eve.description(description);
             }
-            /* Kim get handed the rating field */
+            /* Eve get handed the rating field */
             if(locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
-                attractionJsonObject.addProperty("rating", rating);
+                restaurantJsonObject.addProperty("rating", rating);
 
-                kim.rating(rating);
+                eve.rating(rating);
             }
 
 
-            /* KIM loves to get links to see more photos*/
+            /* Eve loves to get links to see more photos*/
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
-                attractionJsonObject.addProperty("images_url", imagesUrl);
+                restaurantJsonObject.addProperty("images_url", imagesUrl);
 
-                kim.photosURL(imagesUrl);
+                eve.photosURL(imagesUrl);
             }
 
 
-            /* Kim is very frugal so she wants to extract the price level*/
+            /* Eve is very frugal so she wants to extract the price level*/
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
-                attractionJsonObject.addProperty("price_level", priceLevel);
+                restaurantJsonObject.addProperty("price_level", priceLevel);
 
-                kim.priceLevel(priceLevel);
+                eve.priceLevel(priceLevel);
             }
 
 
-            /* Kim wants to go to the website*/
+            /* Eve wants to go to the website*/
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
-                attractionJsonObject.addProperty("website_url", websiteURL);
+                restaurantJsonObject.addProperty("website_url", websiteURL);
 
-                kim.websiteURL(websiteURL);
+                eve.websiteURL(websiteURL);
             }
-            /* Use the information Kim has gathered much better than bob to build our attraction */
-            Attractions attraction = kim.build();
-            /* Save the new attraction to the database */
-            attractionsRepo.save(attraction);
-            /* Add the instance of attractionJsonObject to the returning json array */
-            attractionArray.add(attractionJsonObject);
+            /* Use the information Eve has gathered much better than bob to build our restaurants */
+            Restaurants restaurant = eve.build();
+            /* Save the new restaurant to the database */
+            restaurantsRepo.save(restaurant);
+            /* Add the instance of restaurantJsonObject to the returning json array */
+            restaurantArray.add(restaurantJsonObject);
 
         }
-        /* Add the instance of attractionJsonObject to the returning json array */
-        return attractionArray;
+        /* Add the instance of restaurantJsonObject to the returning json array */
+        return restaurantArray;
 
     }
-
 }

@@ -1,5 +1,5 @@
 package com.springbackend.app.rest.Attractions;
-import com.springbackend.app.rest.Hotels.Hotels;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
