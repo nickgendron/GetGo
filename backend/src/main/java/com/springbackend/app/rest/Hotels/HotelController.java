@@ -23,7 +23,7 @@ public class HotelController {
 
 
     @GetMapping(path = "/latlong")
-    public String getLatLong(@RequestParam String fullAddress) throws IOException {
+    public static String getLatLong(@RequestParam String fullAddress) throws IOException {
 
         /* Encode the address */
         String query = URLEncoder.encode(fullAddress, "UTF-8");
@@ -209,9 +209,6 @@ public class HotelController {
             hotelArray.add(hotelJsonObject);
 
         }
-
-
-
 
         /* Add the instance of hotelJsonObject to the returning json array */
         return hotelArray;

@@ -1,5 +1,6 @@
 package com.springbackend.app.rest.Attractions;
 import com.google.gson.*;
+import com.springbackend.app.rest.Hotels.HotelController;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -22,11 +23,13 @@ public class AttractionsController {
 
     @GetMapping(path = "nearbyAttractions")
     public JsonArray nearbyAttractions(@RequestParam String location) throws IOException{
-        /* Determine the coordinates of location */
-        //String destCords = getLatLong(location);
-        String destCords = "30.4515, -91.1871";
+
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
+
+        /* ====== REWORK PLACEMENT ON THIS METHOD AND PUT IN A BETTER SPOT IN THE FUTURE ===== */
+        /* Call to lat/long API within hotels */
+        String destCords = HotelController.getLatLong(location);
 
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
@@ -74,6 +77,7 @@ public class AttractionsController {
             kim.fullAddress(fullAddress);
             //WHAT
             attractionJsonObject.addProperty("address_string", addressString);
+
             /*
                 Getting more information on each attraction returned by nearby_search API.
                 Use the location_id to query the location_details API and extract
@@ -82,8 +86,6 @@ public class AttractionsController {
             OkHttpClient locationDetailsClient = new OkHttpClient();
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
                             + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
@@ -106,7 +108,8 @@ public class AttractionsController {
                 attractionJsonObject.addProperty("description", description);
                 kim.description(description);
             }
-            /* Kim get handed the rating field */
+
+            /* Kim gets handed the rating field */
             if(locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 attractionJsonObject.addProperty("rating", rating);
@@ -115,7 +118,7 @@ public class AttractionsController {
             }
 
 
-            /* KIM loves to get links to see more photos*/
+            /* Kim loves to get links to see more photos */
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 attractionJsonObject.addProperty("images_url", imagesUrl);
@@ -124,7 +127,7 @@ public class AttractionsController {
             }
 
 
-            /* Kim is very frugal so she wants to extract the price level*/
+            /* Kim is very frugal so she wants to extract the price level */
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 attractionJsonObject.addProperty("price_level", priceLevel);
@@ -133,7 +136,7 @@ public class AttractionsController {
             }
 
 
-            /* Kim wants to go to the website*/
+            /* Kim wants to go to the website */
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 attractionJsonObject.addProperty("website_url", websiteURL);
