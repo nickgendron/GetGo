@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 
 @RequestMapping(path="/api/hotel")
@@ -63,7 +64,7 @@ public class HotelController {
     }
 
 
-    @GetMapping(path = "nearbyHotels")
+    @GetMapping(path = "/nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
@@ -96,7 +97,15 @@ public class HotelController {
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
 
-            /* Meet Bob! He will help you build your hotel! */
+            /*
+                Meet Bob! He will help you build your hotel!
+
+                Bob is our well trusted builder! He has won many awards for helping
+                to build many great things. But, with all great builders comes their enemies seeking to destroy
+                them and their livelihoods.
+
+                BOB WILL RULE SUPREME AGAINST EVE AND KIM!
+            */
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
 
 
@@ -115,15 +124,14 @@ public class HotelController {
             /* Add properties to hotelJsonObject */
             hotelJsonObject.addProperty("location_id", locationId);
             hotelJsonObject.addProperty("name", name);
-
-            hotelJsonObject.addProperty("address_string", fullAddress);
+            hotelJsonObject.addProperty("fullAddress", fullAddress);
 
             /* Give Bob some information to pick up */
             bob.locationID(locationId);
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
 
-            hotelJsonObject.addProperty("address_string", addressString);
+            //hotelJsonObject.addProperty("address_string", addressString);
 
             /*
                 Getting more information on each hotel returned by nearby_search API.
@@ -133,8 +141,6 @@ public class HotelController {
             OkHttpClient locationDetailsClient = new OkHttpClient();
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
                             + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
@@ -197,9 +203,13 @@ public class HotelController {
                 bob.websiteURL(websiteURL);
             }
 
+            /*
+                Use the information Bob has gathered to build our hotel.
 
-            
-            /* Use the information Bob has gathered to build our hotel */
+                Throughout his walk over DataLand, Bob has meticulously picked up the data that he was asked to.
+                Bob has done a very good job, and he is about to build a beautiful Hotel for us, something that
+                Eve and Kim could only ever dream of doing. They are only worried about restaurants and fun things to do
+            */
             Hotels hotel = bob.build();
 
             /* Save the new hotel to the database */
@@ -210,12 +220,18 @@ public class HotelController {
 
             }
 
-
-
-
         /* Add the instance of hotelJsonObject to the returning json array */
         return hotelArray;
     }
+
+    @GetMapping(path="/getHotelByHotelID")
+    public String getHotelByHotelID(@RequestParam String locationID){
+
+        String hotel = hotelsRepo.findByLocationID(locationID);
+
+         return hotel;
+    }
+
 
 
 }

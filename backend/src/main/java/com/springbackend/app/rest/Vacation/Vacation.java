@@ -1,4 +1,4 @@
-package com.springbackend.app.rest.VacationBuilder;
+package com.springbackend.app.rest.Vacation;
 
 
 /*
@@ -16,15 +16,64 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 @Entity
-public class VacationBuilder {
+public class Vacation {
 
     @Id
     private String vacationID;
-    private int flightID;
-    private int hotelID;
-    private int userID;
+    private String flightID;
+    private String hotelID;
+    private String userID;
 
+    public Vacation() {
+        this.vacationID = UUID.randomUUID().toString();
 
+        //return this.vacationID;
+    }
+
+    public Vacation(String vacationID, String flightID, String hotelID, String userID) {
+        this.vacationID = vacationID;
+        this.flightID = flightID;
+        this.hotelID = hotelID;
+        this.userID = userID;
+    }
+
+    public String getVacationID() {
+        return vacationID;
+    }
+
+    public Vacation setVacationID(String vacationID) {
+        this.vacationID = vacationID;
+        return this;
+    }
+
+    public String getFlightID() {
+        return flightID;
+    }
+
+    public Vacation setFlightID(String flightID) {
+        this.flightID = flightID;
+        return this;
+    }
+
+    public String getHotelID() {
+        return hotelID;
+    }
+
+    public Vacation setHotelID(String hotelID) {
+        this.hotelID = hotelID;
+        return this;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public Vacation setUserID(String userID) {
+        this.userID = userID;
+        return this;
+    }
 }
