@@ -63,6 +63,8 @@ public class HotelController {
         return returnString;
     }
 
+
+
     @GetMapping(path = "/nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
