@@ -4,7 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import javax.annotation.processing.Generated;
 import java.util.UUID;
 
@@ -25,22 +28,20 @@ public class User {
 
     private String firstName;
 
+    private String password;
+
     private String lastName;
 
     private String email;
 
     public User() {}
 
-    public User(String firstName, String lastName,
-                String email){
-<<<<<<< HEAD
+    public User(String firstName, String lastName, String email, String password){
         this.userID = UUID.randomUUID().toString();
-=======
-
->>>>>>> 928bae0b27fae4e8dcf5989ff29e02849d326d08
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
 

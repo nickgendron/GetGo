@@ -4,6 +4,10 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Data;
+
 /*
     Definitions for the Attractions component within the Vacation options
 
