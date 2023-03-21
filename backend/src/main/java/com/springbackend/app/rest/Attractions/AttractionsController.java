@@ -1,5 +1,4 @@
-package com.springbackend.app.rest.Hotels;
-
+package com.springbackend.app.rest.Attractions;
 import com.google.gson.*;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -12,64 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-
-@RequestMapping(path="/api/hotel")
+@RequestMapping(path="/api/attraction")
 @RestController
-public class HotelController {
+public class AttractionsController {
 
     @Autowired
-    private HotelsRepo hotelsRepo;
+    private AttractionsRepo attractionsRepo;
 
+    //LatLong?
 
-
-    @GetMapping(path = "/latlong")
-    public String getLatLong(@RequestParam String fullAddress) throws IOException {
-
-        /* Encode the address */
-        String query = URLEncoder.encode(fullAddress, "UTF-8");
-
-        /* Get API key and create URL to query */
-        final String positionStackKey = System.getenv("POSITION_STACK");
-
-        /* Call to PositionStack address to coordinates API */
-        OkHttpClient latLongClient = new OkHttpClient();
-        Request latLongRequest = new Request.Builder()
-                .url("http://api.positionstack.com/v1/forward?access_key=" + positionStackKey + "&query=" + fullAddress)
-                .get()
-                .build();
-        Response latLongResponse = latLongClient.newCall(latLongRequest).execute();
-
-
-        /* Convert response to string */
-        String latLongString = latLongResponse.body().string();
-
-        /* Convert response to JsonArray */
-        JsonObject nearbySearchJsonObject = new Gson().fromJson(latLongString, JsonObject.class);
-        JsonArray latLongArray = nearbySearchJsonObject.getAsJsonArray("data");
-
-        /* String that will be returned */
-        String returnString = new String();
-
-        /* Iterate over latLongArray and extract lat/long values */
-        for (JsonElement jsonIterator : latLongArray) {
-            JsonObject dataObject = jsonIterator.getAsJsonObject();
-            String latitude = dataObject.get("latitude").getAsString();
-            String longitude = dataObject.get("longitude").getAsString();
-            returnString = latitude + "," + longitude;
-
-        }
-
-        return returnString;
-    }
-
-
-    @GetMapping(path = "nearbyHotels")
-    public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
-
+    @GetMapping(path = "nearbyAttractions")
+    public JsonArray nearbyAttractions(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
-        String destCords = getLatLong(location);
-
-
+        //String destCords = getLatLong(location);
+        String destCords = "30.4515, -91.1871";
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
 
@@ -90,19 +45,15 @@ public class HotelController {
         JsonObject nearbySearchJsonObject = new Gson().fromJson(nearbySearchResponseString, JsonObject.class);
         JsonArray nearbyLocationSearchArray = nearbySearchJsonObject.getAsJsonArray("data");
 
-        /* JsonArray that will be returned containing information of hotels at a given location */
-        JsonArray hotelArray = new JsonArray();
+        JsonArray attractionArray = new JsonArray();
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
-
-            /* Meet Bob! He will help you build your hotel! */
-            Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
-
+            /*Bob is man and lame, so this is Kim and she's better at building */
+            Attractions.AttractionsBuilder kim = new Attractions.AttractionsBuilder();
 
             /* Create a new hotelJsonObject each iteration to add to hotelArray */
-            JsonObject hotelJsonObject = new JsonObject();
-
+            JsonObject attractionJsonObject = new JsonObject();
             JsonObject dataObject = jsonIterator.getAsJsonObject();
 
             /* Extract the desired fields from the data object */
@@ -113,18 +64,16 @@ public class HotelController {
             String addressString = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
 
             /* Add properties to hotelJsonObject */
-            hotelJsonObject.addProperty("location_id", locationId);
-            hotelJsonObject.addProperty("name", name);
+            attractionJsonObject.addProperty("location_id", locationId);
+            attractionJsonObject.addProperty("name", name);
+            attractionJsonObject.addProperty("address_string", fullAddress);
 
-            hotelJsonObject.addProperty("address_string", fullAddress);
-
-            /* Give Bob some information to pick up */
-            bob.locationID(locationId);
-            bob.hotelName(name);
-            bob.fullAddress(fullAddress);
-
-            hotelJsonObject.addProperty("address_string", addressString);
-
+            /* Slay Kim pick up that information */
+            kim.locationID(locationId);
+            kim.attrName(name);
+            kim.fullAddress(fullAddress);
+            //WHAT
+            attractionJsonObject.addProperty("address_string", addressString);
             /*
                 Getting more information on each hotel returned by nearby_search API.
                 Use the location_id to query the location_details API and extract
@@ -139,7 +88,6 @@ public class HotelController {
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
                     .build();
-
             /* Raw API nearbySearchResponse */
             Response locationDetailsResponse = locationDetailsClient.newCall(locationSearchRequest).execute();
 
@@ -151,72 +99,58 @@ public class HotelController {
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
 
-
-            /* Extract the description field and hand-off to Bob */
+            /* Kim supremacy, Extract the description field and hand-off to KIM!! */
             if(locationSearchJsonObject.has("description")){
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
-                hotelJsonObject.addProperty("description", description);
-
-                bob.description(description);
+                attractionJsonObject.addProperty("description", description);
+                kim.description(description);
             }
-
-
-            /* Extract the rating field and hand-off to Bob */
+            /* Kim get handed the rating field */
             if(locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
-                hotelJsonObject.addProperty("rating", rating);
+                attractionJsonObject.addProperty("rating", rating);
 
-                bob.rating(rating);
+                kim.rating(rating);
             }
 
 
-            /* Extract the link to view more photos and hand-off to Bob */
+            /* KIM loves to get links to see more photos*/
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
-                hotelJsonObject.addProperty("images_url", imagesUrl);
+                attractionJsonObject.addProperty("images_url", imagesUrl);
 
-                bob.photosURL(imagesUrl);
+                kim.photosURL(imagesUrl);
             }
 
 
-            /* Extract the price level and hand-off to Bob */
+            /* Kim is very frugal so she wants to extract the price level*/
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
-                hotelJsonObject.addProperty("price_level", priceLevel);
+                attractionJsonObject.addProperty("price_level", priceLevel);
 
-                bob.priceLevel(priceLevel);
+                kim.priceLevel(priceLevel);
             }
 
 
-
+            /* Kim wants to go to the website*/
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
-                hotelJsonObject.addProperty("website_url", websiteURL);
+                attractionJsonObject.addProperty("website_url", websiteURL);
 
-                bob.websiteURL(websiteURL);
+                kim.websiteURL(websiteURL);
             }
-
-
-
-            /* Use the information Bob has gathered to build our hotel */
-            Hotels hotel = bob.build();
-
-            /* Save the new hotel to the database */
-            hotelsRepo.save(hotel);
-
-            /* Add the instance of hotelJsonObject to the returning json array */
-            hotelArray.add(hotelJsonObject);
+            /* Use the information Kim has gathered much better than bob to build our hotel */
+            Attractions attraction = kim.build();
+            /* Save the new attraction to the database */
+            attractionsRepo.save(attraction);
+            /* Add the instance of attractionJsonObject to the returning json array */
+            attractionArray.add(attractionJsonObject);
 
         }
+        /* Add the instance of attractionJsonObject to the returning json array */
+        return attractionArray;
 
-
-
-
-        /* Add the instance of hotelJsonObject to the returning json array */
-        return hotelArray;
     }
 
-
 }
-
