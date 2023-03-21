@@ -64,7 +64,11 @@ public class HotelController {
     }
 
 
+<<<<<<< HEAD
+    @GetMapping(path = "nearbyHotels")
+=======
     @GetMapping(path = "/nearbyHotels")
+>>>>>>> main
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
