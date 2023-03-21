@@ -20,7 +20,7 @@ public class UserController {
     private UserRepoOAuth userRepoOAuth;
 
     @PostMapping(path="/add")
-    public String saveUser(@RequestParam String firstName, @RequestParam String lastName,
+    public @ResponseBody String saveUser(@RequestParam String firstName, @RequestParam String lastName,
                            @RequestParam String email, @RequestParam String password){
 
         User user = new User(firstName,lastName,email,password);

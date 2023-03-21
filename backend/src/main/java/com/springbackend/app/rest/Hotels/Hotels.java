@@ -8,7 +8,6 @@ package com.springbackend.app.rest.Hotels;
     - Save filtered information into Hotel.class
     - Configure Hotel.class to interact with Spring framework to allow for data to be sent/queried to/from the database
     - Write methods to allow for API calls from frontend to query desired data regarding Hotels
-
     This class will represent the Hotel component within the Vacation options interface.
  */
 
@@ -19,6 +18,9 @@ import lombok.Data;
 @Entity
 @Data
 public class Hotels {
+
+    /* Testing git repo */
+   // private String hotelName;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
