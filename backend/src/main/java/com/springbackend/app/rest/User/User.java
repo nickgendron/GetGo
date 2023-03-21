@@ -4,7 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import javax.annotation.processing.Generated;
 import java.util.UUID;
 
@@ -20,51 +23,27 @@ public class User {
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    private String userID;
 
     private String firstName;
+
+    private String password;
 
     private String lastName;
 
     private String email;
 
+    public User() {}
 
-    public User() {
-
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
+    public User(String firstName, String lastName,
+                String email, String password){
+        this.userID = UUID.randomUUID().toString();
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
+        this.password = password;
     }
+
 
 }
