@@ -41,7 +41,7 @@ public class Hotels {
 
     private String rating;
     @Nullable
-    @Column(name = "description", columnDefinition = "VARCHAR(2000)")
+    @Column(name = "description", columnDefinition = "VARCHAR(MAX)")
     private String description;
     @Nullable
 
@@ -50,13 +50,10 @@ public class Hotels {
 
     private String websiteURL;
     @Nullable
-
     private String priceLevel;
     @Nullable
-
     private int numBeds;
     @Nullable
-
     private String bedType;
 
     @Nullable
@@ -110,6 +107,7 @@ public class Hotels {
         this.testing = hotelBuilder.testing;
 
     }
+    public Hotels(){}
 
     public static class HotelsBuilder {
 
