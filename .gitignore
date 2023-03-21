@@ -21,6 +21,7 @@ backend/mvnw.cmd
 
 backend/.idea
 
+backend/target/classes/com/springbackend/app/rest
 
 .DS_Store
 #**/.DS_Store
