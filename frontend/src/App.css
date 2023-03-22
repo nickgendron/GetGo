@@ -1,4 +1,13 @@
-.App {
+.home-page {
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.home {
+  background-color: teal;
+}
+/* .App {
   text-align: center;
 }
 
@@ -36,3 +45,71 @@
     transform: rotate(360deg);
   }
 }
+.planeIcon {
+  position: absolute;
+  width: 24.41px;
+  height: 13.43px;
+  left: 107px;
+  top: 219px;
+
+  transform: rotate(-11.27deg);
+}
+
+.button-image {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.defaultButton {
+  background-color: #3f52e3;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-weight: bold;
+  margin: 4px 2px;
+  align-items: center;
+  border-radius: 45px;
+  width: 142px;
+}
+
+.defaultText{
+  font-family: sans-serif;
+  
+}
+
+.center{
+  text-align: center;
+  padding:10px;
+  border-radius:0px;
+  width: 100px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+
+}
+
+
+.loginLabel{
+  display: block;
+  text-align: center;
+  line-height: 100%;
+  font-size: 16px;  
+  font-family: sans-serif;
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 20px; 
+  width: 1px;
+  height: 1px; 
+} */
