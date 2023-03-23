@@ -21,7 +21,6 @@ import java.util.UUID;
 @Data
 public class User {
 
-
     @Id
     private String userID = UUID
             .randomUUID()
