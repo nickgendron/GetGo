@@ -104,8 +104,6 @@ public class HotelController {
                 Bob is our well trusted builder! He has won many awards for helping
                 to build many great things. But, with all great builders comes their enemies seeking to destroy
                 them and their livelihoods.
-
-                BOB WILL RULE SUPREME AGAINST EVE AND KIM!
             */
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
 
