@@ -1,0 +1,86 @@
+.loginBox {
+  width: 320px;
+  height: 370px;
+  background-color: rgba(109, 133, 140, 0.9);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 50px 30px;
+  border-radius: 30px;
+}
+.container {
+  background-image: url("../Images/goldenGateBridge.jpg");
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  min-width: 1024px;
+	
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.loginText {
+  color: #542d31;
+  font-family: arial;
+  font-size: 22px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.welcomeText {
+  color: #542d31;
+  font-family: arial;
+  font-size: 26px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.centerText {
+  text-align: center;
+  align-items: center;
+  color: #542d31;
+  font-family: arial;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.loginArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  font-family: arial;
+  align-items: center;
+  color: #fffdfc;
+  font-size: 14px;
+  text-shadow: 1px 1px 0px #010203;
+  padding: 10px 25px;
+  border-radius: 30px;
+  border: 0px solid #3866a3;
+  background: #07232b;
+}
+
+.inputLabel {
+  width: 200px;
+  height: 35px;
+  border-radius: 30px;
+  border-width: 0px;
+  font-size: 14px;
+  font-family: arial;
+  text-align: center;
+}
