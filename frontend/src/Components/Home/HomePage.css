@@ -93,6 +93,10 @@
     margin-top: 34px;
     min-width: 182px;
     padding: 17px 46px;
+    color: white;
+    justify-content: center;
+    font: arial;
+    font-size: 18px;
   }
   
   .start-here {

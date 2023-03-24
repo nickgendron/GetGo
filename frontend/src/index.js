@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './System/reportWebVitals';
 import { BrowserRouter as IndexRoute,Router, Routes, Route, Switch, Link, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./Components/Login/loginTemplate"
+import "@fontsource/work-sans";
 
  const root = ReactDOM.createRoot(document.getElementById('root'));
  root.render(

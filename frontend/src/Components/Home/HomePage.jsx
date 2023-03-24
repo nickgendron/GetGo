@@ -5,6 +5,8 @@ import SmallLogo from "../Images/SmallLogo.png";
 import TextLogo from "../Images/TextLogo.png";
 import ImageOverlay from "../Images/imageOverlay.png";
 import ImageUnderlay from "../Images/imageUnderlay.png";
+import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // React router to route to different pages from the homepage
 import {
@@ -18,16 +20,20 @@ import Login from "../Login/LoginPage.js";
 import Signup from "../Signup/SignupPage.jsx";
 import Main from "../Main/Navbar/Navbar.js";
 
-// function App(){
-//   return (
-//     <div>
-//       <Routes>
-//         <Route exact path="/home" component={HomePage} />
-//       </Routes>
-//     </div>
-//   )
-// }
+
 function HomePage() {
+  const navigate = useNavigate();
+
+  function handleButtonClick(buttonType) {
+    if (buttonType === "sign-in") {
+      navigate("/"); // Replace "/login" with the URL path of your login page
+    } else if (buttonType === "sign-up") {
+      navigate("/signup"); // Replace "/signup" with the URL path of your sign up page
+    } else if (buttonType === "begin") {
+      navigate("/details"); // Replace "/signup" with the URL path of your sign up page
+    }
+  }
+
   //const { all_Work1, all_Work2, spanText1, spanText2, spanText3, spanText4, spanText5, maskGroup1, maskGroup2 } = props;
 
   return (
@@ -38,12 +44,22 @@ function HomePage() {
           <img className="all_work-1" src={TextLogo} alt="All_work" />
           <div className="log-in valign-text-middle">
             <span>
-              <button className="worksans-bold-swamp-16px homeButtons">Log in</button>
+              <button
+                onClick={() => handleButtonClick("sign-in")}
+                className="worksans-bold-swamp-16px homeButtons"
+              >
+                Log in
+              </button>
             </span>
           </div>
           <div className="sign-up valign-text-middle">
             <span>
-              <button className="worksans-bold-swamp-16px homeButtons">Sign up</button>
+              <button
+                onClick={() => handleButtonClick("sign-up")}
+                className="worksans-bold-swamp-16px homeButtons"
+              >
+                Sign up
+              </button>
             </span>
           </div>
         </div>
@@ -62,19 +78,20 @@ function HomePage() {
                 well as begin saving. All in one spot!",
               </span>
             </p>
-            <div className="overlap-group">
-              <div className="start-here valign-text-middle worksans-semi-bold-white-18px">
-                <span>
-                  <button className="worksans-semi-bold-white-18px homeButtons">
-                    Start here
-                  </button>
-                </span>
-              </div>
+            <div>
+              <button
+                onClick={() => handleButtonClick("begin")}
+                type="submit"
+                className="overlap-group"
+              >
+                {" "}
+                Get Started{" "}
+              </button>
             </div>
           </div>
           <div className="mask-group-container">
-            <img className="mask-group" src={ImageUnderlay}/>
-            <img className="mask-group-1" src={ImageOverlay}/>
+            <img className="mask-group" src={ImageUnderlay} />
+            <img className="mask-group-1" src={ImageOverlay} />
           </div>
         </div>
       </div>

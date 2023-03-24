@@ -1,12 +1,20 @@
-import React, { Component } from "react";
-import './Hotels.css';
+import React, { Component } from 'react';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 
-export default class Hotels extends Component {
-    render() {
-        return (
-        <div className="hotels">
-            <h1>Hotels pages</h1>
-        </div>
-        );
-    }
+class Hotels extends Component{
+  render() {
+    return (
+      <div>
+      <DateRangePicker
+        initialSettings={{ startDate: '1/1/2014', endDate: '3/1/2014' }}
+      >
+        <button>Vacation Dates?</button>
+      </DateRangePicker>
+      </div>
+    );
+  }
 }
+
+export default Hotels;
