@@ -51,8 +51,8 @@ public class VacationController {
     @PostMapping(path="/addAttraction")
     public String addAttraction(@RequestParam String attractionID, String vacationID){
         
-        Attractions attraction = new Attractions(attractionID, vacationID);
-        attractionsRepo.save(attraction);
+//        Attractions attraction = new Attractions(attractionID, vacationID);
+//        attractionsRepo.save(attraction);
 
         return "Success";
     }

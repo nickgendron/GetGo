@@ -8,13 +8,13 @@ package com.springbackend.app.rest.Hotels;
     - Save filtered information into Hotel.class
     - Configure Hotel.class to interact with Spring framework to allow for data to be sent/queried to/from the database
     - Write methods to allow for API calls from frontend to query desired data regarding Hotels
-
     This class will represent the Hotel component within the Vacation options interface.
  */
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import com.springbackend.app.rest.Hotels.Hotels.HotelsBuilder;
 
 @Entity
 @Data
@@ -35,13 +35,11 @@ public class Hotels {
     @Nullable
     private String locationID;
     @Nullable
-
     public String hotelName;
     @Nullable
-
     private String rating;
     @Nullable
-    @Column(name = "description", columnDefinition = "VARCHAR(MAX)")
+    @Column(name = "description", columnDefinition = "VARCHAR(2000)")
     private String description;
     @Nullable
 
@@ -50,12 +48,13 @@ public class Hotels {
 
     private String websiteURL;
     @Nullable
+
     private String priceLevel;
     @Nullable
+
     private int numBeds;
     @Nullable
     private String bedType;
-
     @Nullable
     private int numOfGuests;
     @Nullable
@@ -234,4 +233,5 @@ public class Hotels {
             return hotels;
         }
     }
-    }
+}
+

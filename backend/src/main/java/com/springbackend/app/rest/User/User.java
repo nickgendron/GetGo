@@ -39,6 +39,10 @@ public class User {
     public User(String firstName, String lastName,
                 String email, String password){
         this.userID = UUID.randomUUID().toString();
+<<<<<<< HEAD
+
+=======
+>>>>>>> frontend-local
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
