@@ -1,11 +1,7 @@
 import "./App.css";
 import Home from "./Components/Home/HomePage";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Login from "./Components/Login/loginTemplate";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/SignupPage";
 import Attractions from "./Components/Main/Attractions/Attractions";
 import Flights from "./Components/Main/Flights/Flights";

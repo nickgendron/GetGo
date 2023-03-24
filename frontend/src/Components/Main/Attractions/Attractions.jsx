@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import './Attractions.css';
+import React from "react";
+import "./Attractions.css";
 
-class Attractions extends Component {
-    render() {
-        return (
-        <div className="attractions">
-            <h1>Attractions pages</h1>
-        </div>
-        );
-    }
+function Attractions() {
+  return (
+    <div>
+      <p>Attractions pages</p>
+    </div>
+  );
 }
 export default Attractions;
