@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Login from './components/Login';
 import reportWebVitals from './System/reportWebVitals';
 import "@fontsource/work-sans";
 
