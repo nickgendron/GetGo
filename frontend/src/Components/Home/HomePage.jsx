@@ -20,7 +20,6 @@ import Login from "../Login/LoginPage.js";
 import Signup from "../Signup/SignupPage.jsx";
 import Main from "../Main/Navbar/Navbar.js";
 
-
 function HomePage() {
   const navigate = useNavigate();
 
@@ -68,14 +67,15 @@ function HomePage() {
             <h1 className="title valign-text-middle worksans-bold-swamp-50px">
               <span>
                 <span className="worksans-bold-swamp-50px">
-                  Plan your trip with ease
+                  GetGoint with GetGo!
                 </span>
               </span>
             </h1>
             <p className="pick-the-best-flight worksans-normal-swamp-24px">
               <span className="worksans-normal-swamp-24px">
-                Pick the best flights, hotels, and activities for your trip as
-                well as begin saving. All in one spot!",
+                Plan your dream vacation with the click of a button. Easily
+                compare flight and hotel prices across a variety of
+                destinations. Get ready to GetGoing!
               </span>
             </p>
             <div>
