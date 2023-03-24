@@ -38,23 +38,7 @@ import image from "../Images/goldenGateBridge.jpg"
   return (
     <>
     <div className='container'> 
-    <form onSubmit={handleSubmit}>  
-        <div className="loginBox">  
-          <div className='loginArea'>
-          <h1 className='welcomeText'>Welcome to GetGo!</h1> 
-          <br></br>
-          <input className="inputLabel" type="text" placeholder="Email" name="username" value={email} onChange={handleEmailChange} required />
-            <br></br>
-            <input className="inputLabel" type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} required />
-            <br></br> 
-            <button className="button" type="submit">Login</button>   
-            <br></br>
-            <a className='centerText' href="#"> Forgot password? </a>  
-            <br></br> 
-            <a className='centerText' href="#">  Signup </a>   
-            </div>
-        </div>   
-    </form> 
+    
     </div>
     </>
   );
