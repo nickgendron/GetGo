@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 
 
@@ -63,7 +64,7 @@ public class HotelController {
         return returnString;
     }
 
-    @GetMapping(path = "nearbyHotels")
+    @GetMapping(path = "/nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
@@ -106,7 +107,6 @@ public class HotelController {
                 BOB WILL RULE SUPREME AGAINST EVE AND KIM!
             */
 
-            /* Meet Bob! He will help you build your hotel! */
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
 
 
@@ -128,6 +128,7 @@ public class HotelController {
             hotelJsonObject.addProperty("fullAddress", fullAddress);
             hotelJsonObject.addProperty("address_string", fullAddress);
 
+
             /* Give Bob some information to pick up */
             bob.locationID(locationId);
             bob.hotelName(name);
@@ -143,7 +144,7 @@ public class HotelController {
             OkHttpClient locationDetailsClient = new OkHttpClient();
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD")
+                            + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
                     .build();
@@ -199,16 +200,12 @@ public class HotelController {
 
                 bob.websiteURL(websiteURL);
             }
-            /*
-                Use the information Bob has gathered to build our hotel.
 
+            /*
                 Throughout his walk over DataLand, Bob has meticulously picked up the data that he was asked to.
                 Bob has done a very good job, and he is about to build a beautiful Hotel for us, something that
                 Eve and Kim could only ever dream of doing. They are only worried about restaurants and fun things to do
             */
-
-
-            /* Use the information Bob has gathered to build our hotel */
             Hotels hotel = bob.build();
 
             /* Save the new hotel to the database */
@@ -220,10 +217,11 @@ public class HotelController {
         }
 
 
+
         /* Add the instance of hotelJsonObject to the returning json array */
         return hotelArray;
-    }
 
+    }
     @GetMapping(path="/getHotelByHotelID")
     public String getHotelByHotelID(@RequestParam String locationID){
 

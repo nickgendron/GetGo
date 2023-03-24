@@ -31,6 +31,9 @@ public class AttractionsController {
         /* Call to lat/long API within hotels */
         String destCords = HotelController.getLatLong(location);
 
+        /* Determine the coordinates of location */
+        //String destCords = getLatLong(location);
+
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
         Request nearbySearchRequest = new Request.Builder()
@@ -86,7 +89,7 @@ public class AttractionsController {
             OkHttpClient locationDetailsClient = new OkHttpClient();
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
+                        + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
                     .build();
@@ -101,7 +104,7 @@ public class AttractionsController {
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
 
-            /* Kim supremacy, Extract the description field and hand-off to KIM!! */
+            /* Kim's supremacy, Extract the description field and hand-off to KIM!! */
             if(locationSearchJsonObject.has("description")){
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
@@ -109,7 +112,7 @@ public class AttractionsController {
                 kim.description(description);
             }
 
-            /* Kim gets handed the rating field */
+            /* Kim get handed the rating field */
             if(locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 attractionJsonObject.addProperty("rating", rating);
@@ -136,7 +139,7 @@ public class AttractionsController {
             }
 
 
-            /* Kim wants to go to the website */
+            /* Kim wants to go to the website*/
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 attractionJsonObject.addProperty("website_url", websiteURL);

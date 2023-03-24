@@ -31,6 +31,9 @@ public class RestaurantsController {
         /* Call to lat/long API within hotels */
         String destCords = HotelController.getLatLong(location);
 
+        /* Determine the coordinates of location */
+        //String destCords = getLatLong(location);
+
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
         Request nearbySearchRequest = new Request.Builder()
@@ -52,7 +55,8 @@ public class RestaurantsController {
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
-            /*Bob is man and lame, so this is Kim's bestie Eve, and she's better at building */
+
+            /*Bob is man and lame, so this is Kim's bestie Eve and she's better at building */
             Restaurants.RestaurantsBuilder eve = new Restaurants.RestaurantsBuilder();
 
             /* Create a new restaurantsJsonObject each iteration to add to restaurantArray */
@@ -117,7 +121,7 @@ public class RestaurantsController {
             }
 
 
-            /* Eve loves to get links to see more photos */
+            /* Eve loves to get links to see more photos*/
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 restaurantJsonObject.addProperty("images_url", imagesUrl);
@@ -126,7 +130,8 @@ public class RestaurantsController {
             }
 
 
-            /* Eve is very frugal, so she wants to extract the price level */
+
+            /* Eve is very frugal so she wants to extract the price level*/
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 restaurantJsonObject.addProperty("price_level", priceLevel);
@@ -135,7 +140,7 @@ public class RestaurantsController {
             }
 
 
-            /* Eve wants to go to the website */
+            /* Eve wants to go to the website*/
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
                 restaurantJsonObject.addProperty("website_url", websiteURL);
