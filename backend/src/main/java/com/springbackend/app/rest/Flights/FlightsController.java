@@ -183,7 +183,7 @@ public class FlightsController {
                     String itineraryID = UUID.randomUUID().toString();
 
                     /* Determine if itinerary is non-stop, and add number of flights to itineraryJson */
-                    itineraryJson.addProperty("isNonstop", numOfSegments.toString().equals("1") ? "true" : "false");
+                    itineraryJson.addProperty("isNonstop", numOfFlights.toString().equals("1") ? "true" : "false");
                     itineraryJson.addProperty("numFlights", numOfFlights.get().get());
                     itineraryJson.addProperty("itineraryID", itineraryID);
                     itineraryJson.addProperty("flightID", flightID);

@@ -1,5 +1,6 @@
 package com.springbackend.app.rest.Restaurants;
 import com.google.gson.*;
+import com.springbackend.app.rest.Hotels.HotelController;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -19,13 +20,19 @@ public class RestaurantsController {
 
     //LatLong?
 
-    @GetMapping(path = "nearbyRestaurants")
+    @GetMapping(path = "/nearbyRestaurants")
     public JsonArray nearbyRestaurants(@RequestParam String location) throws IOException{
-        /* Determine the coordinates of location */
-        //String destCords = getLatLong(location);
-        String destCords = "30.4515, -91.1871";
+
+
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
+
+        /* ====== REWORK PLACEMENT ON THIS METHOD AND PUT IN A BETTER SPOT IN THE FUTURE ===== */
+        /* Call to lat/long API within hotels */
+        String destCords = HotelController.getLatLong(location);
+
+        /* Determine the coordinates of location */
+        //String destCords = getLatLong(location);
 
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
@@ -48,6 +55,7 @@ public class RestaurantsController {
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
+
             /*Bob is man and lame, so this is Kim's bestie Eve and she's better at building */
             Restaurants.RestaurantsBuilder eve = new Restaurants.RestaurantsBuilder();
 
@@ -67,12 +75,13 @@ public class RestaurantsController {
             restaurantJsonObject.addProperty("name", name);
             restaurantJsonObject.addProperty("address_string", fullAddress);
 
-            /* Slay Eve pick up that information */
+            /* Slay Eve pick up that information like its some good take out */
             eve.locationID(locationId);
             eve.restName(name);
             eve.fullAddress(fullAddress);
             //WHAT
             restaurantJsonObject.addProperty("address_string", addressString);
+
             /*
                 Getting more information on each restaurant returned by nearby_search API.
                 Use the location_id to query the location_details API and extract
@@ -81,8 +90,6 @@ public class RestaurantsController {
             OkHttpClient locationDetailsClient = new OkHttpClient();
             Request locationSearchRequest = new Request.Builder()
                     .url("https://api.content.tripadvisor.com/api/v1/location/" + locationId
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
-                            + "/details?key=" + tripAdvisorAPI + "&language=en&ddcurrency=USD"
                             + "/details?key=" + tripAdvisorAPI + "&language=en&currency=USD")
                     .get()
                     .addHeader("accept", "application/nearbySearchResponseString")
@@ -121,6 +128,7 @@ public class RestaurantsController {
 
                 eve.photosURL(imagesUrl);
             }
+
 
 
             /* Eve is very frugal so she wants to extract the price level*/

@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 import java.util.List;
 
 
+
 @RequestMapping(path="/api/hotel")
 @RestController
 public class HotelController {
@@ -24,7 +25,7 @@ public class HotelController {
 
 
     @GetMapping(path = "/latlong")
-    public String getLatLong(@RequestParam String fullAddress) throws IOException {
+    public static String getLatLong(@RequestParam String fullAddress) throws IOException {
 
         /* Encode the address */
         String query = URLEncoder.encode(fullAddress, "UTF-8");
@@ -62,8 +63,6 @@ public class HotelController {
 
         return returnString;
     }
-
-
 
     @GetMapping(path = "/nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
@@ -107,6 +106,7 @@ public class HotelController {
 
                 BOB WILL RULE SUPREME AGAINST EVE AND KIM!
             */
+
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
 
 
@@ -126,6 +126,8 @@ public class HotelController {
             hotelJsonObject.addProperty("location_id", locationId);
             hotelJsonObject.addProperty("name", name);
             hotelJsonObject.addProperty("fullAddress", fullAddress);
+            hotelJsonObject.addProperty("address_string", fullAddress);
+
 
             /* Give Bob some information to pick up */
             bob.locationID(locationId);
@@ -158,9 +160,8 @@ public class HotelController {
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
 
-
             /* Extract the description field and hand-off to Bob */
-            if(locationSearchJsonObject.has("description")){
+            if (locationSearchJsonObject.has("description")) {
                 String description = locationSearchJsonObject.get("description").getAsString();
                 description = description.replaceAll("\\n", "");
                 hotelJsonObject.addProperty("description", description);
@@ -168,33 +169,29 @@ public class HotelController {
                 bob.description(description);
             }
 
-
             /* Extract the rating field and hand-off to Bob */
-            if(locationSearchJsonObject.has("rating")) {
+            if (locationSearchJsonObject.has("rating")) {
                 String rating = locationSearchJsonObject.get("rating").getAsString();
                 hotelJsonObject.addProperty("rating", rating);
 
                 bob.rating(rating);
             }
 
-
             /* Extract the link to view more photos and hand-off to Bob */
-            if(locationSearchJsonObject.has("see_all_photos")) {
+            if (locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
                 hotelJsonObject.addProperty("images_url", imagesUrl);
 
                 bob.photosURL(imagesUrl);
             }
 
-
             /* Extract the price level and hand-off to Bob */
-            if(locationSearchJsonObject.has("price_level")) {
+            if (locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
                 hotelJsonObject.addProperty("price_level", priceLevel);
 
                 bob.priceLevel(priceLevel);
             }
-
 
 
             if (locationSearchJsonObject.has("website")) {
@@ -205,8 +202,6 @@ public class HotelController {
             }
 
             /*
-                Use the information Bob has gathered to build our hotel.
-
                 Throughout his walk over DataLand, Bob has meticulously picked up the data that he was asked to.
                 Bob has done a very good job, and he is about to build a beautiful Hotel for us, something that
                 Eve and Kim could only ever dream of doing. They are only worried about restaurants and fun things to do
@@ -219,12 +214,14 @@ public class HotelController {
             /* Add the instance of hotelJsonObject to the returning json array */
             hotelArray.add(hotelJsonObject);
 
-            }
+        }
+
+
 
         /* Add the instance of hotelJsonObject to the returning json array */
         return hotelArray;
-    }
 
+    }
     @GetMapping(path="/getHotelByHotelID")
     public String getHotelByHotelID(@RequestParam String locationID){
 
@@ -236,6 +233,9 @@ public class HotelController {
 
 
 }
+
+
+
 
 
 

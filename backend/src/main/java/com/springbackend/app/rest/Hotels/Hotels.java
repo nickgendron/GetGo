@@ -14,6 +14,7 @@ package com.springbackend.app.rest.Hotels;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import com.springbackend.app.rest.Hotels.Hotels.HotelsBuilder;
 
 @Entity
 @Data
@@ -37,10 +38,8 @@ public class Hotels {
     @Nullable
     private String locationID;
     @Nullable
-
     public String hotelName;
     @Nullable
-
     private String rating;
     @Nullable
     @Column(name = "description", columnDefinition = "VARCHAR(MAX)")
@@ -57,7 +56,6 @@ public class Hotels {
     private int numBeds;
     @Nullable
     private String bedType;
-
     @Nullable
     private int numOfGuests;
     @Nullable
@@ -236,4 +234,6 @@ public class Hotels {
             return hotels;
         }
     }
-    }
+}
+
+
