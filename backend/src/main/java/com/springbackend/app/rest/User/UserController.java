@@ -35,7 +35,11 @@ public class UserController {
     }
 
 
+<<<<<<< HEAD
 //    @GetMapping(path="/oauth2/google")
+=======
+//    @GetMapping(path="/oauth2")
+>>>>>>> frontend-local
 //    public User googleOAuth2(Model model, @AuthenticationPrincipal OAuth2User principal){
 //        Map<String, Object> attributes = principal.getAttributes();
 //
@@ -53,6 +57,7 @@ public class UserController {
 //
 //    }
 
+<<<<<<< HEAD
 //    @GetMapping(path="/oauth2/google")
 //    public User googleOAuth2(Model model, @AuthenticationPrincipal OAuth2User principal){
 //        Map<String, Object> attributes = principal.getAttributes();
@@ -75,4 +80,6 @@ public class UserController {
 //    }
 
 
+=======
+>>>>>>> frontend-local
 }
