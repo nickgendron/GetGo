@@ -2,10 +2,17 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar';
 function Flights(){
   return (
-    <div>
-      <h1>Flights</h1>
+    <>
+    <div className='flightsRootDiv'>
+    <div className='left'>
       <Navbar />
     </div>
+    <div className="clear"></div>
+    <div className="right">
+        <p>Hey</p>
+    </div>
+    </div>
+  </>
   );
 }
 export default Flights;

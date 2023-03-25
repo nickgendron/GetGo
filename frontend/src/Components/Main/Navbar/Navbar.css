@@ -1,11 +1,13 @@
 .rootDiv {
   width: 30%;
+  margin: 0px;
+  height: 100vh;
 }
 
 .logoImage {
   justify-content: center;
   margin-left: 10%;
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .navButton {
@@ -17,7 +19,7 @@
   border-radius: 30px;
   color: black;
   font-weight: bold;
-  /* border: none; */
+  border: none;
 }
 
 .flights {
@@ -28,12 +30,27 @@
   justify-content: left;
 }
 
+.flights:hover {
+  background-image: url("../../Images/whitePlaneIcon.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position-x: 15px;
+  justify-content: left;
+  background-color: blue;
+  color: white;
+}
+
 .hotels {
   background-image: url("../../Images/blackHotelIcon.png");
   background-repeat: no-repeat;
   background-position: center left;
   background-position-x: 15px;
   justify-content: left;
+}
+
+.hotels:hover {
+    background-color: blue;
+    color: white;
 }
 
 .attractions {
@@ -44,6 +61,11 @@
   justify-content: left;
 }
 
+.attractions:hover {
+    background-color: blue;
+    color: white;
+}
+
 .yourTrip {
   background-image: url("../../Images/blackHeadIcon.png");
   background-repeat: no-repeat;
@@ -52,8 +74,26 @@
   justify-content: left;
 }
 
+.yourTrip:hover {
+    background-color: blue;
+    color: white;
+}
 .gray-line {
   border-top: 100000px solid gray;
   height: 10000000000px;
   width: 10000px;
+}
+
+.bottomButtons {
+  color: grey;
+  border: none;
+  background-color: transparent;
+  margin-left: 10%;
+  text-align: center;
+  margin-left: 40px;
+}
+
+.buttonTextGrey {
+  align-items: center;
+  justify-content: center;
 }

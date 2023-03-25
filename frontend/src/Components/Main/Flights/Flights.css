@@ -1,0 +1,18 @@
+.left {
+  background-color: red;
+  height: calc(100vh / 3);
+}
+
+.right {
+  background-color: blue;
+}
+
+.flightsRootDiv {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* left div takes up 1/3, right div takes up 2/3 */
+    height: 100vh; /* set the height of the container to 100% of the viewport height */
+  
+}
+.clear {
+  clear: both;
+}

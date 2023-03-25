@@ -20,7 +20,27 @@ function Navbar() {
           <button className="navButton attractions">Attractions</button>
           <button className="navButton yourTrip">Your Trip</button>
         </div>
-        <div className="grey-line"></div>
+        <div>
+          <hr
+            style={{
+              background: "grey",
+              color: "grey",
+              borderColor: "grey",
+              height: "1.25px",
+              width: "250px",
+              marginLeft: "22px",
+            }}
+          />
+        </div>
+        <div className="buttonTextGrey">
+            <button className="bottomButtons">Vacation Summary</button>
+            <br/>
+            <br/>
+            <button className="bottomButtons">Budget Calculator</button>
+            <br/>
+            <br/>
+            <button className="bottomButtons">Savings Plan</button>
+        </div>
       </div>
     </>
   );
