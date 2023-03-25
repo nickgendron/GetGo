@@ -12,6 +12,7 @@ import Flights from "./Components/Main/Flights/Flights";
 import Hotels from "./Components/Main/Hotels/Hotels";
 import Summary from "./Components/Main/Summary/Summary";
 import Details from "./Components/Main/Details/Details";
+import Navbar from "./Components/Main/Navbar/Navbar";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/summary" element={<Summary />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/navbar" element={<Navbar />} />
       </Routes>
     </Router>
   );

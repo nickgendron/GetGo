@@ -18,7 +18,6 @@ import {
 } from "react-router-dom";
 import Login from "../Login/LoginPage.js";
 import Signup from "../Signup/SignupPage.jsx";
-import Main from "../Main/Navbar/Navbar.js";
 
 function HomePage() {
   const navigate = useNavigate();
