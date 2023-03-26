@@ -1,13 +1,13 @@
 .rootDiv {
-  width: 30%;
-  margin: 0px;
+  width: 20%;
+  margin: 10px;
   height: 100vh;
 }
 
 .logoImage {
   justify-content: center;
-  margin-left: 10%;
-  margin-top: 10%;
+  margin-left: 40%;
+  margin-top: 30%;
 }
 
 .navButton {
@@ -78,11 +78,7 @@
     background-color: blue;
     color: white;
 }
-.gray-line {
-  border-top: 100000px solid gray;
-  height: 10000000000px;
-  width: 10000px;
-}
+
 
 .bottomButtons {
   color: grey;
