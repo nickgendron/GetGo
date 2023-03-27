@@ -17,7 +17,7 @@ import {
   Link,
 } from "react-router-dom";
 import Login from "../Login/LoginPage.js";
-import Signup from "../Signup/SignupPage.jsx";
+import Signup from "../Main/Signup/SignupPage.jsx";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ function HomePage() {
             <h1 className="title valign-text-middle worksans-bold-swamp-50px">
               <span>
                 <span className="worksans-bold-swamp-50px">
-                  GetGoint with GetGo!
+                  Get Going with GetGo!
                 </span>
               </span>
             </h1>
@@ -74,7 +74,7 @@ function HomePage() {
               <span className="worksans-normal-swamp-24px">
                 Plan your dream vacation with the click of a button. Easily
                 compare flight and hotel prices across a variety of
-                destinations. Get ready to GetGoing!
+                destinations. Get ready to Get Going!
               </span>
             </p>
             <div>

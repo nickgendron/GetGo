@@ -1,0 +1,163 @@
+.divThatHoldsFlightCards {
+    border: solid;
+
+    border-color: pink;
+}
+
+.flightsContent {
+    height: auto;
+}
+
+/* Styles for div that hold each row of flight segments */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 0px;
+  height: 20vh;
+  width: 90vw;
+    margin-top: 0;
+  border: solid;
+  border-color: green;
+}
+
+/* style for the div that holds the entire grid */
+.grid-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    background-color: white;
+  
+    border: solid;
+    border-color:purple;
+    border-radius: 0%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .grid-container-right {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .grid-container-left {
+    display: inline-flex;
+    flex-direction: row-reverse;
+  }
+
+/* styles each div item (row) */
+.grid-item {
+  background-color: transparent;
+  text-align: center;
+  height: 85%;
+
+  border: solid;
+  border-color: yellow;
+  
+}
+.grid-item-1 {
+  width: 25%;
+  padding-top: 5%;
+}
+
+.grid-item-2 {
+  width: 25%;
+}
+
+.grid-item-3 {
+  width: 25%;
+  text-align: center;
+  align-items: center;
+  padding-top: 6%;
+}
+
+.grid-item-4 {
+  width: 25%;
+}
+
+
+.arrowImage {
+
+    /* padding-bottom: 5%; */
+    /* padding-left: 5%; */
+    /* padding-right: 5%; */
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .grid-item {
+    margin: 20px 0;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid-item {
+    margin: 30px 0;
+    text-align: center;
+
+  }
+}
+
+.whiteAirportBubbleNew {
+  border-radius: 50px;
+  font-size: 20px;
+  height: 55px;
+  width: 100px;
+  text-align: center;
+  background-color: white;
+  font-weight: bold;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  pointer-events: none;
+  position: relative;
+}
+
+.blueAirportBubbleNew {
+  /* border: solid; */
+  border-radius: 50px;
+  font-size: 20px;
+  height: 55px;
+  width: 100px;
+  text-align: center;
+  background-color: blue;
+  font-weight: bold;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  pointer-events: none;
+  position: relative;
+}
+
+.flightDurationText {
+  text-align: center;
+  font-family: "work sans";
+  color: grey;
+  display: inline;  
+
+    margin-top: 10%;
+}
+
+.flightDateTimeText {
+  text-align: center;
+  font-family: "work sans";
+  color: black;
+  justify-content: center;
+  padding-top: 10%;
+  line-height: 1%;
+}
+
+.toTextBetweenButtons {
+  text-align: center;
+  font-family: "work sans";
+  color: black;
+  line-height: 1%;
+  font-size: 20px;
+  justify-content: center;
+
+  margin-top: 100%;
+
+}

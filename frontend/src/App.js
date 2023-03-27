@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import Login from "./Components/Login/loginTemplate";
-import Signup from "./Components/Signup/SignupPage";
+import Signup from "./Components/Main/Signup/SignupPage";
 import Attractions from "./Components/Main/Attractions/Attractions";
 import Flights from "./Components/Main/Flights/Flights";
 import Hotels from "./Components/Main/Hotels/Hotels";
