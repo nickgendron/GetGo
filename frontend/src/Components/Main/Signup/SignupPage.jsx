@@ -9,59 +9,9 @@ import arrowIcon from "../../Images/right-arrow.png";
 
 import "./SignupPage.css";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  width: "100%",
-  border: "none",
-  font: "work sans",
-  color: theme.palette.text.secondary,
-}));
 
-function test() {
-  return (
-    <div>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        {/* First row */}
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          {/* First half */}
-          <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>
-            <div style={{ flex: 1, border: "1px solid black", height: 100 }}>
-              one
-            </div>
-            <div style={{ flex: 1, border: "1px solid black", height: 100 }}>
-              two
-            </div>
-            <div style={{ flex: 1, border: "1px solid black", height: 100 }}>
-              three
-            </div>
-            <div style={{ flex: 1, border: "1px solid black", height: 100 }}>
-              four
-            </div>
-          </div>
-          <div>middle</div>
-          {/* Second half */}
-          <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>
-            <div
-              style={{ flex: 1, border: "1px solid black", height: 100 }}
-            ></div>
-            <div
-              style={{ flex: 1, border: "1px solid black", height: 100 }}
-            ></div>
-            <div
-              style={{ flex: 1, border: "1px solid black", height: 100 }}
-            ></div>
-            <div
-              style={{ flex: 1, border: "1px solid black", height: 100 }}
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+
+
 function flightCards() {
   return (
     //   <div className="grid-container">
