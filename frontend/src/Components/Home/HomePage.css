@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 53px;
   height: 982px;
-  padding: 46.2px 84px;
+  padding: 46.2px 84.0px;
   width: 1512px;
 }
 
@@ -35,7 +35,7 @@
   height: 21px;
   letter-spacing: 0;
   line-height: 21px;
-  margin-bottom: 3px;
+  margin-bottom: 3.0px;
   margin-left: 907px;
   min-width: 48px;
   text-align: center;
@@ -46,7 +46,7 @@
   height: 21px;
   letter-spacing: 0;
   line-height: 21px;
-  margin-bottom: 3px;
+  margin-bottom: 3.0px;
   margin-left: 95px;
   min-width: 59px;
   text-align: center;
@@ -93,14 +93,9 @@
   margin-top: 34px;
   min-width: 182px;
   padding: 17px 46px;
-  color: white;
-  justify-content: center;
-  font: arial;
-  font-size: 18px;
 }
 
 .start-here {
-  position: center;
   height: 21px;
   letter-spacing: 0;
   line-height: 21px;
@@ -127,68 +122,4 @@
   position: absolute;
   top: 37px;
   width: 855px;
-}
-
-.homeButtons {
-  font-family: sans-serif;
-  color: #000000;
-  font-size: 14px;
-  box-shadow: 0px 0px 0px #bee2f9;
-  padding: 9px 28px;
-  border-radius: 10px;
-  border: 1px solid #000000;
-  background: #ffffff;
-}
-
-.homeButtons:hover {
-  color: white;
-  background: #4064ad;
-  border-color: #4064ad;
-}
-
-:root {
-  --black: #000000;
-  --swamp: #001720;
-  --white: #ffffff;
-
-  --font-size-l: 50px;
-  --font-size-m: 24px;
-  --font-size-s: 18px;
-  --font-size-xs: 16px;
-
-  --font-family-work_sans: "Work Sans", Helvetica;
-}
-
-.worksans-bold-swamp-16px {
-  color: var(--swamp);
-  font-family: var(--font-family-work_sans);
-  font-size: var(--font-size-xs);
-  font-style: normal;
-  font-weight: 700;
-}
-
-.worksans-bold-swamp-50px {
-  color: var(--swamp);
-  font-family: var(--font-family-work_sans);
-  font-size: var(--font-size-l);
-  font-style: normal;
-  font-weight: 700;
-  text-align: center;
-}
-
-.worksans-normal-swamp-24px {
-  color: var(--swamp);
-  font-family: var(--font-family-work_sans);
-  font-size: var(--font-size-m);
-  font-style: normal;
-  font-weight: 400;
-}
-
-.worksans-semi-bold-white-18px {
-  color: var(--white);
-  background-color: var(--swamp);
-  font-family: var(--font-family-work_sans);
-  font-size: var(--font-size-s);
-  font-style: normal;
-  font-weight: 600;
 }
