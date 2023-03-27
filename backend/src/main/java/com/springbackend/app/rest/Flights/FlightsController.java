@@ -76,7 +76,7 @@ public class FlightsController {
                 /* Load offer i received by the response */
                 FlightOfferSearch offer = flightOffers[i];
 
-                double totalPrice = offer.getPrice().getGrandTotal();
+                String totalPrice = offer.getPrice().getGrandTotal();
 
                 /* Generate flightID */
                 String flightID = UUID.randomUUID().toString();
@@ -228,6 +228,11 @@ public class FlightsController {
         return parseJson(flight);
     }
 
+    @GetMapping(path = "/getSegmentBySegmentID")
+    public JsonElement findSegmentBySegmentID(@RequestParam String segmentID){
+        Iterable<Flights> flight = flightsRepo.findSegmentBySegmentID(segmentID);
+        return parseJson(flight);
+    }
     @GetMapping(path = "/getItineraryByFlightID")
     public JsonElement getItineraryByID(@RequestParam String flightID){
 

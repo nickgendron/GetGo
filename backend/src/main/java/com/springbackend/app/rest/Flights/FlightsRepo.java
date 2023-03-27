@@ -19,6 +19,9 @@ public interface FlightsRepo extends CrudRepository<Flights, String>{
     @Query("SELECT s.segmentID FROM Segments s where s.flightID = ?1 ORDER BY segmentNumber asc")
     Iterable<Flights> findSegmentIdByFlightID(String flightID);
 
+    @Query("SELECT s FROM Segments s where s.segmentID = ?1 ORDER BY segmentNumber asc")
+    Iterable<Flights> findSegmentBySegmentID(String segmentID);
+
     @Query("SELECT f.totalPrice FROM Flights f where f.flightID = ?1")
     String findPriceByFlightID(String flightID);
 
