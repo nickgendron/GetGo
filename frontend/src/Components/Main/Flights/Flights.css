@@ -1,5 +1,5 @@
 .flightsContent {
-    border: solid;
+    /* border: solid; */
 }
 
 .flightsRootDiv {
@@ -21,7 +21,7 @@
   margin-top: 50px;
   margin-right: 50px;
 
-  border: solid;
+  /* border: solid; */
 }
 
 .flightsToCity {
@@ -58,7 +58,7 @@
   align-items: center; /* centers the grid vertically */
   width: 100%; /* set the width of the grid to 100% */
 
-  border: solid;
+  /* border: solid; */
 }
 
 .gridItem {

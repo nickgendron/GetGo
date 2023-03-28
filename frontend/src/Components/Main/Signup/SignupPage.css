@@ -1,7 +1,7 @@
 .divThatHoldsFlightCards {
     border: solid;
 
-    border-color: pink;
+    /* border-color: pink; */
 }
 
 .flightsContent {
@@ -10,15 +10,15 @@
 
 /* Styles for div that hold each row of flight segments */
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-gap: 0px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(2, 1fr); */
+  /* grid-template-rows: repeat(2, 1fr); */
   height: 20vh;
   width: 90vw;
-    margin-top: 0;
-  border: solid;
-  border-color: green;
+    /* margin-top: 0; */
+  /* border: solid; */
+  /* border-color: green; */
+  
 }
 
 /* style for the div that holds the entire grid */
@@ -28,11 +28,12 @@
     height: auto;
     background-color: white;
   
-    border: solid;
+    /* border: solid; */
     border-color:purple;
     border-radius: 0%;
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+    border-radius: 5%;
   }
   
   .grid-container-right {
@@ -50,8 +51,8 @@
   text-align: center;
   height: 85%;
 
-  border: solid;
-  border-color: yellow;
+  /* border: solid; */
+  /* border-color: yellow; */
   
 }
 .grid-item-1 {
@@ -72,6 +73,7 @@
 
 .grid-item-4 {
   width: 25%;
+border-radius: 5%;
 }
 
 
