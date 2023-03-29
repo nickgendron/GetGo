@@ -10,11 +10,14 @@ public interface FlightsRepo extends CrudRepository<Flights, String>{
     @Query("SELECT f FROM Flights f WHERE f.flightID = ?1")
     Iterable<Flights> findByFlightID(String flightID);
 
-    @Query("SELECT s FROM Segments s WHERE s.flightID = ?1 ORDER BY segmentNumber asc")
+    @Query("SELECT s.segmentID FROM Segments s WHERE s.flightID = ?1 ORDER BY segmentNumber asc")
     Iterable<Flights> findSegmentByFlightID(String flightID);
 
     @Query("SELECT i FROM Itineraries i WHERE i.flightID = ?1")
     Iterable<Flights> findItineraryByFlightID(String flightID);
+
+    @Query("SELECT s FROM Segments s WHERE s.segmentID = ?1")
+    Iterable<Flights> findSegmentBySegmentID(String segmentID);
 
     @Query("SELECT s.segmentID FROM Segments s where s.flightID = ?1 ORDER BY segmentNumber asc")
     Iterable<Flights> findSegmentIdByFlightID(String flightID);

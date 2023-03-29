@@ -37,7 +37,7 @@ public class Hotels {
     @Nullable
     private String locationID;
     @Nullable
-    public String hotelName;
+    private String hotelName;
     @Nullable
     private String rating;
     @Nullable

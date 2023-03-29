@@ -101,38 +101,6 @@ border-radius: 5%;
   }
 }
 
-.whiteAirportBubbleNew {
-  border-radius: 50px;
-  font-size: 20px;
-  height: 55px;
-  width: 100px;
-  text-align: center;
-  background-color: white;
-  font-weight: bold;
-  padding-right: 5%;
-  padding-left: 5%;
-  padding-top: 3%;
-  padding-bottom: 3%;
-  pointer-events: none;
-  position: relative;
-}
-
-.blueAirportBubbleNew {
-  /* border: solid; */
-  border-radius: 50px;
-  font-size: 20px;
-  height: 55px;
-  width: 100px;
-  text-align: center;
-  background-color: blue;
-  font-weight: bold;
-  padding-right: 5%;
-  padding-left: 5%;
-  padding-top: 3%;
-  padding-bottom: 3%;
-  pointer-events: none;
-  position: relative;
-}
 
 .flightDurationText {
   text-align: center;

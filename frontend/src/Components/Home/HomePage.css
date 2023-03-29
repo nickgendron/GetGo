@@ -19,6 +19,12 @@
   min-width: 1317px;
 }
 
+.homeButtons {
+  border-radius: 20px;
+  background-color: white;
+  height: 60px;
+  width: 100px;
+}
 .all_work {
   height: 68px;
   width: 56px;

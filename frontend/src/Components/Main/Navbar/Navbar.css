@@ -36,7 +36,7 @@
   background-position: center left;
   background-position-x: 15px;
   justify-content: left;
-  background-color: blue;
+  background-color: #3F52E3;
   color: white;
 }
 
@@ -49,7 +49,8 @@
 }
 
 .hotels:hover {
-    background-color: blue;
+    background-color: 
+    #3F52E3;
     color: white;
 }
 
@@ -62,7 +63,7 @@
 }
 
 .attractions:hover {
-    background-color: blue;
+    background-color: #3F52E3;
     color: white;
 }
 
@@ -75,7 +76,7 @@
 }
 
 .yourTrip:hover {
-    background-color: blue;
+    background-color: #3F52E3;
     color: white;
 }
 

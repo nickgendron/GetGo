@@ -15,10 +15,11 @@ import com.springbackend.app.rest.Flights.ItineraryObjects.ItinerariesRepo;
 import com.springbackend.app.rest.Flights.SegmentObject.Segments;
 import com.springbackend.app.rest.Flights.SegmentObject.SegmentsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -76,7 +77,7 @@ public class FlightsController {
                 /* Load offer i received by the response */
                 FlightOfferSearch offer = flightOffers[i];
 
-                double totalPrice = offer.getPrice().getGrandTotal();
+                String totalPrice = String.valueOf(offer.getPrice().getGrandTotal());
 
                 /* Generate flightID */
                 String flightID = UUID.randomUUID().toString();
@@ -130,6 +131,9 @@ public class FlightsController {
                                 LocalDateTime arrivalDateTime = LocalDateTime.parse(arrivalTimestamp);
                                 LocalDateTime departureDateTime = LocalDateTime.parse(departureTimestamp);
 
+                                String convertedDepartureDateTime = departureDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
+
+
                                 /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
                                 JsonObject segmentJson = new JsonObject();
 
@@ -158,7 +162,7 @@ public class FlightsController {
                                 segmentJson.addProperty("departureTime", departureDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                                 segmentJson.addProperty("departureDate", departureDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                                 segmentJson.addProperty("arrivalTime", arrivalDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-                                segmentJson.addProperty("arrivalDate", arrivalDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                                segmentJson.addProperty("arrivalDate", arrivalDateTime.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")));
                                 segmentJson.addProperty("flightDuration", flightDuration);
                                 segmentJson.addProperty("totalPrice", totalPrice);
                                 segmentJson.addProperty("airlineCode", segment.getCarrierCode());
@@ -172,8 +176,8 @@ public class FlightsController {
                                 segmentRepo.save(segmentSave);
 
                                 /* Clean up Json returned to front end */
-                                segmentJson.remove("flightID");
-                                segmentJson.remove("segmentID");
+                                //segmentJson.remove("flightID");
+                                //segmentJson.remove("segmentID");
 
                                 return segmentJson;
                             }).collect(Collectors.toList());
@@ -222,6 +226,7 @@ public class FlightsController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/getSegmentByFlightID")
     public JsonElement getSegmentsByID(@RequestParam String flightID){
         Iterable<Flights> flight = flightsRepo.findSegmentByFlightID(flightID);
@@ -234,17 +239,26 @@ public class FlightsController {
         Iterable<Flights> flight = flightsRepo.findItineraryByFlightID(flightID);
         return parseJson(flight);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getSegmentBySegmentID")
+    public JsonElement getSegmentBySegmentID(@RequestParam String segmentID){
 
+        Iterable<Flights> flight = flightsRepo.findSegmentBySegmentID(segmentID);
+        return parseJson(flight);
+    }
+
+    //findSegmentBySegmentID
     @GetMapping(path = "/getPriceByFlightID")
     public String getPriceByFlightID(String flightID){
         String price = flightsRepo.findPriceByFlightID(flightID);
         return price;
     }
 
-    @GetMapping (path = "/getSegmentIDsFromFlight")
-    public JsonElement getSegmentIDs(@RequestParam String flightID){
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping (path = "/getSegmentIDFromFlightID")
+    public ResponseEntity<Iterable<Flights>> getSegmentsByFlightID(@RequestParam String flightID){
         Iterable<Flights> flight = flightsRepo.findSegmentIdByFlightID(flightID);
-        return parseJson(flight);
+        return ResponseEntity.ok(flight);
     }
 
     private JsonElement parseJson(Iterable<Flights> flight){
