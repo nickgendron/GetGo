@@ -12,10 +12,10 @@ function Links() {
       <Link to="/Components/Main/Summary/SummaryPage"> Summary </Link></>
     )
   }
-export default function Signup () {
+export default function Hotels() {
     return (
       <section>
-        Sign up
+        Hotels
       </section>
     );
   }
