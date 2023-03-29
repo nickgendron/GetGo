@@ -1,0 +1,114 @@
+body{
+    background-color: #CDCDCD;
+  }
+  
+  
+  
+  h1{
+    position:absolute;
+    top: 200px;
+    font-size: 50px;
+    left: 100px;
+    font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 50px;
+  }
+  
+  
+  p{
+    position: absolute;
+    top: 320px;
+    left: 100px;
+    font-size: 20px;
+    font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 34px;
+  }
+  .left-one{
+    position: absolute;
+    top: 60px;
+    left: 100px;
+    
+  }
+  
+  .right-one{
+    position: absolute;
+    top: 80px;
+    left: 160px;
+    max-width: 10%;
+  }
+  
+  .big-one{
+    position: absolute;
+    top: 150px;
+    left: 800px;
+    max-width: 80%;
+    max-height: 80%;
+  }
+  
+  .LoginLink {
+    position: absolute;
+    top: 60px;
+    left: 1500px;
+    border:1px solid red;
+    background-color: #0f8499;
+    color: rgb(0, 0, 0);
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    border-color: #000000;
+    border-width: 1px;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .SigninLink {
+    position: absolute;
+    top: 60px;
+    left: 1600px;
+    border:1px solid;
+    background-color: #0f8499;
+    color: rgb(0, 0, 0);
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    border-color: #000000;
+    border-width: 1px;
+    font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  }
+  
+  .StartHereLink {
+    position: absolute;
+    top: 460px;
+    left: 100px;
+    border:1px solid;
+    border:1px solid;
+    background-color: #001720;
+    color: rgb(255, 255, 255);
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    border-color: #000000;
+    border-width: 1px;
+    font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  }
+  
+  
