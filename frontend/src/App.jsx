@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./Components/Home/HomePage";
-import { BrowserRouter, Route, Outlet, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import { Route, Outlet, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/SignupPage";
 import Attractions from "./Components/Main/Attractions/Attractions";

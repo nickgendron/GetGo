@@ -1,7 +1,7 @@
 // I recommend using react bootstrap for easier styling and formatting
 import React from "react";
 import "./HomePage.css";
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, Outlet, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
   function LogoImage() {
     return (
