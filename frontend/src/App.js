@@ -13,6 +13,7 @@ import Hotels from "./Components/Main/Hotels/Hotels";
 import Summary from "./Components/Main/Summary/Summary";
 import Details from "./Components/Main/Details/Details";
 import Navbar from "./Components/Main/Navbar/Navbar";
+import GridCard from "./Components/Main/GridCard/GridCard";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/details" element={<Details />} />
         <Route path="/navbar" element={<Navbar />} />
+        <Route path="/gridcard" element={<GridCard />} />
       </Routes>
     </Router>
   );
