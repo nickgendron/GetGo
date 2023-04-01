@@ -1,133 +1,113 @@
-.divThatHoldsFlightCards {
-    border: solid;
-
-    /* border-color: pink; */
+.loginBox {
+  /* width: 320px;
+  height: 370px; */
+ /* background-color: rgba(109, 133, 140, 0.9); */
+  /* top: 50%;
+  left: 50%; */
+  /* position: absolute; */
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 50px 30px;
+  border-radius: 30px;
+}
+.container {
+  /* background-size: cover; */
+  /* margin: 0; */
+  /* padding: 0; */
+  /* height: 100vh;
+  width: 100vw; */
+  /* height: auto; */
+  position: relative;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* padding-top: 300px; */
+  /* top: 0; */
+  /* left: 0; */
+  /* height: 100vh; */
 }
 
-.flightsContent {
-    height: auto;
+
+
+.loginText {
+  color: #542d31;
+  font-family: 'work sans';
+  font-size: 22px;
+  margin: 0px;
+  padding: 0px;
 }
 
-/* Styles for div that hold each row of flight segments */
-.grid-container {
-  /* display: grid; */
-  /* grid-template-columns: repeat(2, 1fr); */
-  /* grid-template-rows: repeat(2, 1fr); */
-  height: 20vh;
-  width: 90vw;
-    /* margin-top: 0; */
-  /* border: solid; */
-  /* border-color: green; */
-  
+.newHereText{
+  color: #4060AD;
+  font-family: 'work sans';
+  font-size: 45px;
+  margin: 0px;
+  padding: 0px;
+
 }
 
-/* style for the div that holds the entire grid */
-.grid-wrapper {
-    display: flex;
-    flex-direction: row;
-    height: auto;
-    background-color: white;
-  
-    /* border: solid; */
-    border-color:purple;
-    border-radius: 0%;
-    /* margin-left: 10px;
-    margin-right: 10px; */
-    border-radius: 5%;
-  }
-  
-  .grid-container-right {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .grid-container-left {
-    display: inline-flex;
-    flex-direction: row-reverse;
-  }
-
-/* styles each div item (row) */
-.grid-item {
-  background-color: transparent;
-  text-align: center;
-  height: 85%;
-
-  /* border: solid; */
-  /* border-color: yellow; */
-  
-}
-.grid-item-1 {
-  width: 25%;
-  padding-top: 5%;
+.welcomeText {
+  color: #4060AD;
+  font-family: 'work sans';
+  font-size: 45px;
+  margin: 0px;
+  padding: 0px;
 }
 
-.grid-item-2 {
-  width: 25%;
-}
-
-.grid-item-3 {
-  width: 25%;
+.centerText {
   text-align: center;
   align-items: center;
-  padding-top: 6%;
+  color: #542d31;
+  font-family: arial;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
 }
 
-.grid-item-4 {
-  width: 25%;
-border-radius: 5%;
-}
-
-
-.arrowImage {
-
-    /* padding-bottom: 5%; */
-    /* padding-left: 5%; */
-    /* padding-right: 5%; */
-}
-
-
-
-@media screen and (min-width: 768px) {
-  .grid-item {
-    margin: 20px 0;
-    text-align: center;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .grid-item {
-    margin: 30px 0;
-    text-align: center;
-
-  }
-}
-
-
-.flightDurationText {
-  text-align: center;
-  font-family: "work sans";
-  color: grey;
-  display: inline;  
-
-    margin-top: 10%;
-}
-
-.flightDateTimeText {
-  text-align: center;
-  font-family: "work sans";
-  color: black;
+.loginArea {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 10%;
-  line-height: 1%;
-}
-
-.toTextBetweenButtons {
-  text-align: center;
-  font-family: "work sans";
-  color: black;
-  line-height: 1%;
-  font-size: 20px;
-  justify-content: center;
-
-  margin-top: 100%;
+  align-items: center;
 
 }
+
+.imageLogin {
+  position: relative;
+  /* width: 150px; */
+  height: 90px;
+  margin: 15px;
+}
+
+.textLogoLogin {
+  margin: 15px;
+
+}
+
+.button {
+  font-family: 'work sans';
+  align-items: center;
+  color: #fffdfc;
+  font-size: 19px;
+  /* text-shadow: 1px 1px 0px #010203; */
+  width: 220px;
+  height: 45px;
+  border-radius: 30px;
+  border: 0px solid #3866a3;
+  background: #4060AD;
+}
+
+.inputLabel {
+  width: 380px;
+  height: 50px;
+  border-radius: 15px;
+  border-color: #4060AD;
+  box-shadow: none;
+
+  font-size: 14px;
+  font-family: 'work sans';
+  text-align: left;
+  padding-left: 15px;
+}
+
+
+ 

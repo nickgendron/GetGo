@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./Components/Home/HomePage";
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,6 +17,11 @@ import Navbar from "./Components/Main/Navbar/Navbar";
 import GridCard from "./Components/Main/GridCard/GridCard";
 
 function App() {
+
+  // checkLoginStatis() {
+
+  //   axios.get("http://localhost:8080/api/user/isLoggedIn").then((response) => {
+  // }
   return (
     <Router>
       <Routes>

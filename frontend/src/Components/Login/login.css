@@ -1,47 +1,54 @@
 .loginBox {
-  width: 320px;
-  height: 370px;
-  background-color: rgba(109, 133, 140, 0.9);
-  top: 50%;
-  left: 50%;
-  position: absolute;
+  /* width: 320px;
+  height: 370px; */
+ /* background-color: rgba(109, 133, 140, 0.9); */
+  /* top: 50%;
+  left: 50%; */
+  /* position: absolute; */
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   padding: 50px 30px;
   border-radius: 30px;
 }
 .container {
-  background-image: url("../Images/goldenGateBridge.jpg");
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  min-width: 1024px;
-	
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
+  /* background-size: cover; */
+  /* margin: 0; */
+  /* padding: 0; */
+  /* height: 100vh;
+  width: 100vw; */
+  /* height: auto; */
+  position: relative;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* padding-top: 300px; */
+  /* top: 0; */
+  /* left: 0; */
+  /* height: 100vh; */
 }
 
-body {
-  margin: 0;
-  padding: 0;
-}
+
 
 .loginText {
   color: #542d31;
-  font-family: arial;
+  font-family: 'work sans';
   font-size: 22px;
   margin: 0px;
   padding: 0px;
 }
 
+.newHereText{
+  color: #4060AD;
+  font-family: 'work sans';
+  font-size: 45px;
+  margin: 0px;
+  padding: 0px;
+
+}
+
 .welcomeText {
-  color: #542d31;
-  font-family: arial;
-  font-size: 26px;
+  color: #4060AD;
+  font-family: 'work sans';
+  font-size: 45px;
   margin: 0px;
   padding: 0px;
 }
@@ -61,26 +68,48 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+}
+
+.imageLogin {
+  position: relative;
+  /* width: 150px; */
+  height: 90px;
+  margin: 15px;
+}
+
+.textLogoLogin {
+  margin: 15px;
+
 }
 
 .button {
-  font-family: arial;
+  font-family: 'work sans';
   align-items: center;
   color: #fffdfc;
-  font-size: 14px;
-  text-shadow: 1px 1px 0px #010203;
-  padding: 10px 25px;
+  font-size: 19px;
+  /* text-shadow: 1px 1px 0px #010203; */
+  width: 220px;
+  height: 45px;
   border-radius: 30px;
   border: 0px solid #3866a3;
-  background: #07232b;
+  background: #4060AD;
 }
 
 .inputLabel {
-  width: 200px;
-  height: 35px;
-  border-radius: 30px;
-  border-width: 0px;
+  width: 380px;
+  height: 50px;
+  border-radius: 15px;
+  border-color: #4060AD;
+  box-shadow: none;
+
   font-size: 14px;
-  font-family: arial;
-  text-align: center;
+  font-family: 'work sans';
+  text-align: left;
+  padding-left: 15px;
 }
+
+.rightSideDiv {
+  padding-left: 50%;
+text-align: center;}
+ 

@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../Navbar/Navbar";
 import PlaneIcon from "../../Images/blackPlaneIcon.png";
 import { styled } from "@mui/material/styles";
@@ -7,82 +6,122 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import arrowIcon from "../../Images/right-arrow.png";
 
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import image from "../../Images/largeLogo.jpg";
+import textImage from "../../Images/largerTextLogo.png";
+import axios from 'axios';
+
+
 import "./SignupPage.css";
 
 
 
 
-function flightCards() {
-  return (
-    //   <div className="grid-container">
-    //   <div className="grid-item grid-item-1">Div 1</div>
-    //   <div className="grid-item grid-item-2">Div 2</div>
-    //   <div className="grid-item grid-item-3">Div 3</div>
-    //   <div className="grid-item grid-item-4">Div 4</div>
-    // </div>
-    <>
-      <div className="grid-wrapper">
-        <div className="grid-container grid-container-left">
-          <div className="grid-item grid-item-1">
-            <p className="flightDurationText">3 hours and 45 minutes</p>
-          </div>
-          <div className="grid-item grid-item-2">
-            <p>Korean Air</p>
-            <button className="blueAirportBubbleNew">SYD</button>
-            <p>Tue, Aug 1 <br/> <strong>6:30 am</strong></p>
 
-          </div>
-          <div className="grid-item grid-item-3">
-            {/* <img className="arrowImage" src={arrowIcon}></img> */}
-            to
-          </div>
-          <div className="grid-item grid-item-4">
-            <p>Korean Air</p>
-            <button className="whiteAirportBubbleNew">MSY</button>
-            <br/>
-            <p>Tue, Aug 1 <br/> <strong>6:30 am</strong></p>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-// 
 
 function Signup() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const url = `http://127.0.0.1:8080/api/user/add?firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}`;
+
+    console.log(url)
+    axios.post(url)
+      .then((response) => {
+        // Handle the response data here
+        console.log(response.data);
+        navigate("/home");
+      })
+      .catch((error) => {
+        // Handle the error here
+        console.error(error);
+      });
+  }
+
+  function handleFirstNameChange(event) {
+    setFirstName(event.target.value);
+  }
+  function handleLastNameChange(event) {
+    setlastName(event.target.value);
+  }
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
+
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
   return (
     <>
-      <div className="navBarComponent">
-        <Navbar />
-      </div>
+      <img src={image} className="imageLogin" />
+      <img src={textImage} className="textLogoLogin" />
 
-      <div className="flightsContent">
-        <h1 className="flightsToCity">Flights to [city, country]: </h1>
-        <hr
-          style={{
-            background: "black",
-            color: "black",
-            borderColor: "black",
-            height: "4px",
-            width: "93%",
-            marginLeft: "3%",
-          }}
-        />
-        {/* STARTING HERE WE WOLD NEED TO HAVE LOGIC TO MAKE BACKEND CALLS */}
-        <div className="divThatHoldsFlightCards">
-          {flightCards()}
-          
-          {flightCards()}
-          
-          {flightCards()}
-
-
+      <br/><br/><br/><br/>
+      <div className="container">
+        {/* <img src={image} className="imageLogin" /> */}
+        <form className="loginArea" onSubmit={handleSubmit}>
+              <h1 className="welcomeText">
+                <strong>Sign-up</strong>
+                <br/><br/>
+              </h1>
+              <input
+                className="inputLabel"
+                type="text"
+                placeholder="First Name"
+                name="username"
+                value={firstName}
+                onChange={handleFirstNameChange}
+                required
+              /> <br/>
+                 <input
+                className="inputLabel"
+                type="text"
+                placeholder="Last Name"
+                name="username"
+                value={lastName}
+                onChange={handleLastNameChange}
+                required
+              />
+              <br></br>
+              <input
+                className="inputLabel"
+                type="text"
+                placeholder="Email"
+                name="username"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+              <br></br>
+              <input
+                className="inputLabel"
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+              <br></br>
+              <button className="button" type="submit" onClick={handleSubmit}>
+                Join now
+              </button>
+              <br></br>
+        </form>
         </div>
-      </div>
-
     </>
   );
 }
+
 export default Signup;
 
 
