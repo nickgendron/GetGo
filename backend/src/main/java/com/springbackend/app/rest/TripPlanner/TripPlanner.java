@@ -12,6 +12,7 @@ public class TripPlanner {
     private double maxSpendMisc;
 
     private double grandTotal;
+    private double savingsTotal;
     private double addToTotal;
     private double subFromTotal;
 
@@ -33,14 +34,12 @@ public class TripPlanner {
         grandTotal = maxSpendFlight + maxSpendHotel + maxSpendAttraction + maxSpendTransportation + maxSpendGifts + maxSpendMisc;
         return grandTotal;
     }
-    public double addGrandTotal(){
-        double editGrandTotal = getGrandTotal();
-        grandTotal = editGrandTotal + addToTotal;
-        return grandTotal;
+    public double addSavings(){
+        savingsTotal = savingsTotal + addToTotal;
+        return savingsTotal;
     }
-    public double subGrandTotal(){
-        double editGrandTotal = getGrandTotal();
-        grandTotal = editGrandTotal + subFromTotal;
-        return grandTotal;
+    public double subSavings(){
+        savingsTotal = savingsTotal + subFromTotal;
+        return savingsTotal;
     }
 }
