@@ -78,6 +78,7 @@ public class Attractions {
         this.testing = attractionBuilder.testing;
     }
 
+
     public static class AttractionsBuilder {
         private String fullAddress;
         private String offerId;
