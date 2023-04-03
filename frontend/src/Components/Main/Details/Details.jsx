@@ -14,10 +14,16 @@ function Details() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
+  const navigate = useNavigate();
 
   function handleDatesChange({ startDate, endDate }) {
     setStartDate(startDate);
     setEndDate(endDate);
+  }
+
+  function handleNavigate(event){
+    event.preventDefault();
+    navigate("/flights");
   }
 
   function handleApply(event, picker) {
@@ -98,7 +104,7 @@ function Details() {
         </div>
 
         <div className="letsGoDiv">
-          <button className="letsGoButton">Let's go!</button>
+          <button onClick={handleNavigate} className="letsGoButton">Let's go!</button>
         </div>
       </div>
     </div>

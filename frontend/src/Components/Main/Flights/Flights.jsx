@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import "./Flights.css";
+import FlightCard from "./FlightCard/FlightCard";
 
 function process(data) {
   for (var i = 0; i < data.length; i++) {
@@ -123,7 +124,7 @@ function Flights() {
       </div>
 
       <div className="flightsContent">
-        <h1 className="flightsToCity">Flights to [city, country]: </h1>
+        <h1 className="flightsToCity">Flights to Dubai: </h1>
         <hr
           style={{
             background: "black",
@@ -135,7 +136,7 @@ function Flights() {
           }}
         />
         {/* STARTING HERE WE WOLD NEED TO HAVE LOGIC TO MAKE BACKEND CALLS */}
-        <div className="divThatHoldsFlightCards">{FlightCards(data)}</div>
+          <FlightCard />
       </div>
     </>
   );

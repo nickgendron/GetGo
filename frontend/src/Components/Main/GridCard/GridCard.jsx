@@ -5,10 +5,10 @@ import "./GridCard.css";
 function GridCard() {
   return (
     <>
-      <div className="rootContainer">
-        <div className="gridContainerNew">
+      <div className="gridCardContainerDiv">
+        <div className="leftChildGridCard">
           <div className="headerTextDiv">
-            <p className="bold">
+            <p className="boldLocationName">
               <strong>
                 <strong>Muesums of History</strong>
               </strong>
@@ -29,8 +29,11 @@ function GridCard() {
             <button className="componentButtons">Website </button>
           </div>
         </div>
-        <div className="leftSideTextDiv"></div>
+        <div className="rightChildGridCard"> 
+        <button className="addToTripButton">Add to Trip</button>
+        </div>
       </div>
+      <br/>
     </>
   );
 }

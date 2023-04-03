@@ -2,27 +2,32 @@
   border: solid;
   border-color: red;
   background-color: grey;
+  position: fixed;
 
   height: 0vh;
 }
-.gridContainerNew {
+.leftChildGridCard {
   /* max-width: 100%; */
-  border: solid;
-  border-color: blue;
+  border: none;
+  /* border-color: blue; */
   background-color: white;
   border-radius: 30px;
-  font-family:  "work sans";
+  font-family:  'Work Sans';
   color: black;
   margin-left: 3%;
   padding-left: 4%;
-  max-width: 40%;
+  max-width: 70%;
   padding-top: 2%;
+  display: inline-block;
+  float: left;
     
   padding-bottom: 2%;
+  
 }
 
-.bold {
-    font-weight: bolder bold;
+.boldLocationName {
+  font-family: 'Work Sans';
+  font-weight: 600;
 }
 .leftHeaderText {
   padding-left: 25%;
@@ -33,7 +38,11 @@
   width: 100%;
 }
 
-.leftSideTextDiv {
+.rightChildGridCard {
+  align-items: center;
+  justify-content: center;
+  padding-left: 70%;
+  padding-top: 10%;
 }
 
 .componentButtonDiv {
@@ -42,12 +51,16 @@
 }
 .componentButtons {
     color: white;
-    font: 'work sans';
-    background-color: blue;
+    font: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 50px;
+    background-color:#3F52E3;
     border: none;
-    border-radius: 100px;
+    border-radius: 20px;
     height: 60px;
-    width: 120px; 
+    width: 182px; 
     margin-left: 90px;
     margin-right: 90px;
 
@@ -55,4 +68,15 @@
 .greyText {
     color: #6C757D;
     font-family: "work sans"
+}
+
+.addToTripButton {
+  color: black;
+  background-color: white;
+  border: solid;
+  width: 120px;
+  height: 56px;
+  font: 'work sans';
+  font-weight: bold;
+  border-radius: 20px;
 }

@@ -1,7 +1,9 @@
-.rootDiv {
+.rootDivNavBar {
   width: 20%;
   margin: 10px;
   height: 100vh;
+  text-align: center;
+  align-items: center;
 }
 
 .logoImage {
@@ -80,17 +82,14 @@
     color: white;
 }
 
-
 .bottomButtons {
   color: grey;
   border: none;
   background-color: transparent;
-  margin-left: 10%;
-  text-align: center;
-  margin-left: 40px;
+  width: 10px;
 }
 
 .buttonTextGrey {
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
 }

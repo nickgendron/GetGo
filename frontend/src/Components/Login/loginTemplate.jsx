@@ -9,6 +9,8 @@ import axios from 'axios';
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -19,8 +21,14 @@ function LoginForm() {
     axios.get(url)
       .then((response) => {
         // Handle the response data here
-        console.log(response.data);
-        navigate("/home");
+       // console.log(response.data);
+        if(response.data){
+          navigate("/home");
+        }
+        else{
+          setError("Invalid email/password");
+         // return <div>{error}</div>;
+        }
       })
       .catch((error) => {
         // Handle the error here
@@ -34,6 +42,11 @@ function LoginForm() {
 
   function handlePasswordChange(event) {
     setPassword(event.target.value);
+  }
+
+  function handleSignUpNavigation(event){
+    event.preventDefault();
+    navigate("/signup");
   }
 
   return (
@@ -78,15 +91,14 @@ function LoginForm() {
                 Forgot password?{" "}
               </a>
               <br></br>
-              <a className="centerText" href="#">
-                {" "}
-                Signup{" "}
-              </a>
+             
+              {error && <div className="errorMessage">{error}</div>}
+
         </form>
         <div className="rightSideDiv">
           <h1 className="newHereText">New Here?</h1>
           <br></br>
-          <button className="button">Signup</button>
+          <button onClick={handleSignUpNavigation} type="submit" className="button">Signup</button>
         </div>
       </div>
     </>

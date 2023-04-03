@@ -1,13 +1,37 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import TextLogo from "../../Images/TextLogo.png";
 import SmallLogo from "../../Images/SmallLogo.png";
 import "./Navbar.css";
 
+
+
 function Navbar() {
+  const navigate = useNavigate();
+
+  function handleFlightsNavigation(event){
+    event.preventDefault();
+    navigate("/flights");
+  }
+
+  function handleHotelNavigation(event){
+    event.preventDefault();
+    navigate("/hotels");
+  }
+
+  function handleAttractionNavigation(event){
+    event.preventDefault();
+    navigate("/attractions");
+  }
+
+
+  function handleSummaryNavigation(event){
+    event.preventDefault();
+    navigate("/summary");
+  }
   return (
     <>
-      <div className="rootDiv">
+      <div className="rootDivNavBar">
         <div>
           <img className="logoImage" src={SmallLogo} />
           <img className="logoImage" src={TextLogo} />
@@ -15,10 +39,10 @@ function Navbar() {
         <br />
         <br />
         <div>
-          <button className="navButton flights">Flights</button>
-          <button className="navButton hotels">Hotels</button>
-          <button className="navButton attractions">Attractions</button>
-          <button className="navButton yourTrip">Your Trip</button>
+          <button onClick={handleFlightsNavigation} className="navButton flights">Flights</button>
+          <button onClick={handleHotelNavigation} className="navButton hotels">Hotels</button>
+          <button onClick={handleAttractionNavigation} className="navButton attractions">Attractions</button>
+          <button onClick={handleSummaryNavigation} className="navButton yourTrip">Your Trip</button>
         </div>
         <div>
           <hr

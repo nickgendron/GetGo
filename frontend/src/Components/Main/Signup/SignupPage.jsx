@@ -6,20 +6,15 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import arrowIcon from "../../Images/right-arrow.png";
 
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../../Images/largeLogo.jpg";
 import textImage from "../../Images/largerTextLogo.png";
-import axios from 'axios';
-
+import invertColorIcon from "../../Images/headerIcon.png";
+import whiteTextLogo from "../../Images/whiteTextLogo.png";
+import axios from "axios";
 
 import "./SignupPage.css";
-
-
-
-
-
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -33,8 +28,9 @@ function Signup() {
 
     const url = `http://127.0.0.1:8080/api/user/add?firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}`;
 
-    console.log(url)
-    axios.post(url)
+    console.log(url);
+    axios
+      .post(url)
       .then((response) => {
         // Handle the response data here
         console.log(response.data);
@@ -62,104 +58,108 @@ function Signup() {
 
   return (
     <>
-      <img src={image} className="imageLogin" />
-      <img src={textImage} className="textLogoLogin" />
-
-      <br/><br/><br/><br/>
-      <div className="container">
-        {/* <img src={image} className="imageLogin" /> */}
-        <form className="loginArea" onSubmit={handleSubmit}>
-              <h1 className="welcomeText">
-                <strong>Sign-up</strong>
-                <br/><br/>
-              </h1>
-              <input
-                className="inputLabel"
-                type="text"
-                placeholder="First Name"
-                name="username"
-                value={firstName}
-                onChange={handleFirstNameChange}
-                required
-              /> <br/>
-                 <input
-                className="inputLabel"
-                type="text"
-                placeholder="Last Name"
-                name="username"
-                value={lastName}
-                onChange={handleLastNameChange}
-                required
-              />
-              <br></br>
-              <input
-                className="inputLabel"
-                type="text"
-                placeholder="Email"
-                name="username"
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-              <br></br>
-              <input
-                className="inputLabel"
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-              <br></br>
-              <button className="button" type="submit" onClick={handleSubmit}>
-                Join now
-              </button>
-              <br></br>
-        </form>
+      <div className="bigSignUpDiv">
+          <img src={invertColorIcon} className="signUpImageIcon" />
+        <br />
+        <br />
+        <div className="signUpFormDiv">
+          {/* <img src={image} className="imageLogin" /> */}
+          <form className="loginArea" onSubmit={handleSubmit}>
+            <br />
+            <h1 className="welcomeText">
+              <strong>Sign Up Now!</strong>
+              <br />
+              <br />
+            </h1>
+            <input
+              className="inputLabelSignUp"
+              type="text"
+              placeholder="First Name"
+              name="username"
+              value={firstName}
+              onChange={handleFirstNameChange}
+              required
+            />{" "}
+            <br />
+            <br />
+            <input
+              className="inputLabelSignUp"
+              type="text"
+              placeholder="Last Name"
+              name="username"
+              value={lastName}
+              onChange={handleLastNameChange}
+              required
+            />
+            <br />
+            <br />
+            <input
+              className="inputLabelSignUp"
+              type="text"
+              placeholder="Email"
+              name="username"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+            <br />
+            <br />
+            <input
+              className="inputLabelSignUp"
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+            <br></br>
+            <input className="buttonSubmitSignup" value="Join Now" type="submit"/>
+            <br></br>
+          </form>
         </div>
+      </div>
     </>
   );
 }
 
 export default Signup;
 
-
 //function table() {
-  //   return (
-  //     <table>
-  //       <tbody>
-  //         <tr>
-  //           <td>Korean Air</td>
-  //           <td></td>
-  //         </tr>
-  //         <tr>
-  //           <td>
-  //             <button className="whiteAirportBuble">MSY</button>
-  //           </td>
-  //           <td>
-  //             <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
-  //           </td>
-  //           <td>
-  //             <p></p>
-  //           </td>
-  //           <td>
-  //             <button className="blueAirportBuble">SYD</button>
-  //           </td>
-  //         </tr>
-  //         <tr>
-  //           <td>Tue, Aug 1</td>
-  //           <td></td>
-  //           <td> </td>
-  //           <td>Tue, Aug 1</td>
-  //         </tr>
-  //         <tr>
-  //           <td>6:30 am</td>
-  //           <td></td>
-  //           <td></td>
-  //           <td>8:26am</td>
-  //         </tr>
-  //       </tbody>
-  //     </table>
-  //   );
-  // }
+//   return (
+//     <table>
+//       <tbody>
+//         <tr>
+//           <td>Korean Air</td>
+//           <td></td>
+//         </tr>
+//         <tr>
+//           <td>
+//             <button className="whiteAirportBuble">MSY</button>
+//           </td>
+//           <td>
+//             <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+//           </td>
+//           <td>
+//             <p></p>
+//           </td>
+//           <td>
+//             <button className="blueAirportBuble">SYD</button>
+//           </td>
+//         </tr>
+//         <tr>
+//           <td>Tue, Aug 1</td>
+//           <td></td>
+//           <td> </td>
+//           <td>Tue, Aug 1</td>
+//         </tr>
+//         <tr>
+//           <td>6:30 am</td>
+//           <td></td>
+//           <td></td>
+//           <td>8:26am</td>
+//         </tr>
+//       </tbody>
+//     </table>
+//   );
+// }
