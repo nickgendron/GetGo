@@ -142,6 +142,8 @@ function Flights() {
         {/* STARTING HERE WE WOLD NEED TO HAVE LOGIC TO MAKE BACKEND CALLS */}
         {/* <FlightCard /> */}
         {SegmentWrapper("fb6114e0-2efc-4b70-a2a0-8c5ae58117c0")}
+        <br/>
+        {SegmentWrapper("fb6114e0-2efc-4b70-a2a0-8c5ae58117c0")}
 
         {/* <SegmentRow segments={segmentData}/> */}
 
