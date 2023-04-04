@@ -14,7 +14,7 @@ public class Segments {
 
     @Id
     private String segmentID;
-
+private String itineraryID;
     private String flightID;
     private String originAirportCode;
     private String destAirportCode;
@@ -28,9 +28,11 @@ public class Segments {
     private String flightNumber;
     private String aircraftCode;
 
-    @ManyToOne
-    @JoinColumn(name = "itineraryID")
-    private Itineraries itinerary;
+    private String flightLeg;
+
+//    @ManyToOne
+//    @JoinColumn(name = "itineraryID")
+//    private Itineraries itinerary;
 
     public Segments (JsonObject segment){
 
@@ -47,6 +49,8 @@ public class Segments {
         this.aircraftCode = segment.get("aircraftCode").getAsString();
         this.flightID = segment.get("flightID").getAsString();
         this.segmentNumber = segment.get("segmentNumber").getAsInt();
+        this.itineraryID = segment.get("itineraryID").getAsString();
+        this.flightLeg = segment.get("flightLeg").getAsString();
 
     }
 

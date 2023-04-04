@@ -13,6 +13,12 @@ public interface FlightsRepo extends CrudRepository<Flights, String>{
     @Query("SELECT s.segmentID FROM Segments s WHERE s.flightID = ?1 ORDER BY segmentNumber asc")
     Iterable<Flights> findSegmentByFlightID(String flightID);
 
+    @Query("SELECT s.segmentID FROM Segments s WHERE s.flightID = ?1 AND s.flightLeg='departing' ORDER BY segmentNumber asc")
+    Iterable<Flights> findDepartingSegmentByFlightID(String flightID);
+
+    @Query("SELECT s.segmentID FROM Segments s WHERE s.flightID = ?1 AND s.flightLeg='returning' ORDER BY segmentNumber asc")
+    Iterable<Flights> findReturningSegmentByFlightID(String flightID);
+
     @Query("SELECT i FROM Itineraries i WHERE i.flightID = ?1")
     Iterable<Flights> findItineraryByFlightID(String flightID);
 
@@ -24,5 +30,8 @@ public interface FlightsRepo extends CrudRepository<Flights, String>{
 
     @Query("SELECT f.totalPrice FROM Flights f where f.flightID = ?1")
     String findPriceByFlightID(String flightID);
+
+    @Query("SELECT f.flightID from Flights f where f.offerID = ?1 ORDER BY f.optionNumber ASC")
+    Iterable<Flights> getFlightsByOfferID(String offerID);
 
 }
