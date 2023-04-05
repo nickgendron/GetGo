@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./login.css";
+import "./Login.css";
 import image from "../Images/largeLogo.jpg";
 import textImage from "../Images/largerTextLogo.png";
 import axios from 'axios';
 
 
-function LoginForm() {
+function LoginTemplate() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -54,7 +54,7 @@ function LoginForm() {
       <img src={image} className="imageLogin" />
       <img src={textImage} className="textLogoLogin" />
 
-      <br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/>
       <div className="container">
         {/* <img src={image} className="imageLogin" /> */}
         <form className="loginArea" onSubmit={handleSubmit}>
@@ -105,4 +105,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginTemplate;
