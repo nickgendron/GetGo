@@ -20,17 +20,20 @@ public class Itineraries {
         private String flightID;
         private String isNonstop;
         private String numFlights;
+        private String flightLeg;
 
-        @OneToMany(mappedBy = "itinerary")
-        private List<Segments> segment;
+//        @OneToMany(mappedBy = "itinerary")
+//        private List<Segments> segment;
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        private Flights flight;
+//        @ManyToOne(fetch = FetchType.LAZY)
+//        private Flights flight;
     public Itineraries(JsonObject itinerary) {
         this.itineraryID = itinerary.get("itineraryID").getAsString();
         this.isNonstop = itinerary.get("isNonstop").getAsString();
         this.numFlights = itinerary.get("numFlights").getAsString();
         this.flightID = itinerary.get("flightID").getAsString();
+        this.flightID = itinerary.get("flightLeg").getAsString();
+
     }
 
     public Itineraries() {}

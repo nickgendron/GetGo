@@ -37,7 +37,7 @@ public class Attractions {
     private String locationID;
 
     @Nullable
-    public String attrName;
+    private String attrName;
 
     @Nullable
     private String rating;
@@ -59,7 +59,6 @@ public class Attractions {
     private double latitude;
     @Nullable
     private double longitude;
-
     @Nullable
     private String testing;
 
@@ -78,11 +77,12 @@ public class Attractions {
         this.testing = attractionBuilder.testing;
     }
 
+
     public static class AttractionsBuilder {
         private String fullAddress;
         private String offerId;
         private String locationID;
-        public String attrName;
+        private String attrName;
         private String rating;
         private String description;
         private String photosURL;
