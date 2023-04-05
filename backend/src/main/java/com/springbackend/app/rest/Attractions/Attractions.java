@@ -59,7 +59,6 @@ public class Attractions {
     private double latitude;
     @Nullable
     private double longitude;
-
     @Nullable
     private String testing;
 

@@ -6,23 +6,26 @@
       
 }
 
+.hotelsContent {
+  margin-left: 300px;
+  background-color: #cdcdcd;
+  height: auto;
+  margin-top: 50px;
+  margin-right: 45px;
 
-  .hotelsContent {
-    margin-left: 300px;
-    background-color: #cdcdcd;
-    height: auto;
-    margin-top: 50px;
-    margin-right: 50px;
-  
-    /* border: solid; */
-  }
+  /* border: solid; */
+}
 
-  .hotelsInCity {
-    text-align: left;
-    padding-left: 4%;
-    padding-top: 2%;
-    color: #e64646;
-    font-family: 'work sans';
-    font-size: 26px;
-    font: "work sans";
-  }
+.hotelsInCity {
+  text-align: left;
+  padding-left: 4%;
+  padding-top: 2%;
+  color: #e64646;
+  font-family: 'work sans';
+  font-size: 26px;
+  font: "work sans";
+}
+
+.gridCardHoldingDiv{
+
+}

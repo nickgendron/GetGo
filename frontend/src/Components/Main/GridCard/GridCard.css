@@ -6,6 +6,12 @@
 
   height: 0vh;
 }
+
+.gridCardContainerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .leftChildGridCard {
   /* max-width: 100%; */
   border: none;
@@ -22,6 +28,8 @@
   float: left;
     
   padding-bottom: 2%;
+  padding-right: 3%;
+  padding-left: 3%;
   
 }
 
@@ -41,14 +49,28 @@
 .rightChildGridCard {
   align-items: center;
   justify-content: center;
-  padding-left: 70%;
-  padding-top: 10%;
+  display:flex;
+  height: 100%;
+  padding-left: 5%;
 }
 
 .componentButtonDiv {
   text-align: center;
-  
 }
+
+.addToTripButton {
+  color: black;
+  background-color: white;
+  border: solid;
+  width: 120px;
+  height: 56px;
+  font: 'work sans';
+  font-weight: bold;
+  border-radius: 20px;
+  margin: auto;
+}
+
+
 .componentButtons {
     color: white;
     font: 'Work Sans';
@@ -70,13 +92,4 @@
     font-family: "work sans"
 }
 
-.addToTripButton {
-  color: black;
-  background-color: white;
-  border: solid;
-  width: 120px;
-  height: 56px;
-  font: 'work sans';
-  font-weight: bold;
-  border-radius: 20px;
-}
+

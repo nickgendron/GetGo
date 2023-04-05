@@ -26,11 +26,25 @@
 
   border: solid; */
 }
+
+/* .toFromText{
+  font-family: 'Work Sans';
+} */
+
+.onlyCenterLastDiv {
+
+}
+
 .flightsWraperContainer {
   display: flex;
+  /* justify-content: center; */
+   /* align-items: center;  */
   gap: 18px;
   width: auto; 
   background-color: white;
+  border-radius: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   /* margin-left: auto; */
   /* flex-wrap: wrap;
   justify-content: space-between; /* Space child elements evenly */
@@ -41,6 +55,10 @@
   margin-right: 3%;
   padding-left: 4%; 
 }
+
+/* display: flex;
+justify-content: center;
+align-items: center; */
 
 .flightsWraperContainerNew {
   /* display:flex;
@@ -89,8 +107,8 @@
 }
 
 .horizontalGreyLine {
-  border: 0.75px solid #d9d9d9;
-  width: 95%;
+  border: 10px solid red;
+  width: 100%;
 }
 .segmentRowParent {
   display: grid;
@@ -123,8 +141,12 @@
 }
 .div3 {
   grid-area: 3 / 1 / 4 / 5;
-  width:auto;
-  padding-left: 11px;
+  width:24%;
+  /* padding-right: px; */
+  /* border: solid; */
+  text-align: center;
+  /* padding-left: 18px; */
+  /* align-items: center; */
 }
 /* .div4 {
   grid-area: 4 / 1 / 5 / 5;
@@ -135,6 +157,7 @@
 }
 .div6 {
   grid-area: 2/2/3/5;
+  padding-top: 15px;
   /* width: 100%; */
 }
 .div7 {
@@ -157,7 +180,9 @@
 }
 .div11 {
   grid-area: 3/3/4/5;
-  padding-left: 10px;
+  width: 50%;
+  text-align: center;
+  
 
 }
 
@@ -236,6 +261,7 @@
   font: "work sans";
   font-weight: bold;
   border-radius: 20px;
+  display: flex;
 }
 
 .arrowIconGrid {
@@ -273,39 +299,49 @@
 }
 
 .leftSideRender{
-    /* padding-top: 10px; */
-    /* display:inline-block;  */
-    /* Display child elements inline */
-    /* width: auto;  */
-    /* vertical-align: top; Align content to top of divs */
-
     flex-grow: 1;
-    
-
-
-
+    font-family: 'work sans';
 }
 .rightSideRender{
-    /* padding-top: 10px; */
     flex-grow: 1;
-    /* display:inline-block;  */
-    /* Display child elements inline */
-    /* width: auto;  */
-    /* height: auto; */
-    /* vertical-align: top; Align content to top of divs */
+    font-family: 'work sans'; 
 }
 
 .tripTotalCostText{
     font-family: 'Work Sans';
-    font-weight: 1000;
+    font-weight: bold;
+    font-size: 16px;
     
 }
+
+.flightCostText{
+    font-family: 'Work Sans';
+    font-weight: bold;
+    font-size: 24px;
+    font-weight: 100000;
+}
+
+.tripPriceTextDiv{
+  /* text-align: center; */
+}
 .addToTripDiv{
-    text-align: center;
-    /* padding-top: 17%; */
+    /* text-align: center; */
+    /* padding-top: 20%; */
+    /* /* padding-left: 5%; */
     padding-left: 5%;
     padding-right: 5%;
+    /* display: block; */
+    /* vertical-align: middle; */
     /* display:inline-block; */
-    width: auto; 
+    /* width: auto;  */
     /* vertical-align: top; */
-}
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* display:block; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 600px;
+  }

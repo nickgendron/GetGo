@@ -56,6 +56,19 @@
     color: white;
 }
 
+.active{
+  background-color: #3F52E3;
+  color: white;
+
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 250px;
+  height: 55px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+}
+
 .attractions {
   background-image: url("../../Images/blackAttricationsIcon.png");
   background-repeat: no-repeat;

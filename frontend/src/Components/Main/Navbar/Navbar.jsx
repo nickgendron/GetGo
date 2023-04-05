@@ -4,45 +4,77 @@ import TextLogo from "../../Images/TextLogo.png";
 import SmallLogo from "../../Images/SmallLogo.png";
 import "./Navbar.css";
 
-
-
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation().pathname;
 
-  function handleFlightsNavigation(event){
+  console.log(location.pathname);
+
+  function handleFlightsNavigation(event) {
     event.preventDefault();
     navigate("/flights");
   }
 
-  function handleHotelNavigation(event){
+  function handleHotelNavigation(event) {
     event.preventDefault();
     navigate("/hotels");
   }
 
-  function handleAttractionNavigation(event){
+  function handleAttractionNavigation(event) {
     event.preventDefault();
     navigate("/attractions");
   }
 
-
-  function handleSummaryNavigation(event){
+  function handleSummaryNavigation(event) {
     event.preventDefault();
     navigate("/summary");
+  }
+  function handleHomeNavigation(event) {
+    event.preventDefault();
+    navigate("/home");
   }
   return (
     <>
       <div className="rootDivNavBar">
-        <div>
+        <div onClick={handleHomeNavigation}>
           <img className="logoImage" src={SmallLogo} />
           <img className="logoImage" src={TextLogo} />
         </div>
         <br />
         <br />
         <div>
-          <button onClick={handleFlightsNavigation} className="navButton flights">Flights</button>
-          <button onClick={handleHotelNavigation} className="navButton hotels">Hotels</button>
-          <button onClick={handleAttractionNavigation} className="navButton attractions">Attractions</button>
-          <button onClick={handleSummaryNavigation} className="navButton yourTrip">Your Trip</button>
+          <button
+            onClick={handleFlightsNavigation}
+            className={`navButton flights ${
+              location === "/flights" ? "active" : ""
+            }`}
+          >
+            Flights
+          </button>
+          <button
+            onClick={handleHotelNavigation}
+            className={`navButton hotels ${
+              location === "/hotels" ? "active" : ""
+            }`}
+          >
+            Hotels
+          </button>
+          <button
+            onClick={handleAttractionNavigation}
+            className={`navButton attractions ${
+              location === "/attractions" ? "active" : ""
+            }`}
+          >
+            Attractions
+          </button>
+          <button
+            onClick={handleSummaryNavigation}
+            className={`navButton yourTrip ${
+              location === "/summary" ? "active" : ""
+            }`}
+          >
+            Your Trip
+          </button>
         </div>
         <div>
           <hr
@@ -57,13 +89,13 @@ function Navbar() {
           />
         </div>
         <div className="buttonTextGrey">
-            <button className="bottomButtons">Vacation Summary</button>
-            <br/>
-            <br/>
-            <button className="bottomButtons">Budget Calculator</button>
-            <br/>
-            <br/>
-            <button className="bottomButtons">Savings Plan</button>
+          <button className="bottomButtons">Vacation Summary</button>
+          <br />
+          <br />
+          <button className="bottomButtons">Budget Calculator</button>
+          <br />
+          <br />
+          <button className="bottomButtons">Savings Plan</button>
         </div>
       </div>
     </>

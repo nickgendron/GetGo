@@ -41,7 +41,7 @@ public class Hotels {
     @Nullable
     private String rating;
     @Nullable
-    @Column(name = "description", columnDefinition = "VARCHAR(MAX)")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
     @Nullable
     private String photosURL;

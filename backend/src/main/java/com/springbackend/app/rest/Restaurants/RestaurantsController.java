@@ -17,13 +17,50 @@ public class RestaurantsController {
     @Autowired
     private RestaurantsRepo restaurantsRepo;
 
-    //LatLong?
+    public String getLatLong(@RequestParam String fullAddress) throws IOException {
 
-    @GetMapping(path = "nearbyRestaurants")
+        /* Encode the address */
+        String query = URLEncoder.encode(fullAddress, "UTF-8");
+
+        /* Get API key and create URL to query */
+        final String positionStackKey = System.getenv("POSITION_STACK");
+
+        /* Call to PositionStack address to coordinates API */
+        OkHttpClient latLongClient = new OkHttpClient();
+        Request latLongRequest = new Request.Builder()
+                .url("http://api.positionstack.com/v1/forward?access_key=" + positionStackKey + "&query=" + fullAddress)
+                .get()
+                .build();
+        Response latLongResponse = latLongClient.newCall(latLongRequest).execute();
+
+
+        /* Convert response to string */
+        String latLongString = latLongResponse.body().string();
+
+        /* Convert response to JsonArray */
+        JsonObject nearbySearchJsonObject = new Gson().fromJson(latLongString, JsonObject.class);
+        JsonArray latLongArray = nearbySearchJsonObject.getAsJsonArray("data");
+
+        /* String that will be returned */
+        String returnString = new String();
+
+        /* Iterate over latLongArray and extract lat/long values */
+        for (JsonElement jsonIterator : latLongArray) {
+            JsonObject dataObject = jsonIterator.getAsJsonObject();
+            String latitude = dataObject.get("latitude").getAsString();
+            String longitude = dataObject.get("longitude").getAsString();
+            returnString = latitude + "," + longitude;
+
+        }
+        return returnString;
+    }
+
+
+    @GetMapping(path = "/nearbyRestaurants")
     public JsonArray nearbyRestaurants(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
-        //String destCords = getLatLong(location);
-        String destCords = "30.4515, -91.1871";
+        String destCords = getLatLong(location);
+//        String destCords = "30.4515, -91.1871";
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
 

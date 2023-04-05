@@ -34,6 +34,8 @@ public class ApplicationSecurity {
 //                .requestMatchers("/api/flights/findByID").permitAll()
 //                .requestMatchers("/api/flights/prices").permitAll();
         return http.build();
+
+
     }
     //private UserRepo userRepo;
 

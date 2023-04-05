@@ -1,8 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import StarRating from "../StarRating/StarRating";
 import "./GridCard.css";
 
-function GridCard() {
+function GridCard({
+  name,
+  address,
+  type,
+  rating,
+  priceLevel,
+  description,
+  images,
+  locationID,
+}) {
   return (
     <>
       <div className="gridCardContainerDiv">
@@ -10,30 +20,42 @@ function GridCard() {
           <div className="headerTextDiv">
             <p className="boldLocationName">
               <strong>
-                <strong>Muesums of History</strong>
+                <strong>{name}</strong>
               </strong>
             </p>
-            <p className="leftHeaderText">
-              10 Macquarie St, Sydney NSW 2000, Auatralia{" "}
-            </p>
+            <p className="leftHeaderText">{address}</p>
           </div>
           <div className="leftSideTextDiv">
             <br />
-            <p className="greyText">History museum in Sydney, Australia</p>
+            <p className="greyText">{type}</p>
+            <p className="greyText">{description}</p>
+
             <br />
-            <p className="greyText">Reviews: 4/5 Stars</p>
-            <p className="greyText">PriceLevel: $</p>
+            <p className="greyText">
+              Rating: <StarRating rating={rating} />
+            </p>
+            <p className="greyText">Price Level: {priceLevel}</p>
           </div>
           <div className="componentButtonDiv">
-            <button className="componentButtons">Pictures </button>
+            <button
+              onClick={() => window.open(images, "_blank")}
+              className="componentButtons"
+            >
+              Pictures{" "}
+            </button>
             <button className="componentButtons">Website </button>
           </div>
         </div>
-        <div className="rightChildGridCard"> 
-        <button className="addToTripButton">Add to Trip</button>
+        <div className="rightChildGridCard">
+          <button
+            className="addToTripButton"
+            onClick={() => console.log(locationID)}
+          >
+            Add to Trip
+          </button>
         </div>
       </div>
-      <br/>
+      <br />
     </>
   );
 }

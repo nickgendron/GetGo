@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.UUID;
 import com.amadeus.resources.FlightOfferSearch.AirportInfo;
 import com.amadeus.resources.FlightOfferSearch.Itinerary;
@@ -14,6 +15,7 @@ import com.springbackend.app.rest.Flights.ItineraryObjects.Itineraries;
 import com.springbackend.app.rest.Flights.ItineraryObjects.ItinerariesRepo;
 import com.springbackend.app.rest.Flights.SegmentObject.Segments;
 import com.springbackend.app.rest.Flights.SegmentObject.SegmentsRepo;
+import org.hibernate.dialect.SimpleDatabaseVersion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -166,6 +168,22 @@ public class FlightsController {
                                 String[] flightDurationArray =  flightDurationString.split("\\.",2);
                                 String flightDuration = flightDurationArray[0] + " hour(s) and " + flightDurationArray[1] + " minutes";
 
+                                String formattedArrivalDate = new String();
+                                String formattedDepartureDate = new String();
+                                String arrivalDateString = arrivalDateTime.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+                                String departureDateString = departureDateTime.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+
+                                SimpleDateFormat inputFormat = new SimpleDateFormat("MM-dd-yyyy");
+                                try {
+                                    Date arrivalDate = inputFormat.parse(arrivalDateString);
+                                    Date departureDate = inputFormat.parse(departureDateString);
+                                    SimpleDateFormat outputFormat = new SimpleDateFormat("EEE, MMM d");
+                                    formattedArrivalDate = outputFormat.format(arrivalDate);
+                                    formattedDepartureDate = outputFormat.format(departureDate);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
                                 /* Increment counter */
                                 numOfSegments.get().incrementAndGet();
                                 numOfFlights.get().incrementAndGet();
@@ -180,9 +198,9 @@ public class FlightsController {
                                 segmentJson.addProperty("originAirportCode", departure.getIataCode().toString());
                                 segmentJson.addProperty("destAirportCode", arrival.getIataCode().toString());
                                 segmentJson.addProperty("departureTime", departureDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-                                segmentJson.addProperty("departureDate", departureDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                                segmentJson.addProperty("departureDate", formattedDepartureDate);
                                 segmentJson.addProperty("arrivalTime", arrivalDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-                                segmentJson.addProperty("arrivalDate", arrivalDateTime.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")));
+                                segmentJson.addProperty("arrivalDate", formattedArrivalDate);
                                 segmentJson.addProperty("flightDuration", flightDuration);
                                 segmentJson.addProperty("totalPrice", totalPrice);
                                 segmentJson.addProperty("airlineCode", segment.getCarrierCode());
@@ -296,9 +314,15 @@ public class FlightsController {
         return parseJson(flight);
     }
 
-    //findSegmentBySegmentID
+    @CrossOrigin(origins = "http:localhost:3000")
+    @GetMapping(path="/getTest")
+    public String testing(){
+        return "I'm HERE";
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/getPriceByFlightID")
-    public String getPriceByFlightID(String flightID){
+    public String getPriceByFlightID(@RequestParam String flightID){
         String price = flightsRepo.findPriceByFlightID(flightID);
         return price;
     }

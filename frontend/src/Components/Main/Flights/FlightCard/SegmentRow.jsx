@@ -22,16 +22,14 @@ function SegmentRow({ segmentID }) {
         );
         setSegmentData(response.data);
     }
-
-
     fetchData();
-  }, [segmentID]);
+  }, []);
 
-//   if (isLoading) {
-//     console.log(segmentData);
+  if (isLoading) {
+    console.log(segmentData);
 
-//     return <p>Loading...</p>;
-//   }
+    return <p>Loading...</p>;
+  }
   console.log(segmentData);
   return (
     <>
