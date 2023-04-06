@@ -6,6 +6,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import React, { createContext, useState } from 'react';
+
 import Login from "./Components/Login/loginTemplate";
 import Signup from "./Components/Main/Signup/SignupPage";
 import Attractions from "./Components/Main/Attractions/Attractions";
@@ -15,14 +17,32 @@ import Summary from "./Components/Main/Summary/Summary";
 import Details from "./Components/Main/Details/Details";
 import Navbar from "./Components/Main/Navbar/Navbar";
 import GridCard from "./Components/Main/GridCard/GridCard";
+import MainAPI from "./Components/Main/MainAPI/MainAPI";
 
+export const AppContext = createContext();
+//frontend/src/Components/MainAPI/MainAPI.jsx
 function App() {
+  const [variables, setVariables] = useState({
+    locationString: '',
+    flightOfferID: '',
+  });
+
+  const updateVariables = (data) => {
+    setVariables({
+      locationString: data.locationString,
+      flightOfferID: data.flightOfferID,
+
+    });
+  };
+
+  // Callback function to update variables with API response
 
   // checkLoginStatis() {
 
   //   axios.get("http://localhost:8080/api/user/isLoggedIn").then((response) => {
   // }
   return (
+    <AppContext.Provider value={{ variables, updateVariables }}>
     <Router>
       <Routes>
         <Route exact path="/" element={<Login />} />
@@ -35,8 +55,11 @@ function App() {
         <Route path="/details" element={<Details />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/gridcard" element={<GridCard />} />
+        <Route path="/mainapi" element={<MainAPI />} />
       </Routes>
     </Router>
+    </AppContext.Provider>
+
   );
 }
 

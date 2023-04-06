@@ -5,10 +5,12 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import axios from "axios";
 import "./Flights.css";
 import FlightCard from "./FlightCard/FlightCard";
 import SegmentRow from "./FlightCard/SegmentRow";
 import SegmentWrapper from "./FlightCard/SegmentWrapper";
+
 
 function GetFlightIdFromOfferId(offerID) {
   const [flightIDs, setFlightIdData] = useState([]);
@@ -30,96 +32,60 @@ function GetFlightIdFromOfferId(offerID) {
   return flightIDs;
 }
 
-function GetReturningSegments(flightID) {
-  const [returningSegments, setReturningSegments] = useState([]);
+function Flights() {
+  var offerID = "eae4f88f-b0f0-4e1d-a7f1-76a74021bb13";
+  const [flightIDs, setFlightIDs] = useState([]);
+  const [flightPrices, setFlightPrices] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
-      const url = `http://127.0.0.1:8080/api/flights/getReturningSegmentsByFlightID?flightID=${flightID}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setReturningSegments(data);
+      try {
+        const flightSegmentsResponse = await axios.get(`http://127.0.0.1:8080/api/flights/getFlightsFromOfferID?offerID=${offerID}`);
+        const flightIDs = flightSegmentsResponse.data;
+        console.log(flightIDs);
+        const flightPrices = await Promise.all(flightIDs.map(async (flightID) => {
+          const flightPricesResponse = await axios.get(`http://127.0.0.1:8080/api/flights/getPricesByOfferID?offerID=${offerID}`);
+
+          console.log(flightPricesResponse.data[0]);
+          return flightPricesResponse.data[0];
+        }));
+        setFlightIDs(flightIDs);
+        setFlightPrices(flightPrices);
+      } catch (error) {
+        console.error(error);
+      }
     }
-
     fetchData();
-  }, [flightID]);
+  }, []);
 
-  return returningSegments;
-}
-//8bc9dce6-ec38-4717-abdb-206d6a1577d9
-
-// function GetDepartingSegments(flightID) {
-//   const [departingSegments, setDepartingSegments] = useState([]);
-//   console.log(flightID);
-//   useEffect(() => {
-//     async function fetchData() {
-//       const url = `http://127.0.0.1:8080/api/flights/getDepartingSegmentsByFlightID?flightID=${flightID}`;
-//       const response = await fetch(url);
+  var wrapper0 = flightIDs[0];
+  var wrapper1 = flightIDs[1];
+  var wrapper2 = flightIDs[2];
+  var wrapper3 = flightIDs[3];
+  var wrapper4 = flightIDs[4];
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const response = await fetch(
+//         `http://127.0.0.1:8080/api/flights/getFlightsFromOfferID?offerID=6d9ac9d5-0c6a-44d9-82a8-ed39a9f44a9f`,
+//         {
+//           mode: 'cors'
+//         }
+//       );
 //       const data = await response.json();
-//       setDepartingSegments(data);
+//       setFlightIDs(data);
+//     } catch (error) {
+//       console.error(error);
 //     }
+//   };
 
-//     fetchData();
-//   }, [flightID]);
-//   console.log(departingSegments); 
-//   return departingSegments;
-// }
+//   fetchData();
+// }, []);
 
-// function SegmentRowCreator( segments ) {
-//   const [segmentData, setSegmentData] = useState([]);
-
-//   console.log(segments);
-//   /* Uses promises to ensure that the data gets returned before continuing execution */
-//   useEffect(() => {
-//     async function getSegmentData() {
-//       const promises = segments.map((segmentID) => {
-//         const url = `http://127.0.0.1:8080/api/flights/getSegmentBySegmentID?segmentID=${segmentID}`;
-//         return fetch(url).then((response) => response.json());
-//       });
-//       const data = await Promise.all(promises);
-//       console.log("data from Promise.all", data);
-//       setSegmentData(data);
-//       console.log("segmentData state after set", segmentData); // log state here
-//     }
-//     console.log("segmentData state after set", segmentData); // log state here
-
-//     getSegmentData();
-//   }, [segments]);
-
-//   // if (segmentData.length === 0) {
-//   //   return <p>Loading...</p>;
-//   // }
-//   console.log(segmentData.segnents);
-
-//   return segmentData;
-// }
-
-function Flights() {
-  
-
-  // (async () => {
-  //   setDepartingSegments(
-  //     await GetDepartingSegments("fb6114e0-2efc-4b70-a2a0-8c5ae58117c0")
-  //   );
-  // })();
-
-  // (async () => {
-  //   setReturningSegments(
-  //     await GetReturningSegments("fb6114e0-2efc-4b70-a2a0-8c5ae58117c0")
-  //   );
-  // })();
-
-  // (async () => {
-  //   setSegmentData(
-  //     await SegmentRowCreator(departingSegments)
-  //   );
-  // })();
-  // setSegmentData(SegmentRowCreator({ segments: departingSegments }));
-  // console.log(flightIDs);
-  // console.log(departingSegments);
-  // console.log(returningSegments);
-  // console.log(segmentData);
-  // FlightCard.SegmentWrapper("0123  ")
-{/* <SegmentRow segments={segmentData}/> */}
+if (!flightIDs) {
+  return <div>Loading...</div>;
+}
+// console.log(test0);
   
   return (
     <>
@@ -142,14 +108,15 @@ function Flights() {
         {/* STARTING HERE WE WOLD NEED TO HAVE LOGIC TO MAKE BACKEND CALLS */}
         {/* <FlightCard /> */}
         <br/>
-        {SegmentWrapper("0ea3a92e-4cf8-4f4f-af66-27bd975510a5")}
+        {SegmentWrapper(wrapper0)}
         <br/>
-        {SegmentWrapper("e9656736-61ca-4fc0-ac1e-588e63132538")}
+        {SegmentWrapper(wrapper1)}
         <br/>
-        {SegmentWrapper("984b4811-3aa1-4659-a8f6-07427cedaa3a")}
+        {SegmentWrapper(wrapper2)}
         <br/>
-        {SegmentWrapper("1c38c2a9-580b-45bd-9fae-7b2703055a08")}
-        {/* {SegmentWrapper("fb6114e0-2efc-4b70-a2a0-8c5ae58117c0")} */}
+        {SegmentWrapper(wrapper3)}
+        <br/>
+        {SegmentWrapper(wrapper4)}
 
         {/* <SegmentRow segments={segmentData}/> */}
 

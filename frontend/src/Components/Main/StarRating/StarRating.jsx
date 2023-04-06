@@ -16,7 +16,7 @@ const StarRating = ({ rating }) => {
   const emptyStars = new Array(numEmptyStars).fill(null).map((_, i) => <FaRegStar key={i} />);
 
   // Combine all star arrays into one array
-  const allStars = [...filledStars, ...halfStars, ...emptyStars];
+  const allStars = [...filledStars, ...halfStars];
 
   return (
     <div>

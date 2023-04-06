@@ -1,6 +1,5 @@
 package com.springbackend.app.rest.Hotels;
 
-//package com.springbackend.app.rest.Hotels;
 /*
     @TODO:
     - Link with Amadeus API for finding hotels near a given area that a user is traveling to
@@ -18,9 +17,6 @@ import lombok.Data;
 @Entity
 @Data
 public class Hotels {
-
-    /* Testing git repo */
-   // private String hotelName;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -63,27 +59,6 @@ public class Hotels {
     @Nullable
     private double longitude;
 
-    @Nullable
-    private String testing;
-
-//    public Hotels(String hotelName, String checkInDate,
-//                  String checkOutDate, String offerId,
-//
-//                  int numBeds, String bedType,
-//                  int numOfGuests, double totalPrice,
-//                  double latitude, double longitude) {
-//        this.hotelName = hotelName;
-//        this.checkInDate = checkInDate;
-//        this.checkOutDate = checkOutDate;
-//        this.offerId = offerId;
-//        this.numBeds = numBeds;
-//        this.bedType = bedType;
-//        this.numOfGuests = numOfGuests;
-//        this.totalPrice = totalPrice;
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//    }
-
     public Hotels(HotelsBuilder hotelBuilder) {
         this.hotelName = hotelBuilder.hotelName;
         this.checkInDate = hotelBuilder.checkInDate;
@@ -102,8 +77,6 @@ public class Hotels {
         this.websiteURL = hotelBuilder.websiteURL;
         this.priceLevel = hotelBuilder.priceLevel;
         this.description = hotelBuilder.description;
-        this.testing = hotelBuilder.testing;
-
     }
     public Hotels(){}
 
@@ -126,7 +99,6 @@ public class Hotels {
         private double totalPrice;
         private double latitude;
         private double longitude;
-        private String testing;
 
         public HotelsBuilder fullAddress(String fullAddress) {
             this.fullAddress = fullAddress;
@@ -212,24 +184,10 @@ public class Hotels {
             this.longitude = longitude;
             return this;
         }
-        public HotelsBuilder testing(String testing){
-            this.testing = testing;
-            return this;
-        }
-
 
         public Hotels build(){
-
-            if(this.testing == null){
-                this.testing = "HEY, IT'S NULL";
-            }
-
-            if(this.testing.equals("HEY, IT WORKED!")){
-                this.testing = "HEY! IT WORKED, AGAIN!";
-            }
-
             Hotels hotels = new Hotels(this);
             return hotels;
         }
     }
-    }
+}
