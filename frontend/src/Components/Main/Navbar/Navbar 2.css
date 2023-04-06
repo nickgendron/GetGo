@@ -1,0 +1,108 @@
+.rootDivNavBar {
+  width: 20%;
+  margin: 10px;
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+}
+
+.logoImage {
+  justify-content: center;
+  margin-left: 40%;
+  margin-top: 30%;
+}
+
+.navButton {
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 250px;
+  height: 55px;
+  background-color: white;
+  border-radius: 30px;
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+.flights {
+  background-image: url("../../Images/blackPlaneIcon.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position-x: 15px;
+  justify-content: left;
+}
+
+.flights:hover {
+  background-image: url("../../Images/whitePlaneIcon.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position-x: 15px;
+  justify-content: left;
+  background-color: #3F52E3;
+  color: white;
+}
+
+.hotels {
+  background-image: url("../../Images/blackHotelIcon.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position-x: 15px;
+  justify-content: left;
+}
+
+.hotels:hover {
+    background-color: 
+    #3F52E3;
+    color: white;
+}
+
+.active{
+  background-color: #3F52E3;
+  color: white;
+
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 250px;
+  height: 55px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+}
+
+.attractions {
+  background-image: url("../../Images/blackAttricationsIcon.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position-x: 15px;
+  justify-content: left;
+}
+
+.attractions:hover {
+    background-color: #3F52E3;
+    color: white;
+}
+
+.yourTrip {
+  background-image: url("../../Images/blackHeadIcon.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position-x: 15px;
+  justify-content: left;
+}
+
+.yourTrip:hover {
+    background-color: #3F52E3;
+    color: white;
+}
+
+.bottomButtons {
+  color: grey;
+  border: none;
+  background-color: transparent;
+  width: 10px;
+}
+
+.buttonTextGrey {
+  /* align-items: center;
+  justify-content: center; */
+}

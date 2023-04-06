@@ -21,7 +21,6 @@ import java.util.UUID;
 @Data
 public class User {
 
-
     @Id
     private String userID = UUID
             .randomUUID()
@@ -29,9 +28,9 @@ public class User {
 
     private String firstName;
 
-    private String password;
-
     private String lastName;
+
+    private String password;
 
     private String email;
 
