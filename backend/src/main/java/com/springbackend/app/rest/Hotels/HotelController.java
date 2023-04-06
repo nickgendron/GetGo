@@ -5,10 +5,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
@@ -59,16 +57,12 @@ public class HotelController {
             returnString = latitude + "," + longitude;
 
         }
-
         return returnString;
     }
 
 
-<<<<<<< HEAD
-    @GetMapping(path = "nearbyHotels")
-=======
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/nearbyHotels")
->>>>>>> main
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
@@ -107,8 +101,6 @@ public class HotelController {
                 Bob is our well trusted builder! He has won many awards for helping
                 to build many great things. But, with all great builders comes their enemies seeking to destroy
                 them and their livelihoods.
-
-                BOB WILL RULE SUPREME AGAINST EVE AND KIM!
             */
             Hotels.HotelsBuilder bob = new Hotels.HotelsBuilder();
 

@@ -21,29 +21,30 @@ import java.util.UUID;
 @Data
 public class User {
 
-
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
-    private String userID;
+    private String userID = UUID
+            .randomUUID()
+            .toString();
 
     private String firstName;
 
-    private String password;
-
     private String lastName;
+
+    private String password;
 
     private String email;
 
-    public User() {}
-
-    public User(String firstName, String lastName,
-                String email, String password){
+    public User() {
         this.userID = UUID.randomUUID().toString();
+    }
+
+    public User(String firstName, String lastName, String email, String password){
+       // this.userID = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+
+
     }
-
-
 }
