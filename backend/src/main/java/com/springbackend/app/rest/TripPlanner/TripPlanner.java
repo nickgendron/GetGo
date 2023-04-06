@@ -1,45 +1,74 @@
 package com.springbackend.app.rest.TripPlanner;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
+@Entity
 public class TripPlanner {
     //need place to store budget inputs, calculate, store total for budget calculator
     //need place to store savings bar money also manage addition and subtraction
     //need place to store long notes user write
-    private double maxSpendFlight;
-    private double maxSpendHotel;
-    private double maxSpendAttraction;
-    private double maxSpendTransportation;
-    private double maxSpendGifts;
-    private double maxSpendMisc;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Nullable
+    private String vacationID;
+    @Nullable
+    private double grandTripTotal;
+    @Nullable
+    private double savingsGoal;
 
-    private double grandTotal;
-    private double savingsTotal;
-    private double addToTotal;
-    private double subFromTotal;
 
-    private String userNotes;
-
-    public TripPlanner(double maxSpendFlight, double maxSpendHotel, double maxSpendAttraction, double maxSpendTransportation, double maxSpendGifts, double maxSpendMisc, double addToTotal, double subFromTotal, String userNotes){
-        this.maxSpendFlight = maxSpendFlight;
-        this.maxSpendHotel = maxSpendHotel;
-        this.maxSpendAttraction = maxSpendAttraction;
-        this.maxSpendTransportation = maxSpendTransportation;
-        this.maxSpendGifts = maxSpendGifts;
-        this.maxSpendMisc = maxSpendMisc;
-        this.addToTotal = addToTotal;
-        this.subFromTotal = subFromTotal;
-        this.userNotes = userNotes;
+    public TripPlanner(String vacationID, double grandTotal, double savingsTotal) {
+        this.vacationID = vacationID;
+        this.grandTripTotal = grandTotal;
+        this.savingsGoal = savingsTotal;
     }
 
-    public double getGrandTotal(){
-        grandTotal = maxSpendFlight + maxSpendHotel + maxSpendAttraction + maxSpendTransportation + maxSpendGifts + maxSpendMisc;
-        return grandTotal;
+    public TripPlanner() {
     }
-    public double addSavings(){
-        savingsTotal = savingsTotal + addToTotal;
-        return savingsTotal;
+
+    public String getVacationID() {
+        return vacationID;
     }
-    public double subSavings(){
-        savingsTotal = savingsTotal + subFromTotal;
-        return savingsTotal;
+
+    public TripPlanner setVacationID(String vacationID) {
+        this.vacationID = vacationID;
+        return this;
     }
+
+    public double getGrandTripTotal() {
+        return grandTripTotal;
+    }
+
+    public TripPlanner setGrandTripTotal(double grandTripTotal) {
+        this.grandTripTotal = grandTripTotal;
+        return this;
+    }
+
+    public TripPlanner updateGrandTotal(double numToAdd) {
+        this.grandTripTotal += numToAdd;
+        return this;
+    }
+
+    public double getSavingsGoal() {
+        return savingsGoal;
+    }
+
+    public TripPlanner setSavingsGoal(double savingsGoal) {
+        this.savingsGoal = savingsGoal;
+        return this;
+    }
+
+    public TripPlanner updateSavingsGoal(double amountToAdd){
+        this.savingsGoal += amountToAdd;
+        return this;
+    }
+    public TripPlanner updateSavingsGoal2(double amountToSub){
+        this.savingsGoal -= amountToSub;
+        return this;
+    }
+
+
 }
