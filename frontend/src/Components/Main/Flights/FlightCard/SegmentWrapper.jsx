@@ -20,41 +20,61 @@ function SegmentWrapper(flightID) {
   console.log(flightID);
   //   useEffect(() => {
 
-  //getPriceByFlightID
+  const [flightPrice, setFlightPrice] = useState();
+  const [originCode, setOriginCode] = useState('');
+  const [destCode, setDestCode] = useState('');
 
-  const [flightPrice, setFlightPrice] = useState([]);
 
-  // useEffect(() => {
-  //      function fetchData() {
-  //         const response = fetch("http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=" + flightID);
-  //         setFlightPrice(response);
-  //     }
-  //     fetchData();
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=${flightID}`,
+          `http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=` + flightID,
           {
             mode: 'cors'
           }
         );
         const data = await response.json();
+        console.log(data);
         setFlightPrice(data);
+
+        const responseOrigin = await fetch(
+          `http://127.0.0.1:8080/api/flights/getOriginCodeByFlightID?flightID=${flightID}`,
+          {
+            mode: 'cors'
+          }
+        );
+        const dataOrigin = await responseOrigin;
+        setOriginCode(dataOrigin);
+
+        // Fetch destination code
+        const responseDest = await fetch(
+          `http://127.0.0.1:8080/api/flights/getDestCodeByFlightID?flightID=${flightID}`,
+          {
+            mode: 'cors'
+          }
+        );
+        const dataDest = await responseDest;
+        setDestCode(dataDest);
+
+
+
+
       } catch (error) {
         console.error(error);
       }
+
     };
   
     fetchData();
-  }, []);
+  }, );
 
   if (!flightPrice) {
     return <div>Loading...</div>;
   }
   console.log(flightPrice);
+  console.log(originCode);
 
   return (
     <>
@@ -86,8 +106,8 @@ function SegmentWrapper(flightID) {
           <div className="addToTripDiv">
             <p className="tripTotalCostText">
               Flight total:</p> 
-              <p className="flightCostText"><strong><strong>{flightPrice}</strong></strong></p>
-            <button className="addToTripButton">Add to trip</button>
+              <p className="">{flightPrice}</p>
+            <button className="addToTripButton" onClick={() => console.log(flightID)}>Add to trip</button>
           </div>
         </div>
         <br />

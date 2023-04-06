@@ -29,10 +29,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.*;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RequestMapping(path="/api/flights")
 @RestController
 public class FlightsController {
+
+    private static final Logger logger = LoggerFactory.getLogger(FlightsController.class);
 
     final String AMADEUS_CLIENT_ID = System.getenv("AMADEUS_CLIENT");
     final String AMADEUS_CLIENT_SECRET = System.getenv("AMADEUS_SECRET");
@@ -51,7 +55,7 @@ public class FlightsController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path="/prices")
-    public JsonArray getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
+    public String getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
                                             @RequestParam String departDate, @RequestParam String returnDate,
                                             @RequestParam int adults, @RequestParam int numFlights)
             throws ResponseException, IOException {
@@ -69,11 +73,12 @@ public class FlightsController {
         /* JsonArray that will be returned */
         JsonArray flightOfferArray = new JsonArray();
 
+        String offerID = new String();
         /* Ensure that a valid response was received */
         if(flightOffers.length > 0){
 
             /* Generate offerID to query for all flightIDs */
-            String offerID = UUID.randomUUID().toString();
+             offerID = UUID.randomUUID().toString();
 
 
             Gson gson = new Gson();
@@ -95,6 +100,8 @@ public class FlightsController {
                 offerJson.addProperty("offerID", offerID);
                 offerJson.addProperty("optionNumber", i + 1);
                 offerJson.addProperty("totalPrice", totalPrice);
+                offerJson.addProperty("destCode", destCode);
+                offerJson.addProperty("originCode", originCode);
 
                 /* Create new flight object and save to database */
                 Flights flight = new Flights(offerJson);
@@ -126,8 +133,13 @@ public class FlightsController {
                     /* Generate itineraryID */
                     String itineraryID = UUID.randomUUID().toString();
 
-                    /* Iterate each JsonObject to extract information on the flight segments */
 
+//                    Segments segmentSave;
+
+//                    /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
+//                    JsonObject segmentJson = new JsonObject();
+
+                    /* Iterate each JsonObject to extract information on the flight segments */
                     List<JsonObject> segmentJsonObjects = Arrays.stream(itinerary.getSegments())
                             .map(segment ->
                             {
@@ -152,9 +164,8 @@ public class FlightsController {
 
                                 String convertedDepartureDateTime = departureDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
 
-
-                                /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
-                                JsonObject segmentJson = new JsonObject();
+//                                /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
+//                                JsonObject segmentJson = new JsonObject();
 
                                 /* Unique ID for each segment */
                                 String segmentID = UUID.randomUUID().toString();
@@ -187,6 +198,10 @@ public class FlightsController {
                                 /* Increment counter */
                                 numOfSegments.get().incrementAndGet();
                                 numOfFlights.get().incrementAndGet();
+
+                                /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
+                                JsonObject segmentJson = new JsonObject();
+
 
                                 if(!tmp[0]){segmentJson.addProperty("flightLeg", "departing");}
                                 else{segmentJson.addProperty("flightLeg", "returning");}
@@ -221,8 +236,7 @@ public class FlightsController {
                                 return segmentJson;
                             }).collect(Collectors.toList());
 
-
-
+                        logger.debug("SegmentJson[0]: \n" + segmentJsonObjects);
 
                     /* Determine if itinerary is non-stop, and add number of flights to itineraryJson */
                     itineraryJson.addProperty("isNonstop", numOfSegments.toString().equals("1") ? "true" : "false");
@@ -234,15 +248,24 @@ public class FlightsController {
 
                     /* Add the new segment to the itineraryJsonObject */
                     itineraryJson.add("segments", gson.toJsonTree(segmentJsonObjects));
-                    Itineraries itineraryCreate = new Itineraries(itineraryJson);
-                    itineraryRepo.save(itineraryCreate);
+                    Itineraries itineraryCreate = new Itineraries();
+                    itineraryCreate.setItineraryID(itineraryID);
+                    itineraryCreate.setFlightID(flightID);
+                    itineraryCreate.setIsNonstop("true");
+                    itineraryCreate.setNumFlights(String.valueOf(numOfFlights.get().get()));
+                    if(!tmp[0]){ itineraryCreate.setFlightLeg("departing"); }
+                    else { itineraryCreate.setFlightLeg("returning"); }
 
+                    itineraryRepo.save(itineraryCreate);
 
                     tmp[0] = true;
 
+//                    segmentSave = new Segments(segmentJson);
+//                    segmentRepo.save(segmentSave);
+
                     /* Clean up Json returned to front end */
                     itineraryJson.remove("flightID");
-                    itineraryJson.remove("itineraryID");
+//                    itineraryJson.remove("itineraryID");
 
                     /* Add the new itineraryJsonObject to the itineraryArray */
                     itineraryArray.add(itineraryJson);
@@ -257,7 +280,7 @@ public class FlightsController {
         }
 
         /* Return completed flightOfferArray */
-        return flightOfferArray;
+        return offerID;
     }
 
     @GetMapping(path = "/findByID")
@@ -275,6 +298,13 @@ public class FlightsController {
         return parseJson(flight);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getPricesByOfferID")
+    public JsonElement getPricesByOfferID(@RequestParam String offerID){
+        Iterable<Flights> flight = flightsRepo.findSegmentByFlightID(offerID);
+        return parseJson(flight);
+    }
+
 
     /* Returns all flightIDs for a given offerID */
     @CrossOrigin(origins = "http://localhost:3000")
@@ -289,6 +319,20 @@ public class FlightsController {
 
         Iterable<Flights> flight = flightsRepo.findItineraryByFlightID(flightID);
         return parseJson(flight);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getOriginCodeByFlightID")
+    public String getOriginCodeByFlightID(@RequestParam String flightID){
+        String originCode = flightsRepo.findOriginCodeByFlightID(flightID);
+        return originCode;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getDestCodeByFlightID")
+    public String getDestCodeByFlightID(@RequestParam String flightID){
+        String destCode = flightsRepo.findDestCodeByFlightID(flightID);
+        return destCode;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -326,6 +370,16 @@ public class FlightsController {
         String price = flightsRepo.findPriceByFlightID(flightID);
         return price;
     }
+
+    /*
+
+        @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getPriceByFlightID")
+    public JsonElement getPriceByFlightID(String flightID){
+        Iterable<Flights> flight = flightsRepo.getFlightsByOfferID(offerID);
+        return parseJson(flight);
+    }
+     */
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping (path = "/getSegmentIDFromFlightID")

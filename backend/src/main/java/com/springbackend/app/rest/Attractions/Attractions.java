@@ -59,8 +59,6 @@ public class Attractions {
     private double latitude;
     @Nullable
     private double longitude;
-    @Nullable
-    private String testing;
 
     public Attractions(AttractionsBuilder attractionBuilder) {
         this.attrName = attractionBuilder.attrName;
@@ -74,7 +72,6 @@ public class Attractions {
         this.photosURL = attractionBuilder.photosURL;
         this.websiteURL = attractionBuilder.websiteURL;
         this.priceLevel = attractionBuilder.priceLevel;
-        this.testing = attractionBuilder.testing;
     }
 
 
@@ -90,7 +87,6 @@ public class Attractions {
         private String priceLevel;
         private double latitude;
         private double longitude;
-        private String testing;
 
         public Attractions.AttractionsBuilder attrName(String attrName) {
             this.attrName = attrName;
@@ -137,10 +133,6 @@ public class Attractions {
             return this;
         }
 
-        public Attractions.AttractionsBuilder testing(String testing) {
-            this.testing = testing;
-            return this;
-        }
 
         public Attractions.AttractionsBuilder latitude(double latitude) {
             this.latitude = latitude;
@@ -152,13 +144,7 @@ public class Attractions {
             return this;
         }
         public Attractions build () {
-            if (this.testing == null) {
-                this.testing = "HEY, IT'S NULL";
-            }
 
-            if (this.testing.equals("HEY, IT WORKED!")) {
-                this.testing = "HEY! IT WORKED, AGAIN!";
-            }
             Attractions attractions = new Attractions(this);
             return attractions;
         }

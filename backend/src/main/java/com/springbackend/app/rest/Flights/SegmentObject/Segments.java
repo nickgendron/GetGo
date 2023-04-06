@@ -14,7 +14,7 @@ public class Segments {
 
     @Id
     private String segmentID;
-private String itineraryID;
+    private String itineraryID;
     private String flightID;
     private String originAirportCode;
     private String destAirportCode;
@@ -27,12 +27,10 @@ private String itineraryID;
     private String airlineCode;
     private String flightNumber;
     private String aircraftCode;
-
     private String flightLeg;
-
-//    @ManyToOne
-//    @JoinColumn(name = "itineraryID")
-//    private Itineraries itinerary;
+    @ManyToOne
+    @JoinColumn(name = "itinerary_id")
+    private Itineraries itinerary;
 
     public Segments (JsonObject segment){
 
