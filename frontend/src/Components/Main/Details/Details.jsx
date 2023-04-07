@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextLogo from "../../Images/TextLogo.png";
 import FormBackgroundDetails from "../../Images/formBackgroundDetailsPage.png";
 import SmallLogo from "../../Images/SmallLogo.png";
@@ -37,8 +37,9 @@ function Details() {
     console.log(whereTo);
     console.log(startDate.format("YYYY-MM-DD"));
     console.log(endDate.format("YYYY-MM-DD"));
-    <MainAPI />;
-    navigate("/flights");
+
+   
+    return navigate("/mainapi");
   }
 
   function handleLeavingFromChange(event) {

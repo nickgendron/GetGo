@@ -33,22 +33,12 @@ useEffect(() => {
   }
   fetchData();
 }, [flightID]);
-
-if(segmentData.length == 0){console.log(0);}
-console.log(segmentIDs);
-console.log(segmentData);
-
   return (
     <>
       <div>
         {segmentData.map((segment) => (
           <div key={segment.segmentID}>
-            {/* <h3>{segment.aircraftCode}</h3>
-              <p>{segment.aircraftCode}</p> */}
-            {/* {segmentData.map(segments => ( */}
             <div className="segmentRowParent">
-            {/* <div className="horidzontalGreyLine" /> */}
-
               <div className="div1">
                 <div className="horidzontalGreyLine" />
                 <br />

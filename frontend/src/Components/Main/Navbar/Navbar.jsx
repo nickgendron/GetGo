@@ -8,8 +8,6 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation().pathname;
 
-  console.log(location.pathname);
-
   function handleFlightsNavigation(event) {
     event.preventDefault();
     navigate("/flights");
