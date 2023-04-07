@@ -147,8 +147,6 @@ public class AttractionsController {
 
                 kim.rating(rating);
             }
-
-
             /* KIM loves to get links to see more photos*/
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
@@ -156,8 +154,6 @@ public class AttractionsController {
 
                 kim.photosURL(imagesUrl);
             }
-
-
             /* Kim is very frugal so she wants to extract the price level*/
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
@@ -165,8 +161,6 @@ public class AttractionsController {
 
                 kim.priceLevel(priceLevel);
             }
-
-
             /* Kim wants to go to the website*/
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();

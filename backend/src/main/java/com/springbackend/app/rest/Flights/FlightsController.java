@@ -5,7 +5,6 @@ import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.UUID;
 import com.amadeus.resources.FlightOfferSearch.AirportInfo;
 import com.amadeus.resources.FlightOfferSearch.Itinerary;
@@ -15,13 +14,11 @@ import com.springbackend.app.rest.Flights.ItineraryObjects.Itineraries;
 import com.springbackend.app.rest.Flights.ItineraryObjects.ItinerariesRepo;
 import com.springbackend.app.rest.Flights.SegmentObject.Segments;
 import com.springbackend.app.rest.Flights.SegmentObject.SegmentsRepo;
-import org.hibernate.dialect.SimpleDatabaseVersion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -55,7 +52,7 @@ public class FlightsController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path="/prices")
-    public String getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
+    public JsonElement getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
                                             @RequestParam String departDate, @RequestParam String returnDate,
                                             @RequestParam int adults, @RequestParam int numFlights)
             throws ResponseException, IOException {
@@ -73,12 +70,11 @@ public class FlightsController {
         /* JsonArray that will be returned */
         JsonArray flightOfferArray = new JsonArray();
 
-        String offerID = new String();
         /* Ensure that a valid response was received */
         if(flightOffers.length > 0){
 
             /* Generate offerID to query for all flightIDs */
-             offerID = UUID.randomUUID().toString();
+            String offerID = UUID.randomUUID().toString();
 
 
             Gson gson = new Gson();
@@ -276,11 +272,19 @@ public class FlightsController {
 
                 /* Add the completed flight offer to the flightOfferArray */
                 flightOfferArray.add(offerJson);
+
+                /* Return completed flightOfferArray */
+
+                Gson gsonReturn = new GsonBuilder().setPrettyPrinting().create();
+                JsonParser jp = new JsonParser();
+                JsonElement jsonElement = jp.parse(gsonReturn.toJson(offerID));
+                return jsonElement;
             }
         }
+        return null;
 
         /* Return completed flightOfferArray */
-        return offerID;
+//        return "error";
     }
 
     @GetMapping(path = "/findByID")
