@@ -24,11 +24,16 @@ public class Itineraries {
         private String numFlights;
         private String flightLeg;
 
-        @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//        @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//        @JoinColumn(name = "flightID")
+
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "flightID")
         private Flights flight;
 
-        @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+//        @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Segments> segments;
 
     public Itineraries(JsonObject itinerary) {

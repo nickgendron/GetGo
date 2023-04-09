@@ -13,14 +13,18 @@ package com.springbackend.app.rest.Hotels;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import java.util.Random;
+import java.util.UUID;
 
 @Entity
 @Data
+@Table(name = "hotels")
 public class Hotels {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private String hotelID;
     @Nullable
     private String fullAddress;
     @Nullable
@@ -60,6 +64,7 @@ public class Hotels {
     private double longitude;
 
     public Hotels(HotelsBuilder hotelBuilder) {
+        this.hotelID = hotelBuilder.hotelID;
         this.hotelName = hotelBuilder.hotelName;
         this.checkInDate = hotelBuilder.checkInDate;
         this.checkOutDate = hotelBuilder.checkOutDate;
@@ -82,6 +87,7 @@ public class Hotels {
 
     public static class HotelsBuilder {
 
+        private String hotelID;
         private String fullAddress;
         private String checkInDate;
         private String checkOutDate;
@@ -99,6 +105,15 @@ public class Hotels {
         private double totalPrice;
         private double latitude;
         private double longitude;
+
+        public HotelsBuilder hotelID(){
+            this.hotelID = UUID.randomUUID().toString();
+            return this;
+        }
+
+//        public String getHotelID(){
+//            return this.hotelID;
+//        }
 
         public HotelsBuilder fullAddress(String fullAddress) {
             this.fullAddress = fullAddress;

@@ -52,9 +52,9 @@ public class FlightsController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path="/prices")
-    public JsonElement getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
-                                            @RequestParam String departDate, @RequestParam String returnDate,
-                                            @RequestParam int adults, @RequestParam int numFlights)
+    public String getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
+                                       @RequestParam String departDate, @RequestParam String returnDate,
+                                       @RequestParam int adults, @RequestParam int numFlights)
             throws ResponseException, IOException {
 
         /* Call to amadeus flight offer search API. Returns data as a FlightOffer search array */
@@ -278,8 +278,8 @@ public class FlightsController {
                 Gson gsonReturn = new GsonBuilder().setPrettyPrinting().create();
                 JsonParser jp = new JsonParser();
                 JsonElement jsonElement = jp.parse(gsonReturn.toJson(offerID));
-                return jsonElement;
             }
+            return offerID;
         }
         return null;
 
@@ -326,10 +326,25 @@ public class FlightsController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getPriceByFlightID")
+    public String getPriceByFlightID(@RequestParam String flightID){
+        String price = flightsRepo.findPriceByFlightID(flightID);
+        return price;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/getOriginCodeByFlightID")
     public String getOriginCodeByFlightID(@RequestParam String flightID){
         String originCode = flightsRepo.findOriginCodeByFlightID(flightID);
+
         return originCode;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getIataCodesByFlightID")
+    public JsonElement getIataCodesByFlightID(@RequestParam String flightID){
+        Iterable<Flights> flight = flightsRepo.getIataCodesByFlightID(flightID);
+        return parseJson(flight);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -362,18 +377,8 @@ public class FlightsController {
         return parseJson(flight);
     }
 
-    @CrossOrigin(origins = "http:localhost:3000")
-    @GetMapping(path="/getTest")
-    public String testing(){
-        return "I'm HERE";
-    }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(path = "/getPriceByFlightID")
-    public String getPriceByFlightID(@RequestParam String flightID){
-        String price = flightsRepo.findPriceByFlightID(flightID);
-        return price;
-    }
+
 
     /*
 

@@ -1,6 +1,8 @@
 package com.springbackend.app.rest.Hotels;
 
+import com.amadeus.resources.HotelOffer;
 import com.google.gson.*;
+import com.springbackend.app.rest.Flights.FlightObjects.Flights;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -10,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.UUID;
 
 
-@RequestMapping(path="/api/hotel")
+@RequestMapping(path="/api/hotels")
 @RestController
 public class HotelController {
 
     @Autowired
     private HotelsRepo hotelsRepo;
 
-
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/latlong")
     public String getLatLong(@RequestParam String fullAddress) throws IOException {
 
@@ -60,7 +62,6 @@ public class HotelController {
         return returnString;
     }
 
-
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/nearbyHotels")
     public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
@@ -94,6 +95,8 @@ public class HotelController {
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
+            /* Generate unique hotelID */
+            String hotelID = UUID.randomUUID().toString();
 
             /*
                 Meet Bob! He will help you build your hotel!
@@ -118,12 +121,12 @@ public class HotelController {
             String addressString = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
 
             /* Add properties to hotelJsonObject */
-            hotelJsonObject.addProperty("location_id", locationId);
+            hotelJsonObject.addProperty("location_id", hotelID);
             hotelJsonObject.addProperty("name", name);
             hotelJsonObject.addProperty("fullAddress", fullAddress);
 
             /* Give Bob some information to pick up */
-            bob.locationID(locationId);
+            bob.locationID(hotelID);
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
 
@@ -152,7 +155,6 @@ public class HotelController {
             /* Converting responseString into Json for processing */
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
-
 
             /* Extract the description field and hand-off to Bob */
             if(locationSearchJsonObject.has("description")){
@@ -206,7 +208,11 @@ public class HotelController {
                 Bob has done a very good job, and he is about to build a beautiful Hotel for us, something that
                 Eve and Kim could only ever dream of doing. They are only worried about restaurants and fun things to do
             */
+
+            bob.hotelID();
             Hotels hotel = bob.build();
+
+
 
             /* Save the new hotel to the database */
             hotelsRepo.save(hotel);
@@ -220,16 +226,26 @@ public class HotelController {
         return hotelArray;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/getHotelByHotelID")
-    public String getHotelByHotelID(@RequestParam String locationID){
-
-        String hotel = hotelsRepo.findByLocationID(locationID);
-
-         return hotel;
+    public Hotels getHotelByHotelID(@RequestParam String locationID){
+        Hotels hotel = hotelsRepo.findByLocationID(locationID);
+        return hotel;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/getHotelByRandomID")
+    public Hotels getHotelByHotelUUID(String hotelUUID){
+        Hotels hotel = hotelsRepo.findByHotelUuidID(hotelUUID);
+        return hotel;
+    }
 
-
+    private JsonElement parseJson(Iterable<Hotels> hotel){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement jsonElement = jp.parse(gson.toJson(hotel));
+        return jsonElement;
+    }
 }
 
 

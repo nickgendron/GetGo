@@ -2,13 +2,16 @@ package com.springbackend.app.rest.Vacation;
 
 import com.springbackend.app.rest.Attractions.Attractions;
 import com.springbackend.app.rest.Attractions.AttractionsRepo;
+import com.springbackend.app.rest.User.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.UUID;
 
-@RequestMapping(path="/api/vacationBuilder")
+@RequestMapping(path="/api/vacations")
 @RestController
 public class VacationController {
 
@@ -16,19 +19,33 @@ public class VacationController {
     private VacationRepo vacationRepo;
 
     @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
     private AttractionsRepo attractionsRepo;
 
     @PostMapping(path="/createNewVacation")
-    public String createNewEmptyVacation(@RequestParam String userID){
+    public ResponseEntity<String> createNewEmptyVacation(@RequestParam String userID){
 
-        Vacation vacation = new Vacation();
-        vacation.setUserID(userID);
-        vacationRepo.save(vacation);
-        return vacation.getVacationID();
+
+        if(userRepo.existsByUserID(userID)){
+            Vacation vacation = new Vacation();
+
+            vacation.setUserID(userID);
+            vacationRepo.save(vacation);
+            return ResponseEntity.ok(vacation.getVacationID());
+
+        }
+        else{
+            String errorMessage = "User not found";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
     }
 
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/addFlight")
-    public String addFlight(@RequestParam String flightID, String vacationID){
+    public String addFlight(@RequestParam String flightID, @RequestParam String vacationID){
         Vacation vacation = vacationRepo.findVacationByID(vacationID);
         vacation.setFlightID(flightID);
         vacationRepo.save(vacation);
@@ -38,12 +55,13 @@ public class VacationController {
         return "Success";
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/addHotel")
     public String addHotel(@RequestParam String hotelID, String vacationID){
         Vacation vacation = vacationRepo.findVacationByID(vacationID);
         vacation.setHotelID(hotelID);
         vacationRepo.save(vacation);
-        if(!(vacation.getHotelID().equals(hotelID))) { return "Error"; }
+//        if(!(vacation.getHotelID().equals(hotelID))) { return "Error"; }
         return "Success";
 
     }

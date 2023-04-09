@@ -23,7 +23,8 @@ public class Flights {
     private String originCode;
     private String destCode;
 
-    @OneToMany(mappedBy = "flight")
+//    @OneToMany(mappedBy = "flight")
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Itineraries> itineraries; // One-to-many relationship with Itineraries
 
 

@@ -45,4 +45,7 @@ public interface FlightsRepo extends CrudRepository<Flights, String>{
     @Query("SELECT f.flightID from Flights f where f.offerID = ?1 ORDER BY f.optionNumber ASC")
     Iterable<Flights> getFlightsByOfferID(String offerID);
 
+    @Query("SELECT f.originCode, f.destCode from Flights f where f.flightID = ?1")
+    Iterable<Flights> getIataCodesByFlightID(String flightID);
+
 }

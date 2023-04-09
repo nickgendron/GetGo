@@ -7,6 +7,9 @@ import java.util.List;
 public interface HotelsRepo extends CrudRepository<Hotels, String> {
 
     @Query("SELECT h FROM Hotels h WHERE h.locationID = ?1")
-    String findByLocationID(String locationID);
+    Hotels findByLocationID(String locationID);
+
+    @Query("SELECT h FROM Hotels h WHERE h.hotelID = ?1")
+    Hotels findByHotelUuidID(String hotelID);
 }
 
