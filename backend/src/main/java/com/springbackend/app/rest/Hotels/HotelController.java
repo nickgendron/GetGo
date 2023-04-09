@@ -64,7 +64,7 @@ public class HotelController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/nearbyHotels")
-    public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
+    public String nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
@@ -92,6 +92,8 @@ public class HotelController {
 
         /* JsonArray that will be returned containing information of hotels at a given location */
         JsonArray hotelArray = new JsonArray();
+
+        String hotelOfferGroup = UUID.randomUUID().toString();
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
@@ -121,15 +123,17 @@ public class HotelController {
             String addressString = dataObject.get("address_obj").getAsJsonObject().get("address_string").getAsString();
 
             /* Add properties to hotelJsonObject */
-            hotelJsonObject.addProperty("location_id", hotelID);
+            hotelJsonObject.addProperty("location_id", locationId);
             hotelJsonObject.addProperty("name", name);
             hotelJsonObject.addProperty("fullAddress", fullAddress);
+            hotelJsonObject.addProperty("hotelOfferGroup", hotelOfferGroup);
+
 
             /* Give Bob some information to pick up */
             bob.locationID(hotelID);
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
-
+            bob.hotelOfferGroup(hotelOfferGroup);
             //hotelJsonObject.addProperty("address_string", addressString);
 
             /*
@@ -155,6 +159,7 @@ public class HotelController {
             /* Converting responseString into Json for processing */
             Gson gson = new Gson();
             JsonObject locationSearchJsonObject = gson.fromJson(locationDetailsResponseString, JsonObject.class);
+
 
             /* Extract the description field and hand-off to Bob */
             if(locationSearchJsonObject.has("description")){
@@ -223,7 +228,8 @@ public class HotelController {
             }
 
         /* Add the instance of hotelJsonObject to the returning json array */
-        return hotelArray;
+//        return hotelArray;
+        return hotelOfferGroup;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -235,10 +241,12 @@ public class HotelController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/getHotelByRandomID")
-    public Hotels getHotelByHotelUUID(String hotelUUID){
-        Hotels hotel = hotelsRepo.findByHotelUuidID(hotelUUID);
-        return hotel;
+    public JsonElement getHotelByHotelUUID(String hotelUUID){
+        Iterable<Hotels> hotels = hotelsRepo.findByHotelUuidID(hotelUUID);
+        return parseJson(hotels);
     }
+
+
 
     private JsonElement parseJson(Iterable<Hotels> hotel){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

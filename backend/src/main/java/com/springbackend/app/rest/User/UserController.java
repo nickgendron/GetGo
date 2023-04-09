@@ -26,19 +26,19 @@ public class UserController {
 
         User user = new User(firstName,lastName,email,password);
         userRepo.save(user);
-        return "User added with id: " + user.getUserID();
+        return user.getUserID();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/login")
     public String login(@RequestParam String email, @RequestParam String password){
 
-      String tmpUser = userRepo.matchUserByEmailAndPassword(email, password);
+      User user = userRepo.matchUserByEmailAndPassword(email, password);
 
-      if(tmpUser == null){
+      if(user == null){
           return "null";
       }
-      return tmpUser;
+      return user.getUserID();
     }
 
     @GetMapping(path="/all")

@@ -24,44 +24,30 @@ import java.util.UUID;
 public class Hotels {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     private String hotelID;
-    @Nullable
     private String fullAddress;
-    @Nullable
     private String checkInDate;
-    @Nullable
     private String checkOutDate;
-    @Nullable
     private String offerId;
 
-    @Nullable
     private String locationID;
-    @Nullable
     private String hotelName;
-    @Nullable
     private String rating;
-    @Nullable
+
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
-    @Nullable
     private String photosURL;
-    @Nullable
     private String websiteURL;
-    @Nullable
     private String priceLevel;
-    @Nullable
     private int numBeds;
-    @Nullable
-    private String bedType;
 
-    @Nullable
+    private String hotelOfferGroup;
     private int numOfGuests;
-    @Nullable
     private double totalPrice;
-    @Nullable
-    private double latitude;
-    @Nullable
-    private double longitude;
+
 
     public Hotels(HotelsBuilder hotelBuilder) {
         this.hotelID = hotelBuilder.hotelID;
@@ -70,11 +56,11 @@ public class Hotels {
         this.checkOutDate = hotelBuilder.checkOutDate;
         this.offerId = hotelBuilder.offerId;
         this.numBeds = hotelBuilder.numBeds;
-        this.bedType = hotelBuilder.bedType;
+//        this.bedType = hotelBuilder.bedType;
         this.numOfGuests = hotelBuilder.numOfGuests;
         this.totalPrice = hotelBuilder.totalPrice;
-        this.latitude = hotelBuilder.latitude;
-        this.longitude = hotelBuilder.longitude;
+//        this.latitude = hotelBuilder.latitude;
+//        this.longitude = hotelBuilder.longitude;
         this.locationID = hotelBuilder.locationID;
         this.rating = hotelBuilder.rating;
         this.fullAddress = hotelBuilder.fullAddress;
@@ -82,6 +68,7 @@ public class Hotels {
         this.websiteURL = hotelBuilder.websiteURL;
         this.priceLevel = hotelBuilder.priceLevel;
         this.description = hotelBuilder.description;
+        this.hotelOfferGroup = hotelBuilder.hotelOfferGroup;
     }
     public Hotels(){}
 
@@ -92,6 +79,7 @@ public class Hotels {
         private String checkInDate;
         private String checkOutDate;
         private String offerId;
+        private String hotelOfferGroup;
         private String locationID;
         public String hotelName;
         private String rating;
@@ -127,6 +115,11 @@ public class Hotels {
 
         public HotelsBuilder checkOutDate(String checkOutDate) {
             this.checkOutDate = checkOutDate;
+            return this;
+        }
+
+        public HotelsBuilder hotelOfferGroup(String hotelOfferGroup){
+            this.hotelOfferGroup = hotelOfferGroup;
             return this;
         }
 

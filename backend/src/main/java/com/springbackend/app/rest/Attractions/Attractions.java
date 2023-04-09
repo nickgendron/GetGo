@@ -30,8 +30,7 @@ public class Attractions {
     @Nullable
     private String fullAddress;
 
-    @Nullable
-    private String offerId;
+    private String attractionOfferGroup;
 
     @Nullable
     private String locationID;
@@ -63,7 +62,7 @@ public class Attractions {
     public Attractions(AttractionsBuilder attractionBuilder) {
         this.attrName = attractionBuilder.attrName;
         this.fullAddress = attractionBuilder.fullAddress;
-        this.offerId = attractionBuilder.offerId;
+        this.attractionOfferGroup = attractionBuilder.attractionOfferGroup;
         this.latitude = attractionBuilder.latitude;
         this.longitude = attractionBuilder.longitude;
         this.locationID = attractionBuilder.locationID;
@@ -77,7 +76,7 @@ public class Attractions {
 
     public static class AttractionsBuilder {
         private String fullAddress;
-        private String offerId;
+        private String attractionOfferGroup;
         private String locationID;
         private String attrName;
         private String rating;
@@ -98,8 +97,8 @@ public class Attractions {
             return this;
         }
 
-        public Attractions.AttractionsBuilder offerId(String offerId) {
-            this.offerId = offerId;
+        public Attractions.AttractionsBuilder attractionOfferGroup(String attractionOfferGroup) {
+            this.attractionOfferGroup = attractionOfferGroup;
             return this;
         }
 

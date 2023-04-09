@@ -9,7 +9,7 @@ public interface HotelsRepo extends CrudRepository<Hotels, String> {
     @Query("SELECT h FROM Hotels h WHERE h.locationID = ?1")
     Hotels findByLocationID(String locationID);
 
-    @Query("SELECT h FROM Hotels h WHERE h.hotelID = ?1")
-    Hotels findByHotelUuidID(String hotelID);
+    @Query("SELECT h FROM Hotels h WHERE h.hotelOfferGroup = ?1")
+    Iterable<Hotels> findByHotelUuidID(String hotelOfferGroup);
 }
 

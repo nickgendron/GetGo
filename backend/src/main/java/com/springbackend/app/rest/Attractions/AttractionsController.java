@@ -1,5 +1,6 @@
 package com.springbackend.app.rest.Attractions;
 import com.google.gson.*;
+import com.springbackend.app.rest.Flights.FlightObjects.Flights;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.UUID;
 
 @RequestMapping(path="/api/attractions")
 @RestController
@@ -57,7 +59,7 @@ public class AttractionsController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/nearbyAttractions")
-    public JsonArray nearbyAttractions(@RequestParam String location) throws IOException{
+    public String nearbyAttractions(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
 //        String destCords = "30.4515, -91.1871";
@@ -83,6 +85,8 @@ public class AttractionsController {
 
         JsonArray attractionArray = new JsonArray();
 
+        String attractionsOfferGroup = UUID.randomUUID().toString();
+
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
             /*Bob is man and lame, so this is Kim and she's better at building */
@@ -101,6 +105,7 @@ public class AttractionsController {
 
             /* Add properties to attractionJsonObject */
             attractionJsonObject.addProperty("location_id", locationId);
+            attractionJsonObject.addProperty("attractionsOfferGroup", attractionsOfferGroup);
             attractionJsonObject.addProperty("name", name);
             attractionJsonObject.addProperty("address_string", fullAddress);
 
@@ -108,6 +113,7 @@ public class AttractionsController {
             kim.locationID(locationId);
             kim.attrName(name);
             kim.fullAddress(fullAddress);
+            kim.attractionOfferGroup(attractionsOfferGroup);
             //WHAT
             attractionJsonObject.addProperty("address_string", addressString);
             /*
@@ -177,8 +183,20 @@ public class AttractionsController {
 
         }
         /* Add the instance of attractionJsonObject to the returning json array */
-        return attractionArray;
+        return attractionsOfferGroup;
 
+    }
+
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getAttractionsByGroupID")
+
+    private JsonElement parseJson(Iterable<Flights> flight){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement jsonElement = jp.parse(gson.toJson(flight));
+        return jsonElement;
     }
 
 }

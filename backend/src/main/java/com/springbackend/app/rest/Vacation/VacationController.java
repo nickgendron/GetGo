@@ -24,6 +24,7 @@ public class VacationController {
     @Autowired
     private AttractionsRepo attractionsRepo;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/createNewVacation")
     public ResponseEntity<String> createNewEmptyVacation(@RequestParam String userID){
 
@@ -83,6 +84,8 @@ public class VacationController {
         if(!(vacation.getRestaurantID().equals(restaurantID))) { return "Error"; }
         return "Success";
     }
+
+
 
 
     @PostMapping(path = "/buildVacation")

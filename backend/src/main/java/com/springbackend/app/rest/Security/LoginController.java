@@ -1,5 +1,6 @@
 package com.springbackend.app.rest.Security;
 
+import com.springbackend.app.rest.User.User;
 import com.springbackend.app.rest.User.UserRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,8 @@ public class LoginController {
 
     @GetMapping(path = "/login")
     public String handleUserLogin(@RequestParam String email, @RequestParam String password){
-        String userID = userRepo.matchUserByEmailAndPassword(email, password);
-        if(userID == null){ return "User not found."; }
-        return userID;
+        User user = userRepo.matchUserByEmailAndPassword(email, password);
+        if(user == null){ return "User not found."; }
+        return user.getUserID();
     }
 }
