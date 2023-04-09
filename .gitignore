@@ -25,7 +25,7 @@ backend/.idea
 
 .DS_Store
 #**/.DS_Store
-
+#**/node_modules
 /frontend/node_modules
 /frontend/node_modules/.cache
 /.pnp

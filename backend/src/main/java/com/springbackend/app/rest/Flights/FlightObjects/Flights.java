@@ -14,18 +14,21 @@ public class Flights {
 
     @Id
     private String flightID;
+
+    private String offerID;
     private String itineraryID;
     private String totalPrice;
     private String optionNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "flight")
-    private List<Itineraries> itineraries;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "flight")
+//    private List<Itineraries> itineraries;
 
 
     public Flights(JsonObject flight) {
         this.flightID = flight.get("flightID").getAsString();
         this.optionNumber = flight.get("optionNumber").getAsString();
         this.totalPrice = flight.get("totalPrice").getAsString();
+        this.offerID = flight.get("offerID").getAsString();
     }
 
     public Flights(){}
