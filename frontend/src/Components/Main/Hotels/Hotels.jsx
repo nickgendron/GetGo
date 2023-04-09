@@ -5,32 +5,31 @@ import GridCard from "../GridCard/GridCard";
 import "./Hotels.css";
 
 function Hotels() {
-  var location = "NewOrleans, Louisiana";
 
   const [hotelInfo, setHotelInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // const [segmentData, setSegmentData] = useState([]);
 
-  console.log(location);
 
  
   useEffect(() => {
     // Check if hotel data exists in localStorage
-    const hotelData = JSON.parse(localStorage.getItem("hotelData"));
+    // const hotelData = JSON.parse(localStorage.getItem("hotelData"));
+    console.log(sessionStorage.getItem("hotelsOptionsMasterKey"));
 
-    if (hotelData && hotelData.location === location) {
-      // Use data from localStorage
-      setHotelInfo(hotelData.hotels);
-      setLoading(false);
-    } else {
+    // if (hotelData && hotelData.location === location) {
+    //   // Use data from localStorage
+    //   setHotelInfo(hotelData.hotels);
+    //   setLoading(false);
+    // } else {
       // Fetch new hotel data
       async function fetchData() {
         try {
           const hotelResponse = await axios.get(
-            `http://127.0.0.1:8080/api/hotels/nearbyHotels?location=` + location
+            `http://127.0.0.1:8080/api/hotels/getHotelByRandomID?hotelUUID=` + sessionStorage.getItem("hotelsOptionsMasterKey")
           );
-          console.log(hotelResponse.status);
+          console.log(hotelResponse.data);
           const hotels = hotelResponse.data;
           setHotelInfo(hotels);
           setLoading(false);
@@ -44,8 +43,10 @@ function Hotels() {
           console.error(error);
         }
       }
+
+      console.log(sessionStorage.getItem("hotelsOptionsMasterKey"));
       fetchData();
-    }
+    
   }, []);
 
   if (loading) {
@@ -54,13 +55,17 @@ function Hotels() {
 
   console.log(localStorage.getItem("hotelID"));
 
+  // console.log(hotelInfo[0].hotelName);
+
+  
+
   return (
     <>
       <div className="navBarComponent">
         <Navbar />
       </div>
       <div className="hotelsContent">
-        <p className="hotelsInCity">Hotels in Sydney, Australia! </p>
+        <p className="hotelsInCity">Hotels in {sessionStorage.getItem("whereTo")}! </p>
         <hr
           style={{
             background: "black",
@@ -73,22 +78,23 @@ function Hotels() {
         />
         <div className="gridCardHoldingDiv"style={{ display: "flex", flexDirection: "column" }}>
           {hotelInfo.map((hotel, i) => {
-            if (hotel.description) {
+            // if (hotel.description) {
               return (
                 <GridCard
                   key={i}
-                  name={hotel.name}
+                  name={hotel.hotelName}
                   address={hotel.fullAddress}
-                  type={hotel.type}
+                  uniqueID={hotel.hotelID}
+                  type={"hotel"}
                   rating={hotel.rating}
                   priceLevel={hotel.price_level}
                   description={hotel.description}
                   images={hotel.images_url}
-                  locationID={hotel.location_id}
+                  // locationID={hotel.location_id}
                   place="hotel"
                 />
               );
-            }
+            // }
             return null;
           })}
         </div>

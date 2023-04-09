@@ -16,10 +16,13 @@ function Flights(offerIDNew) {
 
 // console.log(offerID);
 // console.log(offerIDNew);
- const offerIDtmp = localStorage.getItem("flightOfferID");
-console.log(offerIDtmp);
+//  const offerIDtmp = sessionStorage.getItem("flightOfferID");
+// console.log(offerIDtmp);
 
   useEffect(() => {
+    const offerIDtmp = sessionStorage.getItem("flightOfferID");
+    console.log(offerIDtmp);
+    
     async function fetchData() {
       try {
         const flightSegmentsResponse = await axios.get(
@@ -49,7 +52,7 @@ console.log(offerIDtmp);
       </div>
 
       <div className="flightsContent">
-        <h1 className="flightsToCity">Flights to Dubai: </h1>
+        <h1 className="flightsToCity">Flights to {sessionStorage.getItem("whereTo")}: </h1>
         <hr
           style={{
             background: "black",

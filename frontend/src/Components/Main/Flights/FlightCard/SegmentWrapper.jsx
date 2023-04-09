@@ -44,11 +44,12 @@ function SegmentWrapper(flightID) {
     async function addObjectToVacation() {
       const url = "http://127.0.0.1:8080";
       
-      const vacationID = "890a557e-7928-4cee-9959-3179322c38cc";
+      // const vacationID = "890a557e-7928-4cee-9959-3179322c38cc";
 
       // const hotelsEndpoin 
-       const flightEndpoints= "/api/vacations/addFlight?flightID=" + flightID + "&vacationID=" + vacationID;
+       const flightEndpoints= "/api/vacations/addFlight?flightID=" + flightID + "&vacationID=" + sessionStorage.getItem("vacationID");
 
+       console.log(sessionStorage.getItem("vacationID"));
       const apiCall = url + flightEndpoints;
       try {
         const response = await axios.post(apiCall);
@@ -57,13 +58,13 @@ function SegmentWrapper(flightID) {
 
       } catch (error) {}
 
-      localStorage.removeItem("flightID");
-      localStorage.setItem("flightID", flightID);
+      sessionStorage.removeItem("choosenFlightIDForVacation");
+      sessionStorage.setItem("choosenFlightIDForVacation", flightID);
 
     }
 
     addObjectToVacation();
-    console.log(localStorage.getItem("flightID")); // You can access the locationID value here
+    console.log(sessionStorage.getItem("choosenFlightIDForVacation")); // You can access the locationID value here
 
   }
 

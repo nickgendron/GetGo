@@ -33,7 +33,8 @@ function Signup() {
       .post(url)
       .then((response) => {
         // Handle the response data here
-        console.log(response.data);
+        sessionStorage.removeItem("userID");
+        sessionStorage.setItem("userID", response.data);
         navigate("/home");
       })
       .catch((error) => {

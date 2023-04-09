@@ -5,7 +5,7 @@ import GridCard from "../GridCard/GridCard";
 import "./Attractions.css";
 
 function Attractions() {
-  var location = "Dubai,UnitedArabEmirates";
+  var location = "Shreveport,Louisiana";
   const [attricaionInfo, setAttractionInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -69,7 +69,7 @@ function Attractions() {
           className="gridCardHoldingDiv"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          {attricaionInfo.map((attraction, i) => (
+          {/* {attricaionInfo.map((attraction, i) => (
             <GridCard
               key={i}
               name={attraction.name}
@@ -81,7 +81,7 @@ function Attractions() {
               images={attraction.images_url}
               locationID={attraction.location_id}
             />
-          ))}
+          ))} */}
         </div>
 
         {/* STARTING HERE WE WOLD NEED TO HAVE LOGIC TO MAKE BACKEND CALLS */}

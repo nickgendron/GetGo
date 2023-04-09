@@ -21,7 +21,10 @@ function LoginForm() {
     axios.get(url)
       .then((response) => {
         // Handle the response data here
-       // console.log(response.data);
+      //  console.log(response.data);
+      sessionStorage.removeItem("userID");
+       sessionStorage.setItem("userID", response.data);
+       console.log(sessionStorage.getItem("userID"));
         if(response.data){
           navigate("/home");
         }

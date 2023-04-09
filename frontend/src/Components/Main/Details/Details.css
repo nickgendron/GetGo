@@ -66,6 +66,88 @@
     text-align: center;
     
   }
+
+  .departingAirportButton{
+    background-color: white;
+    height: 55px;
+    margin: auto;
+    width: 175px;
+    color: black;
+    /* justify-content: center; */
+    color: black;
+    font: "Work Sans";
+    
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-right: 10px;
+    text-align: center;
+    
+  }
+  .departingAirportButton::placeholder{
+    background-color: white;
+    color: black;
+    /* justify-content: center; */
+    color: black;
+    font: "Work Sans";
+    
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 20px;
+    /* margin-right: 10px; */
+    text-align: center;
+    
+  }
+
+  .departingAirportButton:focus::placeholder{
+    outline: none;
+    color: transparent;
+    font-weight: lighter;
+  }
+
+  .arrivingAirportButton{
+    background-color: white;
+    height: 55px;
+    /* margin: auto; */
+    width: 175px;
+    color: black;
+    /* justify-content: center; */
+    color: black;
+    font: "Work Sans";
+    /* margin-right: px; */
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-align: center;
+    
+  }
+  .arrivingAirportButton::placeholder{
+    background-color: white;
+    color: black;
+    /* justify-content: center; */
+    color: black;
+    font: "Work Sans";
+    
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 20px;
+    /* margin-right: 10px; */
+    text-align: center;
+    
+  }
+
+  .arrivingAirportButton:focus::placeholder{
+    outline: none;
+    color: transparent;
+    font-weight: lighter;
+  }
+
   .textFormInputDetails::placeholder{
     color: black;
     font: Work Sans;

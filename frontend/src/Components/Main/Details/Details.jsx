@@ -8,8 +8,7 @@ import moment from "moment";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import MainAPI from "../MainAPI/MainAPI";
-import { useSelector } from "react-redux";
-
+import IncDecCounter from "./IncDecCounter";
 import "./Details.css";
 
 function Details() {
@@ -17,9 +16,8 @@ function Details() {
   const [endDate, setEndDate] = useState(null);
   const [leavingFrom, setLeavingFrom] = useState("");
   const [whereTo, setWhereTo] = useState("");
-
-  const flightID = useSelector = (state) => state.flightID;
-
+  const [sourceAirportCode, setSourceAirportCode] = useState("");
+  const [destAirportCode, setDestAirportCode] = useState("");
 
   const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
@@ -32,18 +30,34 @@ function Details() {
   function handleNavigate(event) {
     event.preventDefault();
 
+
+
+    sessionStorage.removeItem("leavingFrom");
+    sessionStorage.removeItem("whereTo");
+    sessionStorage.removeItem("startDate");
+    sessionStorage.removeItem("endDate");
+    sessionStorage.removeItem("sourceAirportCode");
+    sessionStorage.removeItem("destAirportCode"); 
     if (!leavingFrom || !whereTo || !startDate || !endDate) {
       alert("Please fill out all fields");
       return;
     }
-
     console.log(leavingFrom);
     console.log(whereTo);
     console.log(startDate.format("YYYY-MM-DD"));
     console.log(endDate.format("YYYY-MM-DD"));
+    console.log(sourceAirportCode);
+    console.log(destAirportCode);
 
-   
+    sessionStorage.setItem("leavingFrom", leavingFrom);
+    sessionStorage.setItem("whereTo", whereTo);
+    sessionStorage.setItem("startDate", startDate.format("YYYY-MM-DD"));
+    sessionStorage.setItem("endDate", endDate.format("YYYY-MM-DD"));
+    sessionStorage.setItem("sourceAirportCode", sourceAirportCode);
+    sessionStorage.setItem("destAirportCode", destAirportCode);
     // return navigate("/mainapi");
+
+    navigate("/mainapi");
   }
 
   function handleLeavingFromChange(event) {
@@ -66,11 +80,10 @@ function Details() {
     setEndDate(picker.endDate);
     console.log(start);
     console.log(end);
-
   }
 
-  function test(){
-    console.log(flightID);
+  function test() {
+    // console.log(flightID);
   }
 
   function renderApplyButton() {
@@ -98,7 +111,10 @@ function Details() {
         <img className="smallLogoStyle" src={SmallLogo} alt="All_work" />
         <img className="textLogoStyle" src={TextLogo} alt="All_work" />
         <div className="buttonDiv">
-          <button className="loginButtonDetails" onClick={test}> Log in</button>
+          <button className="loginButtonDetails" onClick={test}>
+            {" "}
+            Log in
+          </button>
           <button className="signUpButtonDetails"> Sign up</button>
         </div>
       </div>
@@ -121,8 +137,6 @@ function Details() {
             }}
           ></input>
           {/* {console.log(leavingFrom)} */}
-          <br />
-          <br />
 
           <input
             className="textFormInputDetails"
@@ -130,6 +144,36 @@ function Details() {
             onBlur={(e) => {
               console.log(e.target.value);
               setWhereTo(e.target.value);
+            }}
+          ></input>
+          <br />
+          <br />
+
+          {/* Origin (local to you) airport */}
+          <input
+            className="departingAirportButton"
+            placeholder="Departing Airport"
+            required={true}
+            // value={leavingFrom}
+            onBlur={(e) => {
+              console.log(e.target.value);
+              
+              setSourceAirportCode(e.target.value);
+            }}
+          ></input>
+
+          {/* Dest (vacation spot airport) */}
+          <input
+            className="arrivingAirportButton"
+            placeholder="Arriving Airport"
+            required={true}
+            // value={leavingFrom}
+            onBlur={(e) => {
+              // console.log(e.target.value);
+              // sessionStorage.removeItem("destAirportCode");
+              // sessionStorage.setItem("destAirportCode", e.target.value);
+
+              setDestAirportCode(e.target.value);
             }}
           ></input>
         </div>

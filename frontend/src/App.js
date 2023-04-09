@@ -34,6 +34,8 @@ function App() {
 
     });
   };
+  // sessionStorage.removeItem("userID");
+
 
   // Callback function to update variables with API response
 

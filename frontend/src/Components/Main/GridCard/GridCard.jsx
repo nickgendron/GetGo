@@ -7,6 +7,7 @@ import "./GridCard.css";
 function GridCard({
   name,
   address,
+  uniqueID,
   type,
   rating,
   priceLevel,
@@ -28,19 +29,20 @@ function GridCard({
       setLocationType("attractions");
     }
   }, []);
-
   function handleAddToTrip() {
     // Perform the desired action when the button is clicked
     // console.log(flightID); // You can access the locationID value here
     // ... Other logic
     // TESTER ID: bbea3602-237e-4136-a9e0-6507ab2db15f
     async function addObjectToVacation() {
+      // console.log(uniqueID);
+
       const url = "http://127.0.0.1:8080";
       
-      const vacationID = "890a557e-7928-4cee-9959-3179322c38cc";
+      // const vacationID = ;
 
       // const hotelsEndpoin 
-       const hotelsEndpoing= "/api/vacations/addHotel?hotelID=" + locationID + "&vacationID=" + vacationID;
+       const hotelsEndpoing= "/api/vacations/addHotel?hotelID=" + uniqueID + "&vacationID=" + sessionStorage.getItem("vacationID");
 
       const apiCall = url + hotelsEndpoing;
       try {
@@ -50,9 +52,10 @@ function GridCard({
 
       } catch (error) {}
 
-      localStorage.removeItem("hotelID");
-      localStorage.setItem("hotelID", locationID);
+      sessionStorage.removeItem("choosenHotelIDForVacation");
+      sessionStorage.setItem("choosenHotelIDForVacation", uniqueID);
 
+      console.log("session stored hotel id: " + sessionStorage.getItem("choosenHotelIDForVacation"));
     }
 
     addObjectToVacation();

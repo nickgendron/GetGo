@@ -19,6 +19,7 @@ export default function Summary() {
   const [flightPrice, setFlightPrice] = useState();
   const [originCode, setOriginCode] = useState("");
   const [destCode, setDestCode] = useState("");
+  const [hotelInfo, setHotelInfo] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +55,22 @@ export default function Summary() {
       } catch (error) {
         // console.error(error);
       }
+      try {
+        const hotelResponse = await axios.get(
+          `http://127.0.0.1:8080/api/hotels/getHotelByRandomID?hotelUUID=` + sessionStorage.getItem("choosenHotelIDForVacation")
+        );
+        console.log(hotelResponse.data);
+        const hotels = hotelResponse.data;
+        setHotelInfo(hotels);
+
+        // Save data to localStorage
+        // localStorage.setItem(
+        //   "hotelData",
+        //   JSON.stringify({ location, hotels })
+        // );
+      } catch (error) {
+        console.error(error);
+      }
     };
 
    
@@ -61,7 +78,7 @@ export default function Summary() {
     fetchData();
     const flightIDDynamic = localStorage.getItem("flightID");
     console.log(flightIDDynamic);
-  });
+  },[]);
 
   const asyncLocalStorage = {
     setItem: function (key, value) {
@@ -77,13 +94,14 @@ export default function Summary() {
 };
 
   const flightIDtmp = asyncLocalStorage.getItem('flightID').then(function (result) {console.log(result);});
+  console.log(sessionStorage.getItem("choosenHotelIDForVacation"));
 
   // const flightIDDynamic = sessionStorage.getItem("flightID");
   // console.log(flightIDDynamic);
   // setFlightID("ff3d19ac-20df-4ebf-ade5-a4d34117d718");
   // setHotelID("hotel");
-  // setAttractionID("attraction");
-  // if(!isVacationSelected){
+  // setAttractionID("attraction");        
+  // if(!isVacationSelected)
   //   return (
   //     <>
   //   <div className="navBarComponent">
@@ -115,16 +133,34 @@ console.log(localStorage.getItem("hotelID"));
         />
         <div className="segmentWrapperInSummary"> 
         <SegmentWrapperSummary
-          flightID={localStorage.getItem("flightID")}
+          flightID={sessionStorage.getItem("choosenFlightIDForVacation")}
         />
         </div>
+        <h1>Your Hotel: </h1>
 
-        <div className="summaryContentCardContainer">
-          <h1>Your hotel: </h1>
-          <SummaryGridCard 
-          locationID={localStorage.getItem("hotelID")}
-          />
-        </div>
+
+        <div className="gridCardHoldingDiv"style={{ display: "flex", flexDirection: "column" }}>
+          {hotelInfo.map((hotel, i) => {
+             <h1>Your Hotel: </h1>
+            // if (hotel.description) {
+              
+                <SummaryGridCard
+                  key={i}
+                  name={hotel.hotelName}
+                  address={hotel.fullAddress}
+                  uniqueID={hotel.hotelID}
+                  type={"hotel"}
+                  rating={hotel.rating}
+                  priceLevel={hotel.price_level}
+                  description={hotel.description}
+                  images={hotel.images_url}
+                  // locationID={hotel.location_id}
+                  place="hotel"
+                />
+              
+            // }
+          })}
+          </div>
 
         <div className="summaryContentCardContainer">
           <h1>Your Attractions: </h1>
