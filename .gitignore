@@ -58,3 +58,4 @@ backend/target/classes/com/springbackend/app/rest/Vacation/Vacation.class
 backend/target/classes/com/springbackend/app/rest/Vacation/VacationController.class
 backend/target/classes/com/springbackend/app/rest/Vacation/VacationRepo.class
 backend/target/classes/com/springbackend/app/rest/VacationBuilder/VacationBuilder.class
+*.icloud
