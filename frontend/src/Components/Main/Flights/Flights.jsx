@@ -13,14 +13,18 @@ function Flights(offerIDNew) {
   var offerID = "eae4f88f-b0f0-4e1d-a7f1-76a74021bb13";
   const [flightIDs, setFlightIDs] = useState([]);
   const [flightPrices, setFlightPrices] = useState([]);
-console.log(offerID);
-  console.log(offerIDNew);
+
+// console.log(offerID);
+// console.log(offerIDNew);
+ const offerIDtmp = localStorage.getItem("flightOfferID");
+console.log(offerIDtmp);
+
   useEffect(() => {
     async function fetchData() {
       try {
         const flightSegmentsResponse = await axios.get(
           `http://127.0.0.1:8080/api/flights/getFlightsFromOfferID?offerID=` +
-            offerID
+          offerIDtmp
         );
         const flightIDs = flightSegmentsResponse.data;
         // console.log(flightIDs);

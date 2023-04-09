@@ -8,7 +8,25 @@ import SegmentRowLeft from "./SegmentRowLeft";
 import "./FlightCard.css";
 import Flights from "../Flights";
 
+import { useDispatch } from 'react-redux';
+
+
 function SegmentWrapper(flightID) {
+
+
+  const asyncLocalStorage = {
+    setItem: function (key, value) {
+        return Promise.resolve().then(function () {
+            localStorage.setItem(key, value);
+        });
+    },
+    getItem: function (key) {
+        return Promise.resolve().then(function () {
+            return localStorage.getItem(key);
+        });
+    }
+};
+
   const [departingSegments, setDepartingSegments] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -17,9 +35,46 @@ function SegmentWrapper(flightID) {
   const [flightPrice, setFlightPrice] = useState();
   const [originCode, setOriginCode] = useState("");
   const [destCode, setDestCode] = useState("");
+  const dispatch = useDispatch();
+  function handleAddToTrip() {
+    // Perform the desired action when the button is clicked
+    // console.log(flightID); // You can access the locationID value here
+    // ... Other logic
+    // TESTER ID: bbea3602-237e-4136-a9e0-6507ab2db15f
+    async function addObjectToVacation() {
+      const url = "http://127.0.0.1:8080";
+      
+      const vacationID = "890a557e-7928-4cee-9959-3179322c38cc";
+
+      // const hotelsEndpoin 
+       const flightEndpoints= "/api/vacations/addFlight?flightID=" + flightID + "&vacationID=" + vacationID;
+
+      const apiCall = url + flightEndpoints;
+      try {
+        const response = await axios.post(apiCall);
+        const data = response.json();
+      
+
+      } catch (error) {}
+
+      localStorage.removeItem("flightID");
+      localStorage.setItem("flightID", flightID);
+
+    }
+
+    addObjectToVacation();
+    console.log(localStorage.getItem("flightID")); // You can access the locationID value here
+
+  }
 
   useEffect(() => {
     const fetchData = async () => {
+      const url =
+        "http://127.0.0.1:8080/api/flights/getDestCodeByFlightID?flightID=" +
+        flightID;
+      const originUrl =
+        "http://127.0.0.1:8080/api/flights/getOriginCodeByFlightID?flightID=" +
+        flightID;
       try {
         const response = await fetch(
           `http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=` +
@@ -34,9 +89,33 @@ function SegmentWrapper(flightID) {
       } catch (error) {
         // console.error(error);
       }
+      try {
+        const response = await axios.get(url);
+        const data = response.data;
+        setDestCode(data);
+        console.log(destCode);
+      } catch (error) {
+        // console.error(error);
+      }
+      try {
+        const response = await axios.get(originUrl);
+        const data = response.data;
+        setOriginCode(data);
+        console.log(originCode);
+      } catch (error) {
+        // console.error(error);
+      }
     };
 
+    asyncLocalStorage.setItem('flightID', flightID).then(function () {
+      return asyncLocalStorage.getItem('flightID');
+  }).then(function (value) {
+      console.log('Value has been set to:', value);
+  });
+
     fetchData();
+
+
   });
 
   return (
@@ -45,14 +124,14 @@ function SegmentWrapper(flightID) {
         <div className="flightsWraperContainer">
           <div className="leftSideRender">
             <img src={BlackPlane} />
-            MSY to DBX
+            {originCode} to {destCode}
             <div className="horidzontalGreyLine" />
             <SegmentRowLeft flightID={flightID} />
           </div>
           <div className="vertGreyLine" />
           <div className="rightSideRender">
             <img src={BlackPlane} />
-            DBX to MSY
+            {destCode} to {originCode}
             <SegmentRowRight flightID={flightID} />
           </div>
           <div className="addToTripDiv">
@@ -60,7 +139,7 @@ function SegmentWrapper(flightID) {
             <p className="">{flightPrice}</p>
             <button
               className="addToTripButton"
-              onClick={() => console.log(flightID)}
+              onClick={handleAddToTrip}
             >
               Add to trip
             </button>

@@ -8,6 +8,7 @@ import moment from "moment";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import MainAPI from "../MainAPI/MainAPI";
+import { useSelector } from "react-redux";
 
 import "./Details.css";
 
@@ -16,6 +17,9 @@ function Details() {
   const [endDate, setEndDate] = useState(null);
   const [leavingFrom, setLeavingFrom] = useState("");
   const [whereTo, setWhereTo] = useState("");
+
+  const flightID = useSelector = (state) => state.flightID;
+
 
   const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
@@ -39,7 +43,7 @@ function Details() {
     console.log(endDate.format("YYYY-MM-DD"));
 
    
-    return navigate("/mainapi");
+    // return navigate("/mainapi");
   }
 
   function handleLeavingFromChange(event) {
@@ -63,6 +67,10 @@ function Details() {
     console.log(start);
     console.log(end);
 
+  }
+
+  function test(){
+    console.log(flightID);
   }
 
   function renderApplyButton() {
@@ -90,7 +98,7 @@ function Details() {
         <img className="smallLogoStyle" src={SmallLogo} alt="All_work" />
         <img className="textLogoStyle" src={TextLogo} alt="All_work" />
         <div className="buttonDiv">
-          <button className="loginButtonDetails"> Log in</button>
+          <button className="loginButtonDetails" onClick={test}> Log in</button>
           <button className="signUpButtonDetails"> Sign up</button>
         </div>
       </div>

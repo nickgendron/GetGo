@@ -5,7 +5,7 @@ import GridCard from "../GridCard/GridCard";
 import "./Hotels.css";
 
 function Hotels() {
-  var location = "BatonRouge,Louisiana";
+  var location = "NewOrleans, Louisiana";
 
   const [hotelInfo, setHotelInfo] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,30 +28,31 @@ function Hotels() {
       async function fetchData() {
         try {
           const hotelResponse = await axios.get(
-            `http://127.0.0.1:8080/api/hotel/nearbyHotels?location=` + location
+            `http://127.0.0.1:8080/api/hotels/nearbyHotels?location=` + location
           );
+          console.log(hotelResponse.status);
           const hotels = hotelResponse.data;
           setHotelInfo(hotels);
           setLoading(false);
 
           // Save data to localStorage
-          localStorage.setItem(
-            "hotelData",
-            JSON.stringify({ location, hotels })
-          );
+          // localStorage.setItem(
+          //   "hotelData",
+          //   JSON.stringify({ location, hotels })
+          // );
         } catch (error) {
           console.error(error);
         }
       }
       fetchData();
     }
-  }, [location]);
+  }, []);
 
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
-  console.log(hotelInfo);
+  console.log(localStorage.getItem("hotelID"));
 
   return (
     <>
@@ -84,6 +85,7 @@ function Hotels() {
                   description={hotel.description}
                   images={hotel.images_url}
                   locationID={hotel.location_id}
+                  place="hotel"
                 />
               );
             }
