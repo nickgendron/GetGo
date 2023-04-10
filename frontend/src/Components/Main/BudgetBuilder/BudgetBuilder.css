@@ -1,0 +1,51 @@
+.navBarComponent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+  }
+
+  .budgetInputForm{
+    margin: 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 50px;
+  }
+
+  .budgetInputField{
+    width: 500px;
+    height: 50px;
+    border-radius: 30px;
+    outline: none;
+    padding-left: 20px;
+  }
+
+  .formtPromptQuestion{
+    font-family: 'work sans';
+  }
+
+  .budgetCalculatorText{
+    font-family: 'Work Sans', sans-serif;
+    color: #f05d5d;
+    padding-left: 25px;
+    font-weight:bold;    
+  }
+
+  .topLevelTextForForm{
+    color: #3f52e3;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 900;
+  }
+
+  .sumTotalButton{
+    width: 275px;
+    height: 60px;
+    background-color: white;
+    outline: none;
+    border-radius: 20px;
+    border-color: #3f52e3;
+    color: #3f52e3;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+  }

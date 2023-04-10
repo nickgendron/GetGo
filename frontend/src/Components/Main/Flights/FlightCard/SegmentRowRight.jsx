@@ -53,11 +53,12 @@ useEffect(() => {
                 </button>
               </div>
               <div className="div3">
-                {" "}
-                <p>
+              {" "}
+                <p className="flightDateTimeText">
                   {" "}
-                  {segment.departureTime} <br /> &ensp; {segment.departureDate}
-                </p>
+                  {segment.departureDate}
+                
+                <p className="boldTheTimeText">{segment.departureTime}</p></p>
               </div>
               <div className="div4"> </div>
               <div className="div5"> </div>
@@ -72,10 +73,10 @@ useEffect(() => {
                 </button>
               </div>
               <div className="div11">
-                {" "}
+              {" "}
                 <p>
                   {" "}
-                  {segment.arrivalTime} <br /> {segment.arrivalDate}
+                 {segment.arrivalDate} <br/ > <p className="boldTheTimeText"><strong>{segment.arrivalTime}</strong></p>
                 </p>{" "}
               </div>
               <div className="div14">{segment.flightDuration}</div>

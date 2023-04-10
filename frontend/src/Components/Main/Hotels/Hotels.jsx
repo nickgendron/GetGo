@@ -52,6 +52,7 @@ function Hotels() {
   if (loading) {
     return <h1>Loading...</h1>;
   }
+  console.log(hotelInfo);
 
   console.log(localStorage.getItem("hotelID"));
 

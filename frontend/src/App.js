@@ -18,6 +18,7 @@ import Details from "./Components/Main/Details/Details";
 import Navbar from "./Components/Main/Navbar/Navbar";
 import GridCard from "./Components/Main/GridCard/GridCard";
 import MainAPI from "./Components/Main/MainAPI/MainAPI";
+import BudgetBuilder from "./Components/Main/BudgetBuilder/BudgetBuilder"
 
 export const AppContext = createContext();
 //frontend/src/Components/MainAPI/MainAPI.jsx
@@ -58,6 +59,7 @@ function App() {
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/gridcard" element={<GridCard />} />
         <Route path="/mainapi" element={<MainAPI />} />
+        <Route path="/savings" element={<BudgetBuilder />} />
       </Routes>
     </Router>
     </AppContext.Provider>

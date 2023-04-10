@@ -1,0 +1,11 @@
+.loadingDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+.loaderSpinner{
+    color: red;
+    padding-top: 100px;
+    width: 500px;
+}

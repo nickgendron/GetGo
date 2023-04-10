@@ -14,19 +14,6 @@ import { useDispatch } from 'react-redux';
 function SegmentWrapper(flightID) {
 
 
-  const asyncLocalStorage = {
-    setItem: function (key, value) {
-        return Promise.resolve().then(function () {
-            localStorage.setItem(key, value);
-        });
-    },
-    getItem: function (key) {
-        return Promise.resolve().then(function () {
-            return localStorage.getItem(key);
-        });
-    }
-};
-
   const [departingSegments, setDepartingSegments] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +23,7 @@ function SegmentWrapper(flightID) {
   const [originCode, setOriginCode] = useState("");
   const [destCode, setDestCode] = useState("");
   const dispatch = useDispatch();
+
   function handleAddToTrip() {
     // Perform the desired action when the button is clicked
     // console.log(flightID); // You can access the locationID value here
@@ -45,26 +33,28 @@ function SegmentWrapper(flightID) {
       const url = "http://127.0.0.1:8080";
       
       // const vacationID = "890a557e-7928-4cee-9959-3179322c38cc";
-
+var tmp;
       // const hotelsEndpoin 
        const flightEndpoints= "/api/vacations/addFlight?flightID=" + flightID + "&vacationID=" + sessionStorage.getItem("vacationID");
 
-       console.log(sessionStorage.getItem("vacationID"));
+       console.log("VacationID: " + sessionStorage.getItem("vacationID"));
       const apiCall = url + flightEndpoints;
       try {
         const response = await axios.post(apiCall);
         const data = response.json();
-      
 
+        console.log(data);
+      
+          tmp = data;
       } catch (error) {}
 
       sessionStorage.removeItem("choosenFlightIDForVacation");
       sessionStorage.setItem("choosenFlightIDForVacation", flightID);
-
+      console.log("Choosen flightID in SS: " + sessionStorage.getItem("choosenFlightIDForVacation")); // You can access the locationID value here
+      console.log(tmp);
     }
 
     addObjectToVacation();
-    console.log(sessionStorage.getItem("choosenFlightIDForVacation")); // You can access the locationID value here
 
   }
 
@@ -108,11 +98,6 @@ function SegmentWrapper(flightID) {
       }
     };
 
-    asyncLocalStorage.setItem('flightID', flightID).then(function () {
-      return asyncLocalStorage.getItem('flightID');
-  }).then(function (value) {
-      console.log('Value has been set to:', value);
-  });
 
     fetchData();
 

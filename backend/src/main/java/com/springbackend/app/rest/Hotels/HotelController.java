@@ -71,7 +71,7 @@ public class HotelController {
 
 
         /* Get API key */
-        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
+        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR_NEW");
 
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
@@ -130,7 +130,7 @@ public class HotelController {
 
 
             /* Give Bob some information to pick up */
-            bob.locationID(hotelID);
+            bob.locationID(locationId);
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
             bob.hotelOfferGroup(hotelOfferGroup);
@@ -234,9 +234,9 @@ public class HotelController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/getHotelByHotelID")
-    public Hotels getHotelByHotelID(@RequestParam String locationID){
-        Hotels hotel = hotelsRepo.findByLocationID(locationID);
-        return hotel;
+    public JsonElement getHotelByHotelID(@RequestParam String hotelID){
+        Iterable<Hotels> hotel = hotelsRepo.findByLocationID(hotelID);
+        return parseJson(hotel);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

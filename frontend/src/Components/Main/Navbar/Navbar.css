@@ -99,7 +99,8 @@
   color: grey;
   border: none;
   background-color: transparent;
-  width: 10px;
+  width: 100px;
+  margin-left: 50%;
 }
 
 .buttonTextGrey {

@@ -7,6 +7,7 @@ import SegmentRowRight from "../../Flights/FlightCard/SegmentRowRight";
 import SegmentRowLeft from "../../Flights/FlightCard/SegmentRowLeft";
 import "../../Flights/FlightCard/FlightCard.css";
 import "./SegmentWrapperSummary.css";
+import RemoveFromTrip from "./RemoveFromTrip"
 // import Flights from "../Flights";
 
 function SegmentWrapperSummary(flightID) {
@@ -16,42 +17,38 @@ function SegmentWrapperSummary(flightID) {
   const [flightPrice, setFlightPrice] = useState("");
   console.log(flightID);
 
-  /* 
+
+  function HandleRemoveFromVacation() {
+    console.log("Remove from vacation clicked");
   
-    useEffect(() => {
-    const fetchData = async () => {
-      const url =
-        "http://127.0.0.1:8080/api/flights/getDestCodeByFlightID?flightID=" +
-        flightID;
-      const originUrl =
-        "http://127.0.0.1:8080/api/flights/getOriginCodeByFlightID?flightID=" +
-        flightID;
-      try {
-        const response = await fetch(
-          `http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=` +
-            flightID,
-          {
-            mode: "cors",
+      const fetchData = async () => {
+
+        console.log("Vacation ID: " + sessionStorage.getItem("vacationID"));
+        try {
+          const attractionResponse = await axios.delete(
+            `http://127.0.0.1:8080/api/vacations/deleteFlightByVacationID?vacationID=` +
+            sessionStorage.getItem("vacationID")
+          );
+          const vacationID = attractionResponse.data;
+          console.log(attractionResponse.data);
+          sessionStorage.removeItem("choosenFlightIDForVacation");
+          console.log("Vacation ID: " + sessionStorage.getItem("vacationID"));
+  
+          if(attractionResponse.data === "Success"){
+            window.location.reload();
           }
-        );
-        const data = await response.json();
-        // console.log(data);
-        setFlightPrice(data);
-      } catch (error) {
-        // console.error(error);
-      }
-    };
+          window.location.reload();
 
-    fetchData();
-    localStorage.setItem("flightID", flightID);
+        } catch (error) {
+          console.error(error);
+        }
+    
+      }    
+      fetchData();
 
-  });
   
-  const flightPriceUrl = 'http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=` +
-            encodedFlightID;
-  
-  */
-
+  }
+ 
   useEffect(() => {
     setFlightID(flightID.flightID);
     const fetchData = async () => {
@@ -72,7 +69,6 @@ function SegmentWrapperSummary(flightID) {
         setDestCode(data);
         console.log(destCode);
       } catch (error) {
-        // console.error(error);
       }
       try {
         const response = await axios.get(originUrl);
@@ -80,7 +76,6 @@ function SegmentWrapperSummary(flightID) {
         setOriginCode(data);
         console.log(originCode);
       } catch (error) {
-        // console.error(error);
       }
       try {
         const response = await axios.get(flightPriceUrl);
@@ -88,7 +83,6 @@ function SegmentWrapperSummary(flightID) {
         setFlightPrice(data);
         console.log(originCode);
       } catch (error) {
-        // console.error(error);
       }
     };
 
@@ -98,8 +92,6 @@ function SegmentWrapperSummary(flightID) {
   return (
     <>
       {/* <p>{destCode} j</p> */}
-      <div className="summaryContentCardContainer">
-        <h1>Your flight:</h1>
         <div className="flightsWraperContainerInSummary">
           <div className="leftSideRender">
             <img src={BlackPlane} />
@@ -117,25 +109,13 @@ function SegmentWrapperSummary(flightID) {
         <div className="addToTripDivInSummary">
           {/* <p>her</p> */}
           {/* <p className="">{flightPrice}</p> */}
-          <p style={{ display: "inline" }}> Flight total: {flightPrice} </p>
-          <p style={{ display: "inline", marginLeft: "10%" }}>
+          <p style={{ display: "inline", marginLeft: "10%",  color: "#3f52e3", fontFamily: "work sans" }}> Flight total: {flightPrice} </p>
+          <button className="removeFromTripButton"  onClick={HandleRemoveFromVacation}>
             {" "}
             Remove from trip.
-          </p>
+          </button>
         </div>
         <br />
-
-        {/* <hr
-          style={{
-            background: "black",
-            color: "black",
-            borderColor: "black",
-            height: "4px",
-            width: "93%",
-            marginLeft: "3%",
-          }}
-        /> */}
-      </div>
     </>
   );
 }

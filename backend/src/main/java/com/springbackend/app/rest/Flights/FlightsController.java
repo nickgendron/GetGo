@@ -5,6 +5,8 @@ import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.UUID;
 import com.amadeus.resources.FlightOfferSearch.AirportInfo;
 import com.amadeus.resources.FlightOfferSearch.Itinerary;
@@ -29,6 +31,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+//import static org.aspectj.bridge.Version.time;
+
 @RequestMapping(path="/api/flights")
 @RestController
 public class FlightsController {
@@ -50,6 +54,25 @@ public class FlightsController {
     @Autowired
     private SegmentsRepo segmentRepo;
 
+
+
+    public String convertTimeToDigital(String time){
+        DateFormat dateFormat24Hour = new SimpleDateFormat("HH:mm:ss");
+        Date date = null;
+        String formattedTime = null;
+        try {
+            date = dateFormat24Hour.parse(time);
+            DateFormat dateFormat12Hour = new SimpleDateFormat("h:mm a");
+            formattedTime = dateFormat12Hour.format(date);
+            String amPm = formattedTime.substring(formattedTime.length() - 2);
+            amPm = amPm.toLowerCase();
+            formattedTime = formattedTime.substring(0, formattedTime.length() - 2) + amPm;
+            return formattedTime;
+
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path="/prices")
     public String getFlightInformation(@RequestParam String originCode, @RequestParam String destCode,
@@ -180,6 +203,8 @@ public class FlightsController {
                                 String arrivalDateString = arrivalDateTime.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
                                 String departureDateString = departureDateTime.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
 
+
+
                                 SimpleDateFormat inputFormat = new SimpleDateFormat("MM-dd-yyyy");
                                 try {
                                     Date arrivalDate = inputFormat.parse(arrivalDateString);
@@ -189,6 +214,26 @@ public class FlightsController {
                                     formattedDepartureDate = outputFormat.format(departureDate);
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                }
+
+                                String departureTime = departureDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+                                String arrivalTime = arrivalDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+//                                 arrivalTime = convertTimeToDigital(arrivalDateString.format(DateTimeFormatter.ofPattern("HH:mm:ss").toString()));
+
+                                 String formattedArrivalTime = convertTimeToDigital(arrivalTime);
+                                DateFormat dateFormat24Hour = new SimpleDateFormat("HH:mm:ss");
+                                Date date = null;
+                                String formattedTime = null;
+                                try {
+                                    date = dateFormat24Hour.parse(departureTime);
+                                    DateFormat dateFormat12Hour = new SimpleDateFormat("h:mm a");
+                                    formattedTime = dateFormat12Hour.format(date);
+                                    String amPm = formattedTime.substring(formattedTime.length() - 2);
+                                    amPm = amPm.toLowerCase();
+                                    formattedTime = formattedTime.substring(0, formattedTime.length() - 2) + amPm;
+
+                                } catch (ParseException e) {
+                                    throw new RuntimeException(e);
                                 }
 
                                 /* Increment counter */
@@ -208,9 +253,9 @@ public class FlightsController {
                                 segmentJson.addProperty("itineraryID", itineraryID);
                                 segmentJson.addProperty("originAirportCode", departure.getIataCode().toString());
                                 segmentJson.addProperty("destAirportCode", arrival.getIataCode().toString());
-                                segmentJson.addProperty("departureTime", departureDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                                segmentJson.addProperty("departureTime", formattedTime);
                                 segmentJson.addProperty("departureDate", formattedDepartureDate);
-                                segmentJson.addProperty("arrivalTime", arrivalDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                                segmentJson.addProperty("arrivalTime", formattedArrivalTime);
                                 segmentJson.addProperty("arrivalDate", formattedArrivalDate);
                                 segmentJson.addProperty("flightDuration", flightDuration);
                                 segmentJson.addProperty("totalPrice", totalPrice);

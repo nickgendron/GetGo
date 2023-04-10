@@ -4,6 +4,8 @@ import axios from "axios";
 import "./MainAPI.css";
 import { AppContext } from "../../../App";
 import Flights from "../Flights/Flights";
+import ReactLoading from "react-loading";
+import { Section, Title, Article, Prop, list } from './loaders'
 
 function MainAPI() {
   const { updateVariables } = useContext(AppContext);
@@ -65,6 +67,9 @@ function MainAPI() {
       try {
        const response = await axios.get(flightOffersURL);
         const data = response.data;
+        if(data === null){
+          return <h1>Error fetching flights</h1>
+        }
         setFlightOfferID(data);
         sessionStorage.setItem("flightOfferID", data);
         console.log("flight offer id: " + sessionStorage.getItem("flightOfferID"));
@@ -104,7 +109,7 @@ function MainAPI() {
 
         sessionStorage.removeItem("attractionsOptionsMasterKey");
         sessionStorage.setItem("attractionsOptionsMasterKey", attractions);
-        console.log("attractions: " + attractions);
+        console.log("attractions: " + sessionStorage.getItem("attractionsOptionsMasterKey"));
         // // Save data to localStorage
         // localStorage.setItem(
         //   "attractionData",
@@ -135,17 +140,12 @@ function MainAPI() {
         console.error(error);
       }
 
-      navigate("/flights")
+     navigate("/flights")
 
 
     }
-  
-
-
-  
       /* Getting some hotel information (still need to figure out on backend i think)*/
-    
-
+  
     fetchData();
 
   }, []);
@@ -155,6 +155,12 @@ function MainAPI() {
   // localStorage.removeItem("flightOfferID");
 
   // if(flightOfferID != null){navigate("/flights")}
-  return <p>Please wait, loading your dream vacation</p>;
+  return <>
+
+  <div className="loadingDiv">
+    
+        <ReactLoading type={"spin"} color="#000" className="loaderSpinner"/>
+        </div>
+  </>
 }
 export default MainAPI;

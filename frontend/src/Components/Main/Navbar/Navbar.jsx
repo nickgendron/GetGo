@@ -87,13 +87,12 @@ function Navbar() {
           />
         </div>
         <div className="buttonTextGrey">
-          <button className="bottomButtons">Vacation Summary</button>
+          <button className="bottomButtons">Overall Trip</button>
           <br />
           <br />
-          <button className="bottomButtons">Budget Calculator</button>
+          <button className="bottomButtons">Trip Planner</button>
           <br />
           <br />
-          <button className="bottomButtons">Savings Plan</button>
         </div>
       </div>
     </>

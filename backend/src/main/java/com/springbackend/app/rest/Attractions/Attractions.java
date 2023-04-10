@@ -27,6 +27,12 @@ public class Attractions {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private String attractionID;
+
+    /* Uses a getter/setter method as this data is added much later from point of initialization */
+    private String selectedAttractionsGroup;
+
+
     @Nullable
     private String fullAddress;
 
@@ -59,6 +65,7 @@ public class Attractions {
     @Nullable
     private double longitude;
 
+    public Attractions(){}
     public Attractions(AttractionsBuilder attractionBuilder) {
         this.attrName = attractionBuilder.attrName;
         this.fullAddress = attractionBuilder.fullAddress;
@@ -71,12 +78,24 @@ public class Attractions {
         this.photosURL = attractionBuilder.photosURL;
         this.websiteURL = attractionBuilder.websiteURL;
         this.priceLevel = attractionBuilder.priceLevel;
+        this.attractionID = attractionBuilder.attractionID;
+    }
+
+    public String getSelectedAttractionsGroup() {
+        return selectedAttractionsGroup;
+    }
+
+    public Attractions setSelectedAttractionsGroup(String selectedAttractionsGroup) {
+        this.selectedAttractionsGroup = selectedAttractionsGroup;
+        return this;
     }
 
 
     public static class AttractionsBuilder {
         private String fullAddress;
         private String attractionOfferGroup;
+        private String attractionID;
+
         private String locationID;
         private String attrName;
         private String rating;
@@ -89,6 +108,11 @@ public class Attractions {
 
         public Attractions.AttractionsBuilder attrName(String attrName) {
             this.attrName = attrName;
+            return this;
+        }
+
+        public Attractions.AttractionsBuilder attractionsID(String attractionsID) {
+            this.attractionID = attractionsID;
             return this;
         }
 

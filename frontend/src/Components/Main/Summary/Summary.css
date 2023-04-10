@@ -64,7 +64,9 @@
     padding-left: 4%;
     padding-top: 2%;
     color: #f05d5d;
-    font: "work sans";
+    /* font: "work sans"; */
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
   }
   .clear {
     clear: both;
@@ -198,6 +200,11 @@
       align-items: center;
     }
   
+    .summaryCardSperatorText{
+      font-family: 'Work Sans', sans-serif;
+      font-weight: bold;
+      color: #f05d5d;
+    }
     
     
     /* table {

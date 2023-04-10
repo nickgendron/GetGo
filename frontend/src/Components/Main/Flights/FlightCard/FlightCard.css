@@ -13,7 +13,7 @@
   /* border-color: blue; */
   background-color: white;
   border-radius: 30px;
-  font-family: "Work Sans";
+  font-family: 'Work Sans', sans-serif;
   color: black;
   margin-left: 3%;
   padding-left: 4%;
@@ -28,7 +28,8 @@
 }
 
 /* .toFromText{
-  font-family: 'Work Sans';
+  font-family: 'Work Sans', sans-serif;
+
 } */
 
 .onlyCenterLastDiv {
@@ -190,7 +191,7 @@ align-items: center; */
     font-size: 14px;
     font-weight: bold;
     color: black;
-    font-family: "work sans";
+    font-family: 'Work Sans', sans-serif;
     padding-left: 6%;
     align-items: center;
 }
@@ -308,14 +309,16 @@ align-items: center; */
 }
 
 .tripTotalCostText{
-    font-family: 'Work Sans';
+    font-family: 'Work Sans', sans-serif;
+
     font-weight: bold;
     font-size: 16px;
     
 }
 
 .flightCostText{
-    font-family: 'Work Sans';
+    font-family: 'Work Sans', sans-serif;
+
     font-weight: bold;
     font-size: 24px;
     font-weight: 100000;
@@ -344,4 +347,24 @@ align-items: center; */
     align-items: center;
     margin: auto;
     max-width: 600px;
+  }
+
+  .flightDateTimeText{
+    font-family: 'Work Sans', sans-serif;
+
+  }
+
+  .boldTheTimeText{
+    font-family: 'Work Sans', sans-serif;
+    text-decoration: underline;
+  }
+
+  .removeFromTripButton{
+    display: inline;
+    margin-left: 10%;
+    color: #E64646;
+    font-family: 'Work Sans', sans-serif;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent
   }

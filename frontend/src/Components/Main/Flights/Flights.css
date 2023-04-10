@@ -72,7 +72,7 @@
   font-weight: bold;
   color: black;
   text-decoration: underline;
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
   padding-left: 8%;
   display: inline-block;
 }
@@ -108,7 +108,7 @@
   font-size: 14px;
   font-weight: bold bolder;
   color: black;
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
   padding-left: 8%;
   align-items: center;
   justify-content: center;
@@ -124,7 +124,7 @@
 }
 
 .airportTextLeft {
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
   justify-content: center;
   text-align: center;
   
@@ -132,8 +132,8 @@
 }
 
 .airportTextRight {
-    font-family: "work sans";
-    justify-content: center;
+  font-family: 'Work Sans', sans-serif;
+  justify-content: center;
     text-align: center;
     position: relative;
     left: 75%;
@@ -146,7 +146,7 @@
   font-size: 14px;
   font-weight: bold;
   color: black;
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
 }
 
 

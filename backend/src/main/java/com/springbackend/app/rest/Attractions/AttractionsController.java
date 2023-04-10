@@ -1,6 +1,7 @@
 package com.springbackend.app.rest.Attractions;
 import com.google.gson.*;
 import com.springbackend.app.rest.Flights.FlightObjects.Flights;
+import com.springbackend.app.rest.Hotels.Hotels;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -64,7 +65,8 @@ public class AttractionsController {
         String destCords = getLatLong(location);
 //        String destCords = "30.4515, -91.1871";
         /* Get API key */
-        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
+        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR_NEW");
+
 
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
@@ -89,6 +91,9 @@ public class AttractionsController {
 
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
+
+            String attractionsID = UUID.randomUUID().toString();
+
             /*Bob is man and lame, so this is Kim and she's better at building */
             Attractions.AttractionsBuilder kim = new Attractions.AttractionsBuilder();
 
@@ -106,7 +111,7 @@ public class AttractionsController {
             /* Add properties to attractionJsonObject */
             attractionJsonObject.addProperty("location_id", locationId);
             attractionJsonObject.addProperty("attractionsOfferGroup", attractionsOfferGroup);
-            attractionJsonObject.addProperty("name", name);
+            attractionJsonObject.addProperty("attrName", name);
             attractionJsonObject.addProperty("address_string", fullAddress);
 
             /* Slay Kim pick up that information */
@@ -114,8 +119,10 @@ public class AttractionsController {
             kim.attrName(name);
             kim.fullAddress(fullAddress);
             kim.attractionOfferGroup(attractionsOfferGroup);
+            kim.attractionsID(attractionsID);
+
             //WHAT
-            attractionJsonObject.addProperty("address_string", addressString);
+//            attractionJsonObject.addProperty("address_string", addressString);
             /*
                 Getting more information on each attraction returned by nearby_search API.
                 Use the location_id to query the location_details API and extract
@@ -190,12 +197,16 @@ public class AttractionsController {
 
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(path = "/getAttractionsByGroupID")
+    @GetMapping(path = "/getAttractionsByOfferGroupID")
+    public JsonElement getAttractionsByOfferGroupID(String offerGroupID){
+        Iterable<Attractions> attractions = attractionsRepo.findByAttractionsGroup(offerGroupID);
+        return parseJson(attractions);
+    }
 
-    private JsonElement parseJson(Iterable<Flights> flight){
+    private JsonElement parseJson(Iterable<Attractions> attractions){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
-        JsonElement jsonElement = jp.parse(gson.toJson(flight));
+        JsonElement jsonElement = jp.parse(gson.toJson(attractions));
         return jsonElement;
     }
 

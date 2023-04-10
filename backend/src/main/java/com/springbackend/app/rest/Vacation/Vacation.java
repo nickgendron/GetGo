@@ -16,6 +16,7 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +30,7 @@ public class Vacation {
     @Nullable
     private String flightID;
 
+    private String selectedAttractionsGroup;
     @Nullable
     private List<String> attractionID;
 
@@ -41,15 +43,12 @@ public class Vacation {
 
     public Vacation() {
         this.vacationID = UUID.randomUUID().toString();
-
-        //return this.vacationID;
+//        this.selectedAttractionsGroup = UUID.randomUUID().toString();
     }
 
-    public Vacation(String vacationID, String flightID, String hotelID, String userID) {
+    public Vacation(String vacationID, String selectedAttractionsGroup) {
         this.vacationID = vacationID;
-        this.flightID = flightID;
-        this.hotelID = hotelID;
-        this.userID = userID;
+        this.selectedAttractionsGroup = selectedAttractionsGroup;
     }
 
     public Vacation addToAttractionsList(String attractionID){
@@ -90,5 +89,9 @@ public class Vacation {
     public Vacation setUserID(String userID) {
         this.userID = userID;
         return this;
+    }
+
+    public String getSelectedAttractionsGroup() {
+        return this.selectedAttractionsGroup;
     }
 }
