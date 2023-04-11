@@ -5,57 +5,54 @@ import BlackPlane from "../../../Images/blackPlaneIcon.png";
 import axios from "axios";
 import SegmentRowRight from "./SegmentRowRight";
 import SegmentRowLeft from "./SegmentRowLeft";
+import AddToTripButton from "./AddToTripButton";
 import "./FlightCard.css";
 import Flights from "../Flights";
 
-import { useDispatch } from 'react-redux';
-
+import { useDispatch } from "react-redux";
 
 function SegmentWrapper(flightID) {
-
-
-  const [departingSegments, setDepartingSegments] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(true);
-  const storedData = localStorage.getItem("departingSegments");
-
+  const [isClicked, setIsClicked] = useState(false); 
   const [flightPrice, setFlightPrice] = useState();
   const [originCode, setOriginCode] = useState("");
   const [destCode, setDestCode] = useState("");
-  const dispatch = useDispatch();
 
   function handleAddToTrip() {
-    // Perform the desired action when the button is clicked
-    // console.log(flightID); // You can access the locationID value here
-    // ... Other logic
-    // TESTER ID: bbea3602-237e-4136-a9e0-6507ab2db15f
-    async function addObjectToVacation() {
-      const url = "http://127.0.0.1:8080";
-      
-      // const vacationID = "890a557e-7928-4cee-9959-3179322c38cc";
-var tmp;
-      // const hotelsEndpoin 
-       const flightEndpoints= "/api/vacations/addFlight?flightID=" + flightID + "&vacationID=" + sessionStorage.getItem("vacationID");
 
-       console.log("VacationID: " + sessionStorage.getItem("vacationID"));
+    setIsClicked(!isClicked); 
+
+    async function addObjectToVacation() { 
+      const url = "http://127.0.0.1:8080";
+
+      var tmp;
+      // const hotelsEndpoin
+      const flightEndpoints =
+        "/api/vacations/addFlight?flightID=" +
+        flightID +
+        "&vacationID=" +
+        sessionStorage.getItem("vacationID");
+
+      console.log("VacationID: " + sessionStorage.getItem("vacationID"));
       const apiCall = url + flightEndpoints;
       try {
         const response = await axios.post(apiCall);
         const data = response.json();
 
         console.log(data);
-      
-          tmp = data;
+
+        tmp = data;
       } catch (error) {}
 
       sessionStorage.removeItem("choosenFlightIDForVacation");
       sessionStorage.setItem("choosenFlightIDForVacation", flightID);
-      console.log("Choosen flightID in SS: " + sessionStorage.getItem("choosenFlightIDForVacation")); // You can access the locationID value here
+      console.log(
+        "Choosen flightID in SS: " +
+          sessionStorage.getItem("choosenFlightIDForVacation")
+      ); // You can access the locationID value here
       console.log(tmp);
     }
 
     addObjectToVacation();
-
   }
 
   useEffect(() => {
@@ -98,10 +95,7 @@ var tmp;
       }
     };
 
-
     fetchData();
-
-
   });
 
   return (
@@ -109,26 +103,30 @@ var tmp;
       <div>
         <div className="flightsWraperContainer">
           <div className="leftSideRender">
-            <img src={BlackPlane} />
-            {originCode} to {destCode}
+
+          <img src={BlackPlane} />&nbsp;&nbsp;
+            <strong>{originCode} to {destCode}</strong>
             <div className="horidzontalGreyLine" />
             <SegmentRowLeft flightID={flightID} />
           </div>
           <div className="vertGreyLine" />
           <div className="rightSideRender">
-            <img src={BlackPlane} />
-            {destCode} to {originCode}
+            <img src={BlackPlane} />&nbsp;&nbsp;
+            <strong>{destCode} to {originCode}</strong>
             <SegmentRowRight flightID={flightID} />
           </div>
           <div className="addToTripDiv">
             <p className="tripTotalCostText">Flight total:</p>
             <p className="">{flightPrice}</p>
-            <button
-              className="addToTripButton"
+            {/* <button
+              className={
+                isClicked ? "addToTripButtonSelected" : "addToTripButton"
+              }
               onClick={handleAddToTrip}
             >
-              Add to trip
-            </button>
+              {isClicked ? 'Added to trip' : 'Add to trip'}
+            </button> */}
+            <AddToTripButton flightID={flightID} />
           </div>
         </div>
         <br />

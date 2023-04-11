@@ -15,11 +15,11 @@ function SummaryGridCard({
   webURL,
   locationID,
   place,
+  uniqueID,
   onButtonClick,
-}, uniqueID) {
+}, ) {
   const [locationType, setLocationType] = useState("");
 
-  console.log(uniqueID.uniqueID);
 
 console.log(place);
 
@@ -49,39 +49,26 @@ console.log(place);
       console.log("uniqueID:", {uniqueID}.data);
 
       try {
-        const response = axios.delete("http://127.0.0.1:8080/api/vacations/removeAttractionFromGroupList?attractionID=" + uniqueID.uniqueID[0] + "&vacationID=" + sessionStorage.getItem("vacationID"));
-              sessionStorage.removeItem("choosenHotelIDForVacation");
-
+        const response = axios.delete("http://127.0.0.1:8080/api/vacations/removeAttractionFromVacation?attractionID=" + uniqueID + "&vacationID=" + sessionStorage.getItem("vacationID"));
+              // sessionStorage.removeItem("choosenHotelIDForVacation");
+        
         const data = response.data;
-        setAttractionInfo(data);
+       // setAttractionInfo(data);
         console.log(attractionInfo);
       } catch (error) {
         // console.error(error);
       }
-      // window.location.reload();
+      window.location.reload();
 
 
     }
   }
-
-  // useEffect(() => {
-  //   if (typeOfLocation === "hotel") {
-  //     setLocationType("hotels");
-  //   } else if (typeOfLocation === "restaurant") {
-  //     setLocationType("restaurants");
-  //   } else if (typeOfLocation === "attraction") {
-  //     setLocationType("attractions");
-  //   }
-  // }, []);
-
-  // console.log(typeOfLocation.data);
 
     var locationIdl;
 
   const [flightPrice, setFlightPrice] = useState();
   const [locationInfo, setLocationInfo] = useState("");
   const [attractionInfo, setAttractionInfo] = useState();
-  console.log("CHOOSEN HOTEL ID:  " + sessionStorage.getItem("selectedHotelIDThatWasPulledFromDatabaseForSummary"));
         
   useEffect(() => {
     const fetchData = async () => {
@@ -95,7 +82,6 @@ console.log(place);
         const response = await axios.get(attractionGroupId);
         const data = response.data[0];
         setAttractionInfo(data);
-        console.log(attractionInfo);
       } catch (error) {
         // console.error(error);
       }
@@ -103,7 +89,6 @@ console.log(place);
         const response = await axios.get(hotelId);
         const data = response.data[0];
         setLocationInfo(data);
-        console.log(locationInfo);
       } catch (error) {
         // console.error(error);
       }
@@ -111,13 +96,6 @@ console.log(place);
 
     fetchData();
   }, []);
-      console.log("uniqueID:", uniqueID);
-
-      const handleButtonClick = () => {
-        // Call the event handler with the uniqueID prop as an argument
-        onButtonClick(uniqueID);
-      };
-// console.log(locationInfo);
 
   return (
     <>

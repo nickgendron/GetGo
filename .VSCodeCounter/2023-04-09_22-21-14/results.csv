@@ -1,0 +1,50 @@
+"filename", "language", "JavaScript", "CSS", "JavaScript JSX", "XML", "comment", "blank", "total"
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/App.css", "CSS", 0, 67, 0, 0, 0, 11, 78
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/App.js", "JavaScript", 54, 0, 0, 0, 6, 11, 71
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Home/HomePage.css", "CSS", 0, 117, 0, 0, 0, 14, 131
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Home/HomePage.jsx", "JavaScript JSX", 0, 0, 91, 0, 26, 10, 127
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Images/logo.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/LoginPage.js", "JavaScript", 48, 0, 0, 0, 2, 8, 58
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/login 2.css", "CSS", 0, 78, 0, 0, 20, 17, 115
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/login.css", "CSS", 0, 78, 0, 0, 20, 17, 115
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/loginTemplate.jsx", "JavaScript JSX", 0, 0, 93, 0, 5, 14, 112
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Attractions/Attractions.css", "CSS", 0, 0, 0, 0, 0, 1, 1
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Attractions/Attractions.jsx", "JavaScript JSX", 0, 0, 72, 0, 19, 13, 104
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/BudgetBuilder/BudgetBuilder.css", "CSS", 0, 45, 0, 0, 0, 6, 51
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/BudgetBuilder/BudgetBuilder.jsx", "JavaScript JSX", 0, 0, 59, 0, 0, 4, 63
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/Details.css", "CSS", 0, 207, 0, 0, 9, 29, 245
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/Details.jsx", "JavaScript JSX", 0, 0, 175, 0, 11, 26, 212
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/IncDecCounter.js", "JavaScript", 35, 0, 0, 0, 0, 2, 37
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/FlightCard.css", "CSS", 0, 260, 0, 0, 66, 44, 370
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentRowLeft.jsx", "JavaScript JSX", 0, 0, 91, 0, 0, 7, 98
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentRowRight.jsx", "JavaScript JSX", 0, 0, 81, 0, 1, 9, 91
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentWrapper.jsx", "JavaScript JSX", 0, 0, 118, 0, 10, 23, 151
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/Flights.css", "CSS", 0, 128, 0, 0, 17, 33, 178
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/Flights.jsx", "JavaScript JSX", 0, 0, 66, 0, 6, 9, 81
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCard/GridCard.css", "CSS", 0, 79, 0, 0, 2, 15, 96
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCard/GridCard.jsx", "JavaScript JSX", 0, 0, 120, 0, 21, 20, 161
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCardAttrications/GridCardAttrications.css", "CSS", 0, 0, 0, 0, 0, 1, 1
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCardAttrications/GridCardAttrications.jsx", "JavaScript JSX", 0, 0, 38, 0, 1, 2, 41
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Hotels/Hotels.css", "CSS", 0, 24, 0, 0, 1, 6, 31
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Hotels/Hotels.jsx", "JavaScript JSX", 0, 0, 72, 0, 19, 19, 110
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/MainAPI.css", "CSS", 0, 11, 0, 0, 0, 0, 11
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/MainAPI.jsx", "JavaScript JSX", 0, 0, 108, 0, 29, 30, 167
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/loaders.js", "JavaScript", 15, 0, 0, 0, 28, 6, 49
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Navbar/Navbar.css", "CSS", 0, 93, 0, 0, 2, 15, 110
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Navbar/Navbar.jsx", "JavaScript JSX", 0, 0, 96, 0, 0, 7, 103
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Signup/SignupPage.css", "CSS", 0, 103, 0, 0, 20, 23, 146
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Signup/SignupPage.jsx", "JavaScript JSX", 0, 0, 114, 0, 41, 12, 167
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/StarRating/StarRating.jsx", "JavaScript JSX", 0, 0, 21, 0, 0, 5, 26
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/RemoveFromTrip.js", "JavaScript", 23, 0, 0, 0, 13, 9, 45
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SegmentWrapperSummary.css", "CSS", 0, 240, 0, 0, 77, 39, 356
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SegmentWrapperSummary.jsx", "JavaScript JSX", 0, 0, 104, 0, 4, 16, 124
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SummaryGridCard.css", "CSS", 0, 83, 0, 0, 7, 18, 108
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SummaryGridCard.jsx", "JavaScript JSX", 0, 0, 123, 0, 17, 31, 171
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Summary.css", "CSS", 0, 163, 0, 0, 21, 38, 222
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Summary.jsx", "JavaScript JSX", 0, 0, 129, 0, 81, 27, 237
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Signup/SignupPage.jsx", "JavaScript JSX", 0, 0, 10, 0, 0, 2, 12
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/System/reportWebVitals.js", "JavaScript", 12, 0, 0, 0, 0, 1, 13
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/index.js", "JavaScript", 16, 0, 0, 0, 3, 4, 23
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/store/store 2.js", "JavaScript", 19, 0, 0, 0, 4, 5, 28
+"/Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/store/store.js", "JavaScript", 19, 0, 0, 0, 4, 5, 28
+"Total", "-", 241, 1776, 1781, 1, 613, 664, 5076

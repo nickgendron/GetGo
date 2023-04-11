@@ -4,6 +4,7 @@ import SegmentWrapper from "../Flights/FlightCard/SegmentWrapper";
 import "./Summary.css";
 import SegmentWrapperSummary from "./Cards/SegmentWrapperSummary";
 import SummaryGridCard from "./Cards/SummaryGridCard";
+import EmptyCards from "./EmptyCards/EmptyCards";
 import axios from "axios";
 
 export default function Summary() {
@@ -23,28 +24,9 @@ export default function Summary() {
   const [locationInfo, setLocationInfo] = useState([]);
   const [attractionInfo, setAttractionInfo] = useState([]);
 
-  console.log("SS VACATION ID:  " + sessionStorage.getItem("vacationID"));
   useEffect(() => {
     const fetchData = async () => {
-      // const flightIDDynamic = localStorage.getItem("flightID");
-
       setVacationID(sessionStorage.getItem("vacationID"));
-      console.log("AFTER ADDING STATE: " + vacationID);
-      // const url =
-      //   "http://127.0.0.1:8080/api/hotels/getHotelByHotelID?locationID=";
-      // const hotelId =
-      //   "http://127.0.0.1:8080/api/vacations/getSelectedHotelID?vacationID=" +
-      //   sessionStorage.getItem("vacationID");
-
-      //   console.log(hotelId);
-      // try {
-      //   const response = await axios.get(hotelId);
-
-      //   sessionStorage.setItem("selectedHotelIDThatWasPulledFromDatabaseForSummary", response.data);
-      //   const data = response.data;
-      //   console.log(data);
-      //   setFlightPrice(data);
-      // } catch (error) {}
 
       const hotelId =
         "http://127.0.0.1:8080/api/hotels/getHotelByHotelID?hotelID=" +
@@ -70,62 +52,10 @@ export default function Summary() {
       } catch (error) {
         // console.error(error);
       }
-      // console.log(data);
-
-      // try {
-      //   const response = await axios.get(url);
-      //   const data = response.data;
-      //   setDestCode(data);
-      //   console.log(destCode);
-      // } catch (error) {
-      //   // console.error(error);
-      // }
-      // try {
-      //   const response = await axios.get(hotelId);
-      //   const data = response.data;
-      //   setOriginCode(data);
-      // } catch (error) {
-      //   // console.error(error);
-      // }
-      // try {
-      //   const hotelResponse = await axios.get(
-      //     `http://127.0.0.1:8080/api/hotels/getHotelByRandomID?hotelUUID=` +
-      //       sessionStorage.getItem("choosenHotelIDForVacation")
-      //   );
-      //   console.log(hotelResponse.data);
-      //   const hotels = hotelResponse.data;
-      //   setHotelInfo(hotels);
-
-      //   // Save data to localStorage
-      //   // localStorage.setItem(
-      //   //   "hotelData",
-      //   //   JSON.stringify({ location, hotels })
-      //   // );
-      // } catch (error) {
-      //   console.error(error);
-      // }
     };
 
-
     fetchData();
-    const flightIDDynamic = localStorage.getItem("flightID");
-    // console.log(flightPrice);
-    console.log(attractionInfo.length);
   }, []);
-
-  const handleRemoveAttraction = (uniqueID) => {
-    // Log the uniqueID when the button is clicked
-  };
-
-  console.log(
-    sessionStorage.getItem("selectedHotelIDThatWasPulledFromDatabaseForSummary")
-  );
-if(sessionStorage.getItem("choosenFlightIDForVacation") == null){
-  console.log("NULL");
-}
-  // console.log(locationInfo);
-
-  console.log(localStorage.getItem("hotelID"));
   return (
     <>
       <div className="navBarComponent">
@@ -151,86 +81,55 @@ if(sessionStorage.getItem("choosenFlightIDForVacation") == null){
           <h1 className="summaryCardSperatorText">Your flight:</h1>
 
           {sessionStorage.getItem("choosenFlightIDForVacation") ? (
-          <SegmentWrapperSummary
-            flightID={sessionStorage.getItem("choosenFlightIDForVacation")}
-          />
-          ) : (<p>No flight selected.</p>)}
+            <SegmentWrapperSummary
+              flightID={sessionStorage.getItem("choosenFlightIDForVacation")}
+            />
+          ) : (
+            <p>No flight selected.</p>
+          )}
         </div>
 
         <div className="summaryContentCardContainer">
           <h1 className="summaryCardSperatorText">Your Hotel: </h1>
 
-          {locationInfo ? (
-          <SummaryGridCard
-            name={locationInfo.hotelName}
-            address={locationInfo.fullAddress}
-            uniqueID={locationInfo.hotelID}
-            rating={locationInfo.rating}
-            priceLevel={locationInfo.price_level}
-            description={locationInfo.description}
-            images={locationInfo.dphotosURL}
-            place="hotel"
-            // locationID={hotel.location_id}
-          />
-
-          ) : (<p>No hotel selected.</p> )}
+          {locationInfo != undefined ? (
+            <SummaryGridCard
+              name={locationInfo.hotelName}
+              address={locationInfo.fullAddress}
+              uniqueID={locationInfo.hotelID}
+              rating={locationInfo.rating}
+              priceLevel={locationInfo.price_level}
+              description={locationInfo.description}
+              images={locationInfo.dphotosURL}
+              place="hotel"
+            />
+          ) : (
+            <EmptyCards />
+          )}
         </div>
 
         <div className="summaryContentCardContainer">
           <h1 className="summaryCardSperatorText">Your Attractions: </h1>
 
-          {attractionInfo  ? (
+          {attractionInfo ? (
             attractionInfo.map((attraction) => (
               <SummaryGridCard
-              key={attraction.attractionID}
+                key={attraction.attractionID}
                 name={attraction.hotelName}
                 address={attraction.fullAddress}
-                uniqueID={attraction.hotelID}
+                uniqueID={attraction.attractionID}
                 rating={attraction.rating}
                 priceLevel={attraction.price_level}
                 description={attraction.description}
                 images={attraction.dphotosURL}
                 place="attrication"
-                onButtonClick={handleRemoveAttraction}
-                // locationID={hotel.location_id}
               />
             ))
           ) : (
-            <p>No attractions selected. </p>
+           <p>HERE</p>
           )}
         </div>
-        {/* 
-        <div className="summaryContentCardContainer">
-          <h1 className="summaryCardSperatorText">Your Attractions: </h1>
-
-              {attractionInfo.map((attraction) => (
-                <SummaryGridCard
-                  name={attraction.attractionName} />
-              ))}
-        </div> */}
       </div>
     </>
   );
-}
-
-{
-  /* 
-          {attractionInfo ? (
-            attractionInfo.map((hotel) => (
-              <SummaryGridCard
-                name={hotel.hotelName}
-                address={hotel.fullAddress}
-                uniqueID={hotel.hotelID}
-                type={"hotel"}
-                rating={hotel.rating}
-                priceLevel={hotel.price_level}
-                description={hotel.description}
-                images={hotel.images_url}
-                // locationID={hotel.location_id}
-                place="hotel"
-              />
-            ))
-          ) : (
-            <p>No attractions available</p>
-          )} */
 }

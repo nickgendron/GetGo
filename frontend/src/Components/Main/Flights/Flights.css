@@ -26,8 +26,9 @@
   text-align: left;
   padding-left: 4%;
   padding-top: 2%;
-  color: #f05d5d;
-  font: "work sans";
+  /* color: #f05d5d; */
+  font: "Work Sans" sans-serif;
+  font-size: 26px;
 }
 .clear {
   clear: both;
@@ -36,6 +37,7 @@
 .reusableFlightDisplayRoot {
   background-color: #ffffff;
   height: auto;
+  font-weight: 100;
   border: solid;
   background-color: white;
   border-radius: 50px;

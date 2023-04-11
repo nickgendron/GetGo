@@ -62,7 +62,7 @@ function SegmentRowLeft(flightID) {
                   {" "}
                   {segment.departureDate}
                 
-                <p className="boldTheTimeText">{segment.departureTime}</p></p>
+                <p className="boldTheTimeText"><strong>{segment.departureTime}</strong></p></p>
               </div>
               <div className="div4"> </div>
               <div className="div5"> </div>

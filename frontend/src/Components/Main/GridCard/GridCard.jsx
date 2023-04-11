@@ -129,8 +129,9 @@ function GridCard({
           <div className="leftSideTextDiv">
             {/* <br /> */}
             {/* <p className="greyText">{type}</p> */}
+            <div className="descriptionTextDiv">
             <p className="greyText">{description}</p>
-
+            </div>
             <br />
             <p className="greyText">
               Rating: <StarRating rating={rating} />

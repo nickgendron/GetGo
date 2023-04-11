@@ -61,7 +61,7 @@ function Attractions() {
         <Navbar />
       </div>
       <div className="hotelsContent">
-        <p className="hotelsInCity">Attrications in Sydney, Australia! </p>
+        <p className="hotelsInCity">Attractions in {sessionStorage.getItem("whereTo")}! </p>
         <hr
           style={{
             background: "black",
@@ -76,7 +76,6 @@ function Attractions() {
           className="gridCardHoldingDiv"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <GridCard />
           {attricaionInfo.map((attraction, i) => (
             <GridCard
               key={i}

@@ -159,6 +159,7 @@ align-items: center; */
 .div6 {
   grid-area: 2/2/3/5;
   padding-top: 15px;
+  padding-left: 8px;
   /* width: 100%; */
 }
 .div7 {
@@ -253,16 +254,34 @@ align-items: center; */
   font-family: "work sans";
 }
 
-.addToTripButtonFlight {
+.addToTripButton {
   color: black;
   background-color: white;
   border: solid;
-  width: 120px;
+  /* align-items: center;
+  display: flex;
+  text-align: center; */
+  width: 140px;
   height: 56px;
-  font: "work sans";
+  font-family: 'Work Sans';
   font-weight: bold;
   border-radius: 20px;
+  /* display: flex; */
+}
+
+.addToTripButtonSelected{
+  color: white;
+  background-color: #3f52e3;
+  border: solid;
+  /* align-items: center;
   display: flex;
+  text-align: center; */
+  width: 140px;
+  height: 56px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: bold;
+  border-radius: 20px;
+  /* display: flex; */
 }
 
 .arrowIconGrid {
@@ -284,15 +303,12 @@ align-items: center; */
 }
 .segmentRowOne {
   grid-area: 2 / 1 / 3 / 5;
-  border: red;
 }
 .segmentRowTwo {
   grid-area: 3 / 1 / 4 / 5;
-  border: green;
 }
 .SegmentRowThree {
   grid-area: 4 / 1 / 5 / 5;
-  border: blue;
 }
 
 .segmentWrapper {
@@ -301,11 +317,11 @@ align-items: center; */
 
 .leftSideRender{
     flex-grow: 1;
-    font-family: 'work sans';
+    font-family: 'Work Sans', sans-serif;
 }
 .rightSideRender{
     flex-grow: 1;
-    font-family: 'work sans'; 
+    font-family: 'Work Sans'; 
 }
 
 .tripTotalCostText{
@@ -367,4 +383,8 @@ align-items: center; */
     text-decoration: underline;
     border: none;
     background-color: transparent
+  }
+
+  .flightIconWrapper{
+    display: inline;
   }

@@ -1,0 +1,166 @@
+Date : 2023-04-09 22:22:09
+Directory : /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src
+Total : 81 files,  -2037 codes, -294 comments, -38 blanks, all -2369 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Java            |         31 |      1,743 |        309 |        615 |      2,667 |
+| Java Properties |          2 |         19 |         10 |         11 |         40 |
+| XML             |          1 |         -1 |          0 |          0 |         -1 |
+| JavaScript      |          9 |       -241 |        -60 |        -51 |       -352 |
+| CSS             |         18 |     -1,776 |       -262 |       -327 |     -2,365 |
+| JavaScript JSX  |         20 |     -1,781 |       -291 |       -286 |     -2,358 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                            | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                               |         81 |     -2,037 |       -294 |        -38 |     -2,369 |
+| ..                                                                                                                                              |         48 |     -3,799 |       -613 |       -664 |     -5,076 |
+| ../..                                                                                                                                           |         48 |     -3,799 |       -613 |       -664 |     -5,076 |
+| ../../frontend                                                                                                                                  |         48 |     -3,799 |       -613 |       -664 |     -5,076 |
+| ../../frontend/src                                                                                                                              |         48 |     -3,799 |       -613 |       -664 |     -5,076 |
+| ../../frontend/src (Files)                                                                                                                      |          3 |       -137 |         -9 |        -26 |       -172 |
+| ../../frontend/src/Components                                                                                                                   |         42 |     -3,612 |       -596 |       -627 |     -4,835 |
+| ../../frontend/src/Components/Home                                                                                                              |          2 |       -208 |        -26 |        -24 |       -258 |
+| ../../frontend/src/Components/Images                                                                                                            |          1 |         -1 |          0 |          0 |         -1 |
+| ../../frontend/src/Components/Login                                                                                                             |          4 |       -297 |        -47 |        -56 |       -400 |
+| ../../frontend/src/Components/Main                                                                                                              |         34 |     -3,096 |       -523 |       -545 |     -4,164 |
+| ../../frontend/src/Components/Main/Attractions                                                                                                  |          2 |        -72 |        -19 |        -14 |       -105 |
+| ../../frontend/src/Components/Main/BudgetBuilder                                                                                                |          2 |       -104 |          0 |        -10 |       -114 |
+| ../../frontend/src/Components/Main/Details                                                                                                      |          3 |       -417 |        -20 |        -57 |       -494 |
+| ../../frontend/src/Components/Main/Flights                                                                                                      |          6 |       -744 |       -100 |       -125 |       -969 |
+| ../../frontend/src/Components/Main/Flights (Files)                                                                                              |          2 |       -194 |        -23 |        -42 |       -259 |
+| ../../frontend/src/Components/Main/Flights/FlightCard                                                                                           |          4 |       -550 |        -77 |        -83 |       -710 |
+| ../../frontend/src/Components/Main/GridCard                                                                                                     |          2 |       -199 |        -23 |        -35 |       -257 |
+| ../../frontend/src/Components/Main/GridCardAttrications                                                                                         |          2 |        -38 |         -1 |         -3 |        -42 |
+| ../../frontend/src/Components/Main/Hotels                                                                                                       |          2 |        -96 |        -20 |        -25 |       -141 |
+| ../../frontend/src/Components/Main/MainAPI                                                                                                      |          3 |       -134 |        -57 |        -36 |       -227 |
+| ../../frontend/src/Components/Main/Navbar                                                                                                       |          2 |       -189 |         -2 |        -22 |       -213 |
+| ../../frontend/src/Components/Main/Signup                                                                                                       |          2 |       -217 |        -61 |        -35 |       -313 |
+| ../../frontend/src/Components/Main/StarRating                                                                                                   |          1 |        -21 |          0 |         -5 |        -26 |
+| ../../frontend/src/Components/Main/Summary                                                                                                      |          7 |       -865 |       -220 |       -178 |     -1,263 |
+| ../../frontend/src/Components/Main/Summary (Files)                                                                                              |          2 |       -292 |       -102 |        -65 |       -459 |
+| ../../frontend/src/Components/Main/Summary/Cards                                                                                                |          5 |       -573 |       -118 |       -113 |       -804 |
+| ../../frontend/src/Components/Signup                                                                                                            |          1 |        -10 |          0 |         -2 |        -12 |
+| ../../frontend/src/System                                                                                                                       |          1 |        -12 |          0 |         -1 |        -13 |
+| ../../frontend/src/store                                                                                                                        |          2 |        -38 |         -8 |        -10 |        -56 |
+| main                                                                                                                                            |         32 |      1,753 |        319 |        621 |      2,693 |
+| main/java                                                                                                                                       |         30 |      1,734 |        309 |        610 |      2,653 |
+| main/java/com                                                                                                                                   |         30 |      1,734 |        309 |        610 |      2,653 |
+| main/java/com/springbackend                                                                                                                     |         30 |      1,734 |        309 |        610 |      2,653 |
+| main/java/com/springbackend/app                                                                                                                 |         30 |      1,734 |        309 |        610 |      2,653 |
+| main/java/com/springbackend/app/rest                                                                                                            |         30 |      1,734 |        309 |        610 |      2,653 |
+| main/java/com/springbackend/app/rest (Files)                                                                                                    |          1 |         15 |          1 |          7 |         23 |
+| main/java/com/springbackend/app/rest/Attractions                                                                                                |          3 |        272 |         49 |         93 |        414 |
+| main/java/com/springbackend/app/rest/BudgetBuilder                                                                                              |          1 |         34 |          0 |         11 |         45 |
+| main/java/com/springbackend/app/rest/Flights                                                                                                    |          8 |        494 |         68 |        177 |        739 |
+| main/java/com/springbackend/app/rest/Flights (Files)                                                                                            |          2 |        322 |         63 |        121 |        506 |
+| main/java/com/springbackend/app/rest/Flights/FlightObjects                                                                                      |          2 |         56 |          2 |         23 |         81 |
+| main/java/com/springbackend/app/rest/Flights/ItineraryObjects                                                                                   |          2 |         63 |          3 |         22 |         88 |
+| main/java/com/springbackend/app/rest/Flights/SegmentObject                                                                                      |          2 |         53 |          0 |         11 |         64 |
+| main/java/com/springbackend/app/rest/Hotels                                                                                                     |          3 |        301 |         64 |        114 |        479 |
+| main/java/com/springbackend/app/rest/Restaurants                                                                                                |          3 |        227 |         36 |         73 |        336 |
+| main/java/com/springbackend/app/rest/Security                                                                                                   |          3 |         46 |         35 |         18 |         99 |
+| main/java/com/springbackend/app/rest/User                                                                                                       |          4 |        100 |         28 |         40 |        168 |
+| main/java/com/springbackend/app/rest/Vacation                                                                                                   |          3 |        232 |         18 |         69 |        319 |
+| main/java/com/springbackend/app/rest/VacationBuilder                                                                                            |          1 |         13 |         10 |          8 |         31 |
+| main/resources                                                                                                                                  |          2 |         19 |         10 |         11 |         40 |
+| test                                                                                                                                            |          1 |          9 |          0 |          5 |         14 |
+| test/java                                                                                                                                       |          1 |          9 |          0 |          5 |         14 |
+| test/java/com                                                                                                                                   |          1 |          9 |          0 |          5 |         14 |
+| test/java/com/springbackend                                                                                                                     |          1 |          9 |          0 |          5 |         14 |
+| test/java/com/springbackend/app                                                                                                                 |          1 |          9 |          0 |          5 |         14 |
+| test/java/com/springbackend/app/rest                                                                                                            |          1 |          9 |          0 |          5 |         14 |
++-------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                                                        | language        | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Attractions/Attractions.java                  | Java            |        126 |         12 |         39 |        177 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Attractions/AttractionsController.java        | Java            |        130 |         37 |         47 |        214 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Attractions/AttractionsRepo.java              | Java            |         16 |          0 |          7 |         23 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/BudgetBuilder/BudgetBuilder.java              | Java            |         34 |          0 |         11 |         45 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/FlightObjects/Flights.java            | Java            |         29 |          1 |         13 |         43 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/FlightObjects/FlightsConfig.java      | Java            |         27 |          1 |         10 |         38 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/FlightsController.java                | Java            |        288 |         63 |        103 |        454 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/FlightsRepo.java                      | Java            |         34 |          0 |         18 |         52 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/ItineraryObjects/Itineraries.java     | Java            |         59 |          3 |         19 |         81 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/ItineraryObjects/ItinerariesRepo.java | Java            |          4 |          0 |          3 |          7 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/SegmentObject/Segments.java           | Java            |         49 |          0 |          8 |         57 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Flights/SegmentObject/SegmentsRepo.java       | Java            |          4 |          0 |          3 |          7 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Hotels/HotelController.java                   | Java            |        139 |         49 |         73 |        261 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Hotels/Hotels.java                            | Java            |        152 |         15 |         35 |        202 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Hotels/HotelsRepo.java                        | Java            |         10 |          0 |          6 |         16 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/RestApplication.java                          | Java            |         15 |          1 |          7 |         23 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Restaurants/Restaurants.java                  | Java            |        108 |          0 |         29 |        137 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Restaurants/RestaurantsController.java        | Java            |        115 |         36 |         41 |        192 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Restaurants/RestaurantsRepo.java              | Java            |          4 |          0 |          3 |          7 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Security/ApplicationSecurity.java             | Java            |         25 |         12 |         10 |         47 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Security/LoginController.java                 | Java            |         21 |          0 |          6 |         27 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Security/SecurityConfig.java                  | Java            |          0 |         23 |          2 |         25 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/User/User.java                                | Java            |         46 |          7 |         17 |         70 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/User/UserController.java                      | Java            |         37 |         21 |         14 |         72 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/User/UserRepo.java                            | Java            |         10 |          0 |          6 |         16 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/User/UserRepoOAuth.java                       | Java            |          7 |          0 |          3 |         10 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Vacation/Vacation.java                        | Java            |         67 |         11 |         20 |         98 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Vacation/VacationController.java              | Java            |        152 |          7 |         42 |        201 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/Vacation/VacationRepo.java                    | Java            |         13 |          0 |          7 |         20 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/java/com/springbackend/app/rest/VacationBuilder/VacationBuilder.java          | Java            |         13 |         10 |          8 |         31 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/resources/application-dev.properties                                          | Java Properties |          0 |          0 |          1 |          1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/main/resources/application.properties                                              | Java Properties |         19 |         10 |         10 |         39 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/backend/src/test/java/com/springbackend/app/rest/RestApplicationTests.java                     | Java            |          9 |          0 |          5 |         14 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/App.css                                                                           | CSS             |        -67 |          0 |        -11 |        -78 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/App.js                                                                            | JavaScript      |        -54 |         -6 |        -11 |        -71 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Home/HomePage.css                                                      | CSS             |       -117 |          0 |        -14 |       -131 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Home/HomePage.jsx                                                      | JavaScript JSX  |        -91 |        -26 |        -10 |       -127 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Images/logo.svg                                                        | XML             |         -1 |          0 |          0 |         -1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/LoginPage.js                                                     | JavaScript      |        -48 |         -2 |         -8 |        -58 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/login 2.css                                                      | CSS             |        -78 |        -20 |        -17 |       -115 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/login.css                                                        | CSS             |        -78 |        -20 |        -17 |       -115 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/loginTemplate.jsx                                                | JavaScript JSX  |        -93 |         -5 |        -14 |       -112 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Attractions/Attractions.css                                       | CSS             |          0 |          0 |         -1 |         -1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Attractions/Attractions.jsx                                       | JavaScript JSX  |        -72 |        -19 |        -13 |       -104 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/BudgetBuilder/BudgetBuilder.css                                   | CSS             |        -45 |          0 |         -6 |        -51 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/BudgetBuilder/BudgetBuilder.jsx                                   | JavaScript JSX  |        -59 |          0 |         -4 |        -63 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/Details.css                                               | CSS             |       -207 |         -9 |        -29 |       -245 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/Details.jsx                                               | JavaScript JSX  |       -175 |        -11 |        -26 |       -212 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/IncDecCounter.js                                          | JavaScript      |        -35 |          0 |         -2 |        -37 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/FlightCard.css                                 | CSS             |       -260 |        -66 |        -44 |       -370 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentRowLeft.jsx                             | JavaScript JSX  |        -91 |          0 |         -7 |        -98 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentRowRight.jsx                            | JavaScript JSX  |        -81 |         -1 |         -9 |        -91 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentWrapper.jsx                             | JavaScript JSX  |       -118 |        -10 |        -23 |       -151 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/Flights.css                                               | CSS             |       -128 |        -17 |        -33 |       -178 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/Flights.jsx                                               | JavaScript JSX  |        -66 |         -6 |         -9 |        -81 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCard/GridCard.css                                             | CSS             |        -79 |         -2 |        -15 |        -96 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCard/GridCard.jsx                                             | JavaScript JSX  |       -120 |        -21 |        -20 |       -161 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCardAttrications/GridCardAttrications.css                     | CSS             |          0 |          0 |         -1 |         -1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCardAttrications/GridCardAttrications.jsx                     | JavaScript JSX  |        -38 |         -1 |         -2 |        -41 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Hotels/Hotels.css                                                 | CSS             |        -24 |         -1 |         -6 |        -31 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Hotels/Hotels.jsx                                                 | JavaScript JSX  |        -72 |        -19 |        -19 |       -110 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/MainAPI.css                                               | CSS             |        -11 |          0 |          0 |        -11 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/MainAPI.jsx                                               | JavaScript JSX  |       -108 |        -29 |        -30 |       -167 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/loaders.js                                                | JavaScript      |        -15 |        -28 |         -6 |        -49 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Navbar/Navbar.css                                                 | CSS             |        -93 |         -2 |        -15 |       -110 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Navbar/Navbar.jsx                                                 | JavaScript JSX  |        -96 |          0 |         -7 |       -103 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Signup/SignupPage.css                                             | CSS             |       -103 |        -20 |        -23 |       -146 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Signup/SignupPage.jsx                                             | JavaScript JSX  |       -114 |        -41 |        -12 |       -167 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/StarRating/StarRating.jsx                                         | JavaScript JSX  |        -21 |          0 |         -5 |        -26 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/RemoveFromTrip.js                                   | JavaScript      |        -23 |        -13 |         -9 |        -45 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SegmentWrapperSummary.css                           | CSS             |       -240 |        -77 |        -39 |       -356 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SegmentWrapperSummary.jsx                           | JavaScript JSX  |       -104 |         -4 |        -16 |       -124 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SummaryGridCard.css                                 | CSS             |        -83 |         -7 |        -18 |       -108 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SummaryGridCard.jsx                                 | JavaScript JSX  |       -123 |        -17 |        -31 |       -171 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Summary.css                                               | CSS             |       -163 |        -21 |        -38 |       -222 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Summary.jsx                                               | JavaScript JSX  |       -129 |        -81 |        -27 |       -237 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Signup/SignupPage.jsx                                                  | JavaScript JSX  |        -10 |          0 |         -2 |        -12 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/System/reportWebVitals.js                                                         | JavaScript      |        -12 |          0 |         -1 |        -13 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/index.js                                                                          | JavaScript      |        -16 |         -3 |         -4 |        -23 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/store/store 2.js                                                                  | JavaScript      |        -19 |         -4 |         -5 |        -28 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/store/store.js                                                                    | JavaScript      |        -19 |         -4 |         -5 |        -28 |
+| Total                                                                                                                                           |                 |     -2,037 |       -294 |        -38 |     -2,369 |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

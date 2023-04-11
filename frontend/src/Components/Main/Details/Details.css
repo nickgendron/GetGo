@@ -241,4 +241,10 @@
     padding-top: 5%;
     text-align: center;
 }
-/* ================ */
+
+.dropDownInput{
+  width: 215px;
+  /* margin-left: 700px; */
+  left: 44%;
+  text-align: left;
+}

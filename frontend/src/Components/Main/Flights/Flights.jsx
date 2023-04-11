@@ -10,32 +10,23 @@ import "./Flights.css";
 import SegmentWrapper from "./FlightCard/SegmentWrapper";
 
 function Flights(offerIDNew) {
-  var offerID = "eae4f88f-b0f0-4e1d-a7f1-76a74021bb13";
   const [flightIDs, setFlightIDs] = useState([]);
   const [flightPrices, setFlightPrices] = useState([]);
 
-// console.log(offerID);
-// console.log(offerIDNew);
-//  const offerIDtmp = sessionStorage.getItem("flightOfferID");
-// console.log(offerIDtmp);
-
   useEffect(() => {
-    const offerIDtmp = sessionStorage.getItem("flightOfferID");
-    console.log(offerIDtmp);
+    const offerID = sessionStorage.getItem("flightOfferID");
     
     async function fetchData() {
       try {
         const flightSegmentsResponse = await axios.get(
           `http://127.0.0.1:8080/api/flights/getFlightsFromOfferID?offerID=` +
-          offerIDtmp
+          offerID
         );
         const flightIDs = flightSegmentsResponse.data;
-        // console.log(flightIDs);
 
         setFlightIDs(flightIDs);
         setFlightPrices(flightPrices);
       } catch (error) {
-        // console.error(error);
       }
     }
     fetchData();
@@ -52,7 +43,7 @@ function Flights(offerIDNew) {
       </div>
 
       <div className="flightsContent">
-        <h1 className="flightsToCity">Flights to {sessionStorage.getItem("whereTo")}: </h1>
+        <p className="flightsToCity">Flights to {sessionStorage.getItem("whereTo")}: </p>
         <hr
           style={{
             background: "black",

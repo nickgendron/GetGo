@@ -1,0 +1,100 @@
+Date : 2023-04-09 22:21:14
+Directory : /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src
+Total : 48 files,  3799 codes, 613 comments, 664 blanks, all 5076 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         20 |      1,781 |        291 |        286 |      2,358 |
+| CSS            |         18 |      1,776 |        262 |        327 |      2,365 |
+| JavaScript     |          9 |        241 |         60 |         51 |        352 |
+| XML            |          1 |          1 |          0 |          0 |          1 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                        | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                           |         48 |      3,799 |        613 |        664 |      5,076 |
+| . (Files)                                                                                                                   |          3 |        137 |          9 |         26 |        172 |
+| Components                                                                                                                  |         42 |      3,612 |        596 |        627 |      4,835 |
+| Components/Home                                                                                                             |          2 |        208 |         26 |         24 |        258 |
+| Components/Images                                                                                                           |          1 |          1 |          0 |          0 |          1 |
+| Components/Login                                                                                                            |          4 |        297 |         47 |         56 |        400 |
+| Components/Main                                                                                                             |         34 |      3,096 |        523 |        545 |      4,164 |
+| Components/Main/Attractions                                                                                                 |          2 |         72 |         19 |         14 |        105 |
+| Components/Main/BudgetBuilder                                                                                               |          2 |        104 |          0 |         10 |        114 |
+| Components/Main/Details                                                                                                     |          3 |        417 |         20 |         57 |        494 |
+| Components/Main/Flights                                                                                                     |          6 |        744 |        100 |        125 |        969 |
+| Components/Main/Flights (Files)                                                                                             |          2 |        194 |         23 |         42 |        259 |
+| Components/Main/Flights/FlightCard                                                                                          |          4 |        550 |         77 |         83 |        710 |
+| Components/Main/GridCard                                                                                                    |          2 |        199 |         23 |         35 |        257 |
+| Components/Main/GridCardAttrications                                                                                        |          2 |         38 |          1 |          3 |         42 |
+| Components/Main/Hotels                                                                                                      |          2 |         96 |         20 |         25 |        141 |
+| Components/Main/MainAPI                                                                                                     |          3 |        134 |         57 |         36 |        227 |
+| Components/Main/Navbar                                                                                                      |          2 |        189 |          2 |         22 |        213 |
+| Components/Main/Signup                                                                                                      |          2 |        217 |         61 |         35 |        313 |
+| Components/Main/StarRating                                                                                                  |          1 |         21 |          0 |          5 |         26 |
+| Components/Main/Summary                                                                                                     |          7 |        865 |        220 |        178 |      1,263 |
+| Components/Main/Summary (Files)                                                                                             |          2 |        292 |        102 |         65 |        459 |
+| Components/Main/Summary/Cards                                                                                               |          5 |        573 |        118 |        113 |        804 |
+| Components/Signup                                                                                                           |          1 |         10 |          0 |          2 |         12 |
+| System                                                                                                                      |          1 |         12 |          0 |          1 |         13 |
+| store                                                                                                                       |          2 |         38 |          8 |         10 |         56 |
++-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                    | language       | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/App.css                                                       | CSS            |         67 |          0 |         11 |         78 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/App.js                                                        | JavaScript     |         54 |          6 |         11 |         71 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Home/HomePage.css                                  | CSS            |        117 |          0 |         14 |        131 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Home/HomePage.jsx                                  | JavaScript JSX |         91 |         26 |         10 |        127 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Images/logo.svg                                    | XML            |          1 |          0 |          0 |          1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/LoginPage.js                                 | JavaScript     |         48 |          2 |          8 |         58 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/login 2.css                                  | CSS            |         78 |         20 |         17 |        115 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/login.css                                    | CSS            |         78 |         20 |         17 |        115 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Login/loginTemplate.jsx                            | JavaScript JSX |         93 |          5 |         14 |        112 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Attractions/Attractions.css                   | CSS            |          0 |          0 |          1 |          1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Attractions/Attractions.jsx                   | JavaScript JSX |         72 |         19 |         13 |        104 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/BudgetBuilder/BudgetBuilder.css               | CSS            |         45 |          0 |          6 |         51 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/BudgetBuilder/BudgetBuilder.jsx               | JavaScript JSX |         59 |          0 |          4 |         63 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/Details.css                           | CSS            |        207 |          9 |         29 |        245 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/Details.jsx                           | JavaScript JSX |        175 |         11 |         26 |        212 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Details/IncDecCounter.js                      | JavaScript     |         35 |          0 |          2 |         37 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/FlightCard.css             | CSS            |        260 |         66 |         44 |        370 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentRowLeft.jsx         | JavaScript JSX |         91 |          0 |          7 |         98 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentRowRight.jsx        | JavaScript JSX |         81 |          1 |          9 |         91 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/FlightCard/SegmentWrapper.jsx         | JavaScript JSX |        118 |         10 |         23 |        151 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/Flights.css                           | CSS            |        128 |         17 |         33 |        178 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Flights/Flights.jsx                           | JavaScript JSX |         66 |          6 |          9 |         81 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCard/GridCard.css                         | CSS            |         79 |          2 |         15 |         96 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCard/GridCard.jsx                         | JavaScript JSX |        120 |         21 |         20 |        161 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCardAttrications/GridCardAttrications.css | CSS            |          0 |          0 |          1 |          1 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/GridCardAttrications/GridCardAttrications.jsx | JavaScript JSX |         38 |          1 |          2 |         41 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Hotels/Hotels.css                             | CSS            |         24 |          1 |          6 |         31 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Hotels/Hotels.jsx                             | JavaScript JSX |         72 |         19 |         19 |        110 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/MainAPI.css                           | CSS            |         11 |          0 |          0 |         11 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/MainAPI.jsx                           | JavaScript JSX |        108 |         29 |         30 |        167 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/MainAPI/loaders.js                            | JavaScript     |         15 |         28 |          6 |         49 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Navbar/Navbar.css                             | CSS            |         93 |          2 |         15 |        110 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Navbar/Navbar.jsx                             | JavaScript JSX |         96 |          0 |          7 |        103 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Signup/SignupPage.css                         | CSS            |        103 |         20 |         23 |        146 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Signup/SignupPage.jsx                         | JavaScript JSX |        114 |         41 |         12 |        167 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/StarRating/StarRating.jsx                     | JavaScript JSX |         21 |          0 |          5 |         26 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/RemoveFromTrip.js               | JavaScript     |         23 |         13 |          9 |         45 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SegmentWrapperSummary.css       | CSS            |        240 |         77 |         39 |        356 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SegmentWrapperSummary.jsx       | JavaScript JSX |        104 |          4 |         16 |        124 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SummaryGridCard.css             | CSS            |         83 |          7 |         18 |        108 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Cards/SummaryGridCard.jsx             | JavaScript JSX |        123 |         17 |         31 |        171 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Summary.css                           | CSS            |        163 |         21 |         38 |        222 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Main/Summary/Summary.jsx                           | JavaScript JSX |        129 |         81 |         27 |        237 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/Components/Signup/SignupPage.jsx                              | JavaScript JSX |         10 |          0 |          2 |         12 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/System/reportWebVitals.js                                     | JavaScript     |         12 |          0 |          1 |         13 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/index.js                                                      | JavaScript     |         16 |          3 |          4 |         23 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/store/store 2.js                                              | JavaScript     |         19 |          4 |          5 |         28 |
+| /Users/nickgendron/Desktop/CSC-3380-Rainbow-Team/frontend/src/store/store.js                                                | JavaScript     |         19 |          4 |          5 |         28 |
+| Total                                                                                                                       |                |      3,799 |        613 |        664 |      5,076 |
++-----------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

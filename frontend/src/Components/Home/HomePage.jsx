@@ -38,6 +38,7 @@ function HomePage() {
     <div className="container-center-horizontal">
       <div className="macbook-pro-14-1 screen">
         <div className="flex-row worksans-bold-swamp-16px">
+          <br/><br/>
           <img className="all_work" src={SmallLogo} alt="All_work" />
           <img className="all_work-1" src={TextLogo} alt="All_work" />
           <div className="log-in valign-text-middle">

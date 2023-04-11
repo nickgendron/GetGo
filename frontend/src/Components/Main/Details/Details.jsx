@@ -9,6 +9,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import MainAPI from "../MainAPI/MainAPI";
 import IncDecCounter from "./IncDecCounter";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 import "./Details.css";
 
 function Details() {
@@ -18,26 +20,44 @@ function Details() {
   const [whereTo, setWhereTo] = useState("");
   const [sourceAirportCode, setSourceAirportCode] = useState("");
   const [destAirportCode, setDestAirportCode] = useState("");
+  const [numberOfTravlers, setNumberOfTravlers] = useState();
 
   const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
 
+
+  const handleDropdownChange = (selectedOption) => {
+    console.log("Selected value: ", selectedOption.value);
+    setNumberOfTravlers(selectedOption.value);
+  };
+
+  const options = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+    { value: "6", label: "6" },
+    { value: "7", label: "7" },
+    { value: "8", label: "8" },
+    { value: "9", label: "9" },
+  ];
+  const defaultOption = options[0].value;
   function handleDatesChange({ startDate, endDate }) {
     setStartDate(startDate);
     setEndDate(endDate);
   }
 
+
   function handleNavigate(event) {
     event.preventDefault();
-
-
 
     sessionStorage.removeItem("leavingFrom");
     sessionStorage.removeItem("whereTo");
     sessionStorage.removeItem("startDate");
     sessionStorage.removeItem("endDate");
     sessionStorage.removeItem("sourceAirportCode");
-    sessionStorage.removeItem("destAirportCode"); 
+    sessionStorage.removeItem("destAirportCode");
     if (!leavingFrom || !whereTo || !startDate || !endDate) {
       alert("Please fill out all fields");
       return;
@@ -55,6 +75,7 @@ function Details() {
     sessionStorage.setItem("endDate", endDate.format("YYYY-MM-DD"));
     sessionStorage.setItem("sourceAirportCode", sourceAirportCode);
     sessionStorage.setItem("destAirportCode", destAirportCode);
+    sessionStorage.setItem("numberOfTravlers", numberOfTravlers);
     // return navigate("/mainapi");
 
     navigate("/mainapi");
@@ -157,7 +178,7 @@ function Details() {
             // value={leavingFrom}
             onBlur={(e) => {
               console.log(e.target.value);
-              
+
               setSourceAirportCode(e.target.value);
             }}
           ></input>
@@ -176,6 +197,15 @@ function Details() {
               setDestAirportCode(e.target.value);
             }}
           ></input>
+          <br />
+          <br />
+          <Dropdown
+            options={options}
+            // value={defaultOption}
+            onChange={handleDropdownChange}
+            className="dropDownInput"
+            placeholder="How many travelers?"
+          />
         </div>
         <div className="calendarDiv">
           <br />
