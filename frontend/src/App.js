@@ -1,6 +1,5 @@
 import "./App.css";
 import Home from "./Components/Home/HomePage";
-import axios from "axios";
 import {
   BrowserRouter as Router,
   Routes,
@@ -48,8 +47,8 @@ function App() {
     <AppContext.Provider value={{ variables, updateVariables }}>
     <Router>
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/attractions" element={<Attractions />} />
         <Route path="/flights" element={<Flights />} />
         <Route path="/hotels" element={<Hotels />} />

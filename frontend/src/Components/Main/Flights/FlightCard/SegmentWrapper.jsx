@@ -32,24 +32,17 @@ function SegmentWrapper(flightID) {
         "&vacationID=" +
         sessionStorage.getItem("vacationID");
 
-      console.log("VacationID: " + sessionStorage.getItem("vacationID"));
       const apiCall = url + flightEndpoints;
       try {
         const response = await axios.post(apiCall);
         const data = response.json();
 
-        console.log(data);
 
         tmp = data;
       } catch (error) {}
 
       sessionStorage.removeItem("choosenFlightIDForVacation");
       sessionStorage.setItem("choosenFlightIDForVacation", flightID);
-      console.log(
-        "Choosen flightID in SS: " +
-          sessionStorage.getItem("choosenFlightIDForVacation")
-      ); // You can access the locationID value here
-      console.log(tmp);
     }
 
     addObjectToVacation();
@@ -72,7 +65,6 @@ function SegmentWrapper(flightID) {
           }
         );
         const data = await response.json();
-        // console.log(data);
         setFlightPrice(data);
       } catch (error) {
         // console.error(error);
@@ -81,7 +73,6 @@ function SegmentWrapper(flightID) {
         const response = await axios.get(url);
         const data = response.data;
         setDestCode(data);
-        console.log(destCode);
       } catch (error) {
         // console.error(error);
       }
@@ -89,7 +80,6 @@ function SegmentWrapper(flightID) {
         const response = await axios.get(originUrl);
         const data = response.data;
         setOriginCode(data);
-        console.log(originCode);
       } catch (error) {
         // console.error(error);
       }

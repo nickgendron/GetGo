@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import image from "../Images/largeLogo.jpg";
@@ -6,10 +6,9 @@ import textImage from "../Images/largerTextLogo.png";
 import axios from 'axios';
 
 
-function LoginForm() {
+function LoginTemplate() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -20,17 +19,11 @@ function LoginForm() {
 
     axios.get(url)
       .then((response) => {
-        // Handle the response data here
-      //  console.log(response.data);
-      sessionStorage.removeItem("userID");
-       sessionStorage.setItem("userID", response.data);
-       console.log(sessionStorage.getItem("userID"));
         if(response.data){
-          navigate("/home");
+          navigate("/details");
         }
         else{
           setError("Invalid email/password");
-         // return <div>{error}</div>;
         }
       })
       .catch((error) => {
@@ -54,10 +47,10 @@ function LoginForm() {
 
   return (
     <>
-      <img src={image} className="imageLogin" />
-      <img src={textImage} className="textLogoLogin" />
+      <img src={image} className="imageLogin" alt=" " />
+      <img src={textImage} className="textLogoLogin" alt=" " />
 
-      <br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/>
       <div className="container">
         {/* <img src={image} className="imageLogin" /> */}
         <form className="loginArea" onSubmit={handleSubmit}>
@@ -85,11 +78,11 @@ function LoginForm() {
                 required
               />
               <br></br>
-              <button className="button" type="submit" onClick={handleSubmit}>
+              <button className="buttonlogin" type="submit" onClick={handleSubmit}>
                 Login
               </button>
               <br></br>
-              <a className="centerText" href="#">
+              <a className="centerText"  >
                 {" "}
                 Forgot password?{" "}
               </a>
@@ -101,11 +94,12 @@ function LoginForm() {
         <div className="rightSideDiv">
           <h1 className="newHereText">New Here?</h1>
           <br></br>
-          <button onClick={handleSignUpNavigation} type="submit" className="button">Signup</button>
+          <button onClick={handleSignUpNavigation} type="submit" className="buttonsignup">Sign Up</button>
         </div>
+        <div className="box"></div>
       </div>
     </>
   );
 }
 
-export default LoginForm;
+export default LoginTemplate;

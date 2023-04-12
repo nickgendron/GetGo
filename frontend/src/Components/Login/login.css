@@ -5,23 +5,22 @@
   /* top: 50%;
   left: 50%; */
   /* position: absolute; */
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   box-sizing: border-box;
-  /* padding: 50px 30px; */
+  padding: 50px 30px;
   border-radius: 30px;
 }
-
 .container {
   /* background-size: cover; */
   /* margin: 0; */
   /* padding: 0; */
-  height: 100vh;
-  width: 100vw; 
-  height: auto;
+  /* height: 100vh;
+  width: 100vw; */
+  /* height: auto; */
   position: relative;
   /* justify-content: center; */
   /* align-items: center; */
-  padding-top: 400px;
+  /* padding-top: 300px; */
   /* top: 0; */
   /* left: 0; */
   /* height: 100vh; */
@@ -35,10 +34,12 @@
   font-size: 22px;
   margin: 0px;
   padding: 0px;
+  position: absolute;
+
 }
 
 .newHereText{
-  color: #4060AD;
+  color: #FFFFFF;
   font-family: 'work sans';
   font-size: 45px;
   margin: 0px;
@@ -68,8 +69,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-
+  align-items: left;
+  position: absolute;
+  top: 55px;
+  left: 0px;
 }
 
 .imageLogin {
@@ -80,11 +83,11 @@
 }
 
 .textLogoLogin {
-  /* margin: 15px; */
+  margin: 15px;
 
 }
 
-.button {
+.buttonlogin {
   font-family: 'work sans';
   align-items: center;
   color: #fffdfc;
@@ -95,6 +98,19 @@
   border-radius: 30px;
   border: 0px solid #3866a3;
   background: #4060AD;
+}
+
+.buttonsignup {
+  font-family: 'work sans';
+  align-items: center;
+  color: #4060AD;
+  font-size: 19px;
+  /* text-shadow: 1px 1px 0px #010203; */
+  width: 220px;
+  height: 45px;
+  border-radius: 30px;
+  border: 0px solid #3866a3;
+  background: #fffdfc;
 }
 
 .inputLabel {
@@ -111,7 +127,24 @@
 }
 
 .rightSideDiv {
-  /* padding-left: 20%; */
-text-align: center;
-}
- 
+  padding-left: 50%;
+  text-align: center;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  z-index: 1;}
+
+  .box {
+    margin: 20px;
+    width: 75%;
+    height: 120vh;
+    border-radius: 5px;
+    background: #4060AD;
+    position: absolute;
+    top: -237px;
+    right: -520px;
+    /* overflow:hidden; */
+    z-index:0;
+  }

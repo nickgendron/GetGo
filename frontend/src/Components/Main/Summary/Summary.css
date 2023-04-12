@@ -59,7 +59,7 @@
   }
   
   
-  .flightsToCity {
+  .overallTripFor {
     text-align: left;
     padding-left: 4%;
     padding-top: 2%;
@@ -202,7 +202,7 @@
   
     .summaryCardSperatorText{
       font-family: 'Work Sans', sans-serif;
-      font-weight: bold;
+      /* font-weight: bold; */
       color: #f05d5d;
     }
     

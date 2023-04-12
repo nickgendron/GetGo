@@ -49,3 +49,25 @@
     font-weight: bold;
     font-size: 23px;
   }
+
+  .budgetInputForm{
+    align-items: center;
+  }
+
+  .savingsControlButtonsDiv{
+    display: block;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin-top: 20px;
+  }
+
+  .savingsControlButtons{
+    background-color: white;
+    outline: none;
+    border-radius: 20px;
+    width: auto;
+    height: 60px;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    background-color: #3f52e3;
+  }

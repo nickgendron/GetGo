@@ -22,12 +22,9 @@ function Details() {
   const [destAirportCode, setDestAirportCode] = useState("");
   const [numberOfTravlers, setNumberOfTravlers] = useState();
 
-  const [focusedInput, setFocusedInput] = useState(null);
   const navigate = useNavigate();
 
-
   const handleDropdownChange = (selectedOption) => {
-    console.log("Selected value: ", selectedOption.value);
     setNumberOfTravlers(selectedOption.value);
   };
 
@@ -48,11 +45,16 @@ function Details() {
     setEndDate(endDate);
   }
 
-
   function handleNavigate(event) {
     event.preventDefault();
 
     sessionStorage.removeItem("leavingFrom");
+    sessionStorage.removeItem("choosenHotelIDForVacation");
+    sessionStorage.removeItem("numberOfTravlers");
+    sessionStorage.removeItem("plannerID");
+    sessionStorage.removeItem("choosenAttractionIDForVacation");
+    sessionStorage.removeItem("choosenAttractionIDForVacation");
+    sessionStorage.removeItem("choosenFlightIDForVacation");
     sessionStorage.removeItem("whereTo");
     sessionStorage.removeItem("startDate");
     sessionStorage.removeItem("endDate");
@@ -62,12 +64,6 @@ function Details() {
       alert("Please fill out all fields");
       return;
     }
-    console.log(leavingFrom);
-    console.log(whereTo);
-    console.log(startDate.format("YYYY-MM-DD"));
-    console.log(endDate.format("YYYY-MM-DD"));
-    console.log(sourceAirportCode);
-    console.log(destAirportCode);
 
     sessionStorage.setItem("leavingFrom", leavingFrom);
     sessionStorage.setItem("whereTo", whereTo);
@@ -76,7 +72,6 @@ function Details() {
     sessionStorage.setItem("sourceAirportCode", sourceAirportCode);
     sessionStorage.setItem("destAirportCode", destAirportCode);
     sessionStorage.setItem("numberOfTravlers", numberOfTravlers);
-    // return navigate("/mainapi");
 
     navigate("/mainapi");
   }
@@ -84,7 +79,6 @@ function Details() {
   function handleLeavingFromChange(event) {
     setLeavingFrom(event.target.value);
 
-    console.log(leavingFrom);
   }
 
   function handleWhereToChange(event) {
@@ -99,12 +93,9 @@ function Details() {
     button.innerHTML = `${start} - ${end}`;
     setStartDate(picker.startDate);
     setEndDate(picker.endDate);
-    console.log(start);
-    console.log(end);
   }
 
   function test() {
-    // console.log(flightID);
   }
 
   function renderApplyButton() {
@@ -129,15 +120,9 @@ function Details() {
   return (
     <div>
       <div className="topRowIcons">
-        <img className="smallLogoStyle" src={SmallLogo} alt="All_work" />
-        <img className="textLogoStyle" src={TextLogo} alt="All_work" />
-        <div className="buttonDiv">
-          <button className="loginButtonDetails" onClick={test}>
-            {" "}
-            Log in
-          </button>
-          <button className="signUpButtonDetails"> Sign up</button>
-        </div>
+        <img className="smallLogoStyle" src={SmallLogo} />
+        <img className="textLogoStyle" src={TextLogo} />
+        <div className="buttonDiv"></div>
       </div>
       <br />
       <div className="formFiller">
@@ -151,19 +136,15 @@ function Details() {
             className="textFormInputDetails"
             placeholder="Leaving from?"
             required={true}
-            // value={leavingFrom}
             onBlur={(e) => {
-              console.log(e.target.value);
               setLeavingFrom(e.target.value);
             }}
           ></input>
-          {/* {console.log(leavingFrom)} */}
 
           <input
             className="textFormInputDetails"
             placeholder="Where to?"
             onBlur={(e) => {
-              console.log(e.target.value);
               setWhereTo(e.target.value);
             }}
           ></input>
@@ -177,7 +158,6 @@ function Details() {
             required={true}
             // value={leavingFrom}
             onBlur={(e) => {
-              console.log(e.target.value);
 
               setSourceAirportCode(e.target.value);
             }}
@@ -188,12 +168,7 @@ function Details() {
             className="arrivingAirportButton"
             placeholder="Arriving Airport"
             required={true}
-            // value={leavingFrom}
             onBlur={(e) => {
-              // console.log(e.target.value);
-              // sessionStorage.removeItem("destAirportCode");
-              // sessionStorage.setItem("destAirportCode", e.target.value);
-
               setDestAirportCode(e.target.value);
             }}
           ></input>
@@ -201,7 +176,6 @@ function Details() {
           <br />
           <Dropdown
             options={options}
-            // value={defaultOption}
             onChange={handleDropdownChange}
             className="dropDownInput"
             placeholder="How many travelers?"

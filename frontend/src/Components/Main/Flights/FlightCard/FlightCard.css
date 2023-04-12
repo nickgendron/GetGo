@@ -254,7 +254,7 @@ align-items: center; */
   font-family: "work sans";
 }
 
-.addToTripButton {
+.addToTripButtonNew {
   color: black;
   background-color: white;
   border: solid;
@@ -269,7 +269,7 @@ align-items: center; */
   /* display: flex; */
 }
 
-.addToTripButtonSelected{
+.addToTripButtonSelectedNew{
   color: white;
   background-color: #3f52e3;
   border: solid;

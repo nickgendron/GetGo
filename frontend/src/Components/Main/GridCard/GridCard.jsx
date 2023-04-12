@@ -18,31 +18,10 @@ function GridCard({
   locationID,
   place,
 }) {
-  const [locationType, setLocationType] = useState("");
-
-  // if (place === "hotel") {
-  //   setLocationType("hotels");
-  // } else if (place === "restaurant") {
-  //   setLocationType("restaurants");
-  // } else if (place === "attraction") {
-  //   setLocationType("attractions");
-  // }
-  const idType = "hotel";
   const location = useLocation();
   const [addedToTrip, setAddedToTrip] = useState("");
 
-  // useEffect(() => {
-  //   if (place === "hotel") {
-  //     setLocationType("hotels");
-  //   } else if (place === "restaurant") {
-  //     setLocationType("restaurants");
-  //   } else if (place === "attraction") {
-  //     setLocationType("attractions");
-  //   }
-  // }, []);
   function handleAddToTrip() {
-    console.log(uniqueID);
-    console.log(location.pathname);
 
     if (location.pathname === "/hotels") {
       addObjectToVacation(uniqueID);
@@ -52,9 +31,7 @@ function GridCard({
     }
 
     async function addObjectToVacation() {
-      console.log(uniqueID);
 
-      console.log(sessionStorage.getItem("vacationID"));
 
       const url = "http://127.0.0.1:8080";
       const hotelsEndpoing =
@@ -71,20 +48,11 @@ function GridCard({
       sessionStorage.removeItem("choosenHotelIDForVacation");
       sessionStorage.setItem("choosenHotelIDForVacation", uniqueID);
 
-      console.log(
-        "session stored hotel id: " +
-          sessionStorage.getItem("choosenHotelIDForVacation")
-      );
+   
     }
-    console.log(uniqueID);
 
     async function addAttractionToVacation() {
-      console.log(uniqueID);
-
-      console.log("ADDING ATTRACTION " + uniqueID + " TO VACATION " + sessionStorage.getItem("vacationID"));
-
-      console.log(sessionStorage.getItem("vacationID"));
-
+     
       const url = "http://127.0.0.1:8080";
       const hotelsEndpoing =
         "/api/vacations/addAttractionToVacation?attractionID=" +
@@ -99,20 +67,12 @@ function GridCard({
         setAddedToTrip(data);
 
         sessionStorage.setItem("choosenAttractionIDForVacation", addedToTrip);
-        // console.log(data);
       } catch (error) {}
       console.log(sessionStorage.getItem("choosenAttractionIDForVacation"));
-      // sessionStorage.removeItem("choosenHotelIDForVacation");
-      // sessionStorage.setItem("choosenHotelIDForVacation", uniqueID);
 
-      console.log(
-        "session stored attractionGroupID: " +
-          sessionStorage.getItem("choosenAttractionIDForVacation")
-      );
+      
     }
-
   }
-
 
   return (
     <>
@@ -130,7 +90,7 @@ function GridCard({
             {/* <br /> */}
             {/* <p className="greyText">{type}</p> */}
             <div className="descriptionTextDiv">
-            <p className="greyText">{description}</p>
+              <p className="greyText">{description}</p>
             </div>
             <br />
             <p className="greyText">

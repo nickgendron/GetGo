@@ -8,17 +8,7 @@ import EmptyCards from "./EmptyCards/EmptyCards";
 import axios from "axios";
 
 export default function Summary() {
-  const [flightID, setFlightID] = useState("");
-  const [hotelID, setHotelID] = useState("");
-  const [attractionID, setAttractionID] = useState([]);
-  const [isVacationSelected, setIsVacationSelected] = useState(false);
 
-  var locationID;
-
-  const [flightPrice, setFlightPrice] = useState();
-  const [originCode, setOriginCode] = useState("");
-  const [destCode, setDestCode] = useState("");
-  const [hotelInfo, setHotelInfo] = useState([]);
   const [vacationID, setVacationID] = useState();
 
   const [locationInfo, setLocationInfo] = useState([]);
@@ -40,7 +30,6 @@ export default function Summary() {
         const response = await axios.get(attractionGroupId);
         const data = response.data;
         setAttractionInfo(data);
-        console.log(attractionInfo);
       } catch (error) {
         // console.error(error);
       }
@@ -48,7 +37,6 @@ export default function Summary() {
         const response = await axios.get(hotelId);
         const data = response.data[0];
         setLocationInfo(data);
-        console.log(locationInfo);
       } catch (error) {
         // console.error(error);
       }
@@ -63,7 +51,7 @@ export default function Summary() {
       </div>
 
       <div className="summaryRoot">
-        <h1 className="flightsToCity">
+        <h1 className="overallTripFor">
           Overall trip for: {sessionStorage.getItem("whereTo")}{" "}
         </h1>
         <hr
@@ -126,7 +114,7 @@ export default function Summary() {
               />
             ))
           ) : (
-           <p>HERE</p>
+           <p>Loading attractions...</p>
           )}
         </div>
       </div>

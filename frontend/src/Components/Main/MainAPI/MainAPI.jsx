@@ -11,26 +11,33 @@ import whiteLogo from "../../Images/whiteVectorGetGoLogo.png";
 
 function MainAPI() {
   const navigate = useNavigate();
-  const [flightOfferID, setFlightOfferID] = useState("");
-  const [hotelsKey, setHotelsKey] = useState();
-  const [attractionsKey, setAttractionsKey] = useState("");
-  const [vacationID, setVacationID] = useState("");
-  const [locationString, setLocationString] = useState("");
-  const [originAirportCode, setOriginAirportCode] = useState("");
-  const [destAirportCode, setDestAirportCode] = useState("");
-  const [departDate, setDepartDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
+  // const [flightOfferID, setFlightOfferID] = useState("");
+  // const [hotelsKey, setHotelsKey] = useState();
+  // const [attractionsKey, setAttractionsKey] = useState("");
+  // const [vacationID, setVacationID] = useState("");
+  // const [locationString, setLocationString] = useState("");
+  // const [originAirportCode, setOriginAirportCode] = useState("");
+  // const [destAirportCode, setDestAirportCode] = useState("");
+  // const [departDate, setDepartDate] = useState("");
+  // const [returnDate, setReturnDate] = useState("");
+  // const [loading, setLoading] = useState(false);
 
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
     const fetchData = async () => {
-      setLocationString(sessionStorage.getItem("whereTo"));
-      setDepartDate(sessionStorage.getItem("startDate"));
-      setReturnDate(sessionStorage.getItem("endDate"));
-      setOriginAirportCode(sessionStorage.getItem("sourceAirportCode"));
-      setDestAirportCode(sessionStorage.getItem("destAirportCode"));
-      console.log(sessionStorage.getItem("numberOfTravlers"));
+      sessionStorage.removeItem("flightOfferID");
+      sessionStorage.removeItem("vacationID");
+      sessionStorage.removeItem("hotelsOptionsMasterKey");
+      sessionStorage.removeItem("attractionsOptionsMasterKey");
+
+      // setLocationString(sessionStorage.getItem("whereTo"));
+      // setDepartDate(sessionStorage.getItem("startDate"));
+      // setReturnDate(sessionStorage.getItem("endDate"));
+      // setOriginAirportCode(sessionStorage.getItem("sourceAirportCode"));
+      // setDestAirportCode(sessionStorage.getItem("destAirportCode"));
+      // console.log(sessionStorage.getItem("numberOfTravlers"));
 
       const flightOffersURL =
         "http://127.0.0.1:8080/api/flights/prices?originCode=" +
@@ -41,67 +48,66 @@ function MainAPI() {
         sessionStorage.getItem("startDate") +
         "&returnDate=" +
         sessionStorage.getItem("endDate") +
-        "&adults=1&numFlights=5";
-      try {
-        const response = await axios.get(flightOffersURL);
-        const data = response.data;
-        // if (data === null) {
-        //   return <h1>Error fetching flights</h1>;
-        // }
-        setFlightOfferID(data);
-        sessionStorage.setItem("flightOfferID", data);
-      } catch (error) {}
-      try {
-        const hotelResponse = await axios.get(
-          `http://127.0.0.1:8080/api/hotels/nearbyHotels?location=` +
-            sessionStorage.getItem("whereTo")
-        );
-        const hotels = hotelResponse.data;
-        setHotelsKey(hotels);
+        "&adults=" +
+        sessionStorage.getItem("numberOfTravlers") +
+        "&numFlights=5";
 
-        sessionStorage.removeItem("hotelsOptionsMasterKey");
-        sessionStorage.setItem("hotelsOptionsMasterKey", hotels);
-      } catch (error) {
-        // console.error(error);
-      }
-      try {
-        const attractionResponse = await axios.get(
-          `http://127.0.0.1:8080/api/attractions/nearbyAttractions?location=` +
-            sessionStorage.getItem("whereTo")
-        );
-        const attractions = attractionResponse.data;
-        setAttractionsKey(attractions);
+      const hotelURL =
+        "http://127.0.0.1:8080/api/hotels/nearbyHotels?location=" +
+        sessionStorage.getItem("whereTo");
 
-        sessionStorage.removeItem("attractionsOptionsMasterKey");
-        sessionStorage.setItem("attractionsOptionsMasterKey", attractions);
-        console.log(
-          "attractions: " +
-            sessionStorage.getItem("attractionsOptionsMasterKey")
-        );
-      } catch (error) {
-        console.error(error);
-      }
+      const attractionURL =
+        "http://127.0.0.1:8080/api/attractions/nearbyAttractions?location=" +
+        sessionStorage.getItem("whereTo");
 
-      try {
-        const attractionResponse = await axios.post(
-          `http://127.0.0.1:8080/api/vacations/createNewVacation?userID=` +
-            sessionStorage.getItem("userID")
-        );
-        const vacationID = attractionResponse.data;
-        setVacationID(vacationID);
-        sessionStorage.removeItem("vacationID");
-        sessionStorage.setItem("vacationID", vacationID);
-      } catch (error) {
-        // console.error(error);
-      }
+      const createVacationURL =
+        "http://127.0.0.1:8080/api/vacations/createNewVacation?userID=" +
+        sessionStorage.getItem("userID");
 
-      console.log(sessionStorage.getItem("flightOfferID"));
+      const createPlannerURL =
+        "http://127.0.0.1:8080/api/tripPlanner/newPlanner?vacationID=" +
+        sessionStorage.getItem("vacationID");
+
+      const [
+        flightResponse,
+        hotelResponse,
+        attractionResponse,
+        createVacationResponse,
+        createPlannerResponse,
+      ] = await Promise.all([
+        await axios.get(flightOffersURL),
+        await axios.get(hotelURL),
+        await axios.get(attractionURL),
+        await axios.post(createVacationURL),
+        await axios.post(createPlannerURL),
+      ]);
+
+      const flightData = flightResponse.data;
+      const hotelData = hotelResponse.data;
+      const attractionData = attractionResponse.data;
+      const vacationID = createVacationResponse.data;
+      const plannerID = createPlannerResponse.data;
+
+      // setFlightOfferID(flightData);
+      // setHotelsKey(hotelData);
+      // setAttractionsKey(attractionData);
+      // setVacationID(vacationID);
+
+      // Store data in session storage
+      sessionStorage.setItem("flightOfferID", flightData);
+      sessionStorage.setItem("hotelsOptionsMasterKey", hotelData);
+      sessionStorage.setItem("attractionsOptionsMasterKey", attractionData);
+      sessionStorage.setItem("plannerID", plannerID);
+
+      sessionStorage.removeItem("vacationID");
+      sessionStorage.setItem("vacationID", vacationID);
       navigate("/flights");
     };
-    /* Getting some hotel information (still need to figure out on backend i think)*/
 
     fetchData();
+    return () => abortController.abort();
   }, []);
+
   return (
     <>
       <div className="mainApiLoadingRootDiv">
@@ -114,9 +120,9 @@ function MainAPI() {
 
           <h1 className="topLineBoldText">Pack your bags!</h1>
           <br />
-          <h9 className="regularSmallerGreyText">
+          <p className="regularSmallerGreyText">
             We're building you the vacation of your dreams.
-          </h9>
+          </p>
           <br />
           <br />
           <br />
