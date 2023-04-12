@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./login.css";
 import image from "../Images/largeLogo.jpg";
 import textImage from "../Images/largerTextLogo.png";
 import axios from 'axios';
@@ -9,7 +9,6 @@ import axios from 'axios';
 function LoginTemplate() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -20,14 +19,11 @@ function LoginTemplate() {
 
     axios.get(url)
       .then((response) => {
-        // Handle the response data here
-       // console.log(response.data);
         if(response.data){
-          navigate("/home");
+          navigate("/details");
         }
         else{
           setError("Invalid email/password");
-         // return <div>{error}</div>;
         }
       })
       .catch((error) => {
@@ -51,8 +47,8 @@ function LoginTemplate() {
 
   return (
     <>
-      <img src={image} className="imageLogin" />
-      <img src={textImage} className="textLogoLogin" />
+      <img src={image} className="imageLogin" alt=" " />
+      <img src={textImage} className="textLogoLogin" alt=" " />
 
       <br/><br/><br/><br/><br/>
       <div className="container">
@@ -82,11 +78,11 @@ function LoginTemplate() {
                 required
               />
               <br></br>
-              <button className="button" type="submit" onClick={handleSubmit}>
+              <button className="buttonlogin" type="submit" onClick={handleSubmit}>
                 Login
               </button>
               <br></br>
-              <a className="centerText" href="#">
+              <a className="centerText"  >
                 {" "}
                 Forgot password?{" "}
               </a>
@@ -98,8 +94,9 @@ function LoginTemplate() {
         <div className="rightSideDiv">
           <h1 className="newHereText">New Here?</h1>
           <br></br>
-          <button onClick={handleSignUpNavigation} type="submit" className="button">Signup</button>
+          <button onClick={handleSignUpNavigation} type="submit" className="buttonsignup">Sign Up</button>
         </div>
+        <div className="box"></div>
       </div>
     </>
   );

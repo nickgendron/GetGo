@@ -33,22 +33,12 @@ useEffect(() => {
   }
   fetchData();
 }, [flightID]);
-
-if(segmentData.length == 0){console.log(0);}
-console.log(segmentIDs);
-console.log(segmentData);
-
   return (
     <>
       <div>
         {segmentData.map((segment) => (
           <div key={segment.segmentID}>
-            {/* <h3>{segment.aircraftCode}</h3>
-              <p>{segment.aircraftCode}</p> */}
-            {/* {segmentData.map(segments => ( */}
             <div className="segmentRowParent">
-            {/* <div className="horidzontalGreyLine" /> */}
-
               <div className="div1">
                 <div className="horidzontalGreyLine" />
                 <br />
@@ -63,11 +53,12 @@ console.log(segmentData);
                 </button>
               </div>
               <div className="div3">
-                {" "}
-                <p>
+              {" "}
+                <p className="flightDateTimeText">
                   {" "}
-                  {segment.departureTime} <br /> &ensp; {segment.departureDate}
-                </p>
+                  {segment.departureDate}
+                
+                <p className="boldTheTimeText"><strong>{segment.departureTime}</strong></p></p>
               </div>
               <div className="div4"> </div>
               <div className="div5"> </div>
@@ -82,10 +73,10 @@ console.log(segmentData);
                 </button>
               </div>
               <div className="div11">
-                {" "}
+              {" "}
                 <p>
                   {" "}
-                  {segment.arrivalTime} <br /> {segment.arrivalDate}
+                 {segment.arrivalDate} <br/ > <p className="boldTheTimeText"><strong>{segment.arrivalTime}</strong></p>
                 </p>{" "}
               </div>
               <div className="div14">{segment.flightDuration}</div>

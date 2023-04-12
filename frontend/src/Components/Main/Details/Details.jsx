@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextLogo from "../../Images/TextLogo.png";
 import FormBackgroundDetails from "../../Images/formBackgroundDetailsPage.png";
 import SmallLogo from "../../Images/SmallLogo.png";
@@ -7,33 +7,97 @@ import DateRangePicker from "react-bootstrap-daterangepicker";
 import moment from "moment";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
-
+import MainAPI from "../MainAPI/MainAPI";
+import IncDecCounter from "./IncDecCounter";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 import "./Details.css";
 
 function Details() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [focusedInput, setFocusedInput] = useState(null);
+  const [leavingFrom, setLeavingFrom] = useState("");
+  const [whereTo, setWhereTo] = useState("");
+  const [sourceAirportCode, setSourceAirportCode] = useState("");
+  const [destAirportCode, setDestAirportCode] = useState("");
+  const [numberOfTravlers, setNumberOfTravlers] = useState();
+
   const navigate = useNavigate();
 
+  const handleDropdownChange = (selectedOption) => {
+    setNumberOfTravlers(selectedOption.value);
+  };
+
+  const options = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+    { value: "6", label: "6" },
+    { value: "7", label: "7" },
+    { value: "8", label: "8" },
+    { value: "9", label: "9" },
+  ];
+  const defaultOption = options[0].value;
   function handleDatesChange({ startDate, endDate }) {
     setStartDate(startDate);
     setEndDate(endDate);
   }
 
-  function handleNavigate(event){
+  function handleNavigate(event) {
     event.preventDefault();
-    navigate("/flights");
+
+    sessionStorage.removeItem("leavingFrom");
+    sessionStorage.removeItem("choosenHotelIDForVacation");
+    sessionStorage.removeItem("numberOfTravlers");
+    sessionStorage.removeItem("plannerID");
+    sessionStorage.removeItem("choosenAttractionIDForVacation");
+    sessionStorage.removeItem("choosenAttractionIDForVacation");
+    sessionStorage.removeItem("choosenFlightIDForVacation");
+    sessionStorage.removeItem("whereTo");
+    sessionStorage.removeItem("startDate");
+    sessionStorage.removeItem("endDate");
+    sessionStorage.removeItem("sourceAirportCode");
+    sessionStorage.removeItem("destAirportCode");
+    if (!leavingFrom || !whereTo || !startDate || !endDate) {
+      alert("Please fill out all fields");
+      return;
+    }
+
+    sessionStorage.setItem("leavingFrom", leavingFrom);
+    sessionStorage.setItem("whereTo", whereTo);
+    sessionStorage.setItem("startDate", startDate.format("YYYY-MM-DD"));
+    sessionStorage.setItem("endDate", endDate.format("YYYY-MM-DD"));
+    sessionStorage.setItem("sourceAirportCode", sourceAirportCode);
+    sessionStorage.setItem("destAirportCode", destAirportCode);
+    sessionStorage.setItem("numberOfTravlers", numberOfTravlers);
+
+    navigate("/mainapi");
+  }
+
+  function handleLeavingFromChange(event) {
+    setLeavingFrom(event.target.value);
+
+  }
+
+  function handleWhereToChange(event) {
+    for (var i = 0; i < 4; ) {}
+    setWhereTo(event.target.value);
   }
 
   function handleApply(event, picker) {
-    const start = picker.startDate.format("MM/DD/YYYY");
-    const end = picker.endDate.format("MM/DD/YY");
+    const start = picker.startDate.format("YYYY-MM-DD");
+    const end = picker.endDate.format("YYYY-MM-DD");
     const button = document.querySelector(".daterangepicker .applyBtn");
     button.innerHTML = `${start} - ${end}`;
     setStartDate(picker.startDate);
     setEndDate(picker.endDate);
   }
+
+  function test() {
+  }
+
   function renderApplyButton() {
     if (!startDate || !endDate) {
       return (
@@ -56,12 +120,9 @@ function Details() {
   return (
     <div>
       <div className="topRowIcons">
-        <img className="smallLogoStyle" src={SmallLogo} alt="All_work" />
-        <img className="textLogoStyle" src={TextLogo} alt="All_work" />
-        <div className="buttonDiv">
-          <button className="loginButtonDetails"> Log in</button>
-          <button className="signUpButtonDetails"> Sign up</button>
-        </div>
+        <img className="smallLogoStyle" src={SmallLogo} />
+        <img className="textLogoStyle" src={TextLogo} />
+        <div className="buttonDiv"></div>
       </div>
       <br />
       <div className="formFiller">
@@ -74,14 +135,51 @@ function Details() {
           <input
             className="textFormInputDetails"
             placeholder="Leaving from?"
+            required={true}
+            onBlur={(e) => {
+              setLeavingFrom(e.target.value);
+            }}
           ></input>
-          <br />
-          <br />
 
           <input
             className="textFormInputDetails"
             placeholder="Where to?"
+            onBlur={(e) => {
+              setWhereTo(e.target.value);
+            }}
           ></input>
+          <br />
+          <br />
+
+          {/* Origin (local to you) airport */}
+          <input
+            className="departingAirportButton"
+            placeholder="Departing Airport"
+            required={true}
+            // value={leavingFrom}
+            onBlur={(e) => {
+
+              setSourceAirportCode(e.target.value);
+            }}
+          ></input>
+
+          {/* Dest (vacation spot airport) */}
+          <input
+            className="arrivingAirportButton"
+            placeholder="Arriving Airport"
+            required={true}
+            onBlur={(e) => {
+              setDestAirportCode(e.target.value);
+            }}
+          ></input>
+          <br />
+          <br />
+          <Dropdown
+            options={options}
+            onChange={handleDropdownChange}
+            className="dropDownInput"
+            placeholder="How many travelers?"
+          />
         </div>
         <div className="calendarDiv">
           <br />
@@ -92,11 +190,12 @@ function Details() {
             startDate={startDate}
             endDate={endDate}
             onApply={handleApply}
+            required={true}
           >
             <button className="openCalendarButton">
               {startDate && endDate
-                ? `${startDate.format("MM/DD/YYYY")} - ${endDate.format(
-                    "MM/DD/YY"
+                ? `${startDate.format("M/D/YYYY")} - ${endDate.format(
+                    "MM/DD/YYYY"
                   )}`
                 : "When?"}
             </button>
@@ -104,7 +203,9 @@ function Details() {
         </div>
 
         <div className="letsGoDiv">
-          <button onClick={handleNavigate} className="letsGoButton">Let's go!</button>
+          <button onClick={handleNavigate} className="letsGoButton">
+            Let's go!
+          </button>
         </div>
       </div>
     </div>
@@ -112,65 +213,3 @@ function Details() {
 }
 
 export default Details;
-//     <div className="container-center-horizontal">
-//     <div className="macbook-pro-14-2 screen">
-//       <img className="all_work" src={SmallLogo} alt="All_work" />
-//       <img className="all_work-1" src={TextLogo} alt="All_work" />
-//       <div className="flex-col">
-//         <div className="log-in valign-text-middle worksans-bold-swamp-16px">
-//           <span>
-//             <span className="worksans-bold-swamp-16px">Log in</span>
-//           </span>
-//         </div>
-//         <div className="overlap-group2" style={{ backgroundImage: `url(${FormBackgroundDetails})` }}>
-//           <h1 className="lets-get-going valign-text-middle worksans-bold-royal-blue-50px">
-//             <span>
-//               <span className="worksans-bold-royal-blue-50px">Let's get going!</span>
-//             </span>
-//           </h1>
-//           <div className="overlap-group6">
-//             <div className="leaving-from valign-text-middle worksans-bold-swamp-16px">
-//               <span>
-//                 <span className="worksans-bold-swamp-16px">Leaving from?</span>
-//               </span>
-//             </div>
-//           </div>
-//           <div className="overlap-group7">
-//             <div className="where-to valign-text-middle worksans-bold-swamp-16px">
-//               <span>
-//                 <span className="worksans-bold-swamp-16px">Where to?</span>
-//               </span>
-//             </div>
-//           </div>
-//           <div className="overlap-group-container">
-//             <div className="overlap-group">
-//               <div className="place valign-text-middle worksans-bold-swamp-16px">
-//                 <span>
-//                   <span className="worksans-bold-swamp-16px">Start</span>
-//                 </span>
-//               </div>
-//             </div>
-//             <div className="overlap-group">
-//               <div className="return valign-text-middle worksans-bold-swamp-16px">
-//                   <span></span><button className="worksans-bold-swamp-16px buttonDetails">Return</button>
-//               </div>
-//             </div>
-//           </div>
-//           <div className="overlap-group-1">
-//             <div className="lets-go valign-text-middle worksans-bold-white-16px">
-//               <span>
-//                 <span className="worksans-bold-white-16px">Let's go!</span>
-//               </span>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       <div className="overlap-group3">
-//         <div className="sign-up valign-text-middle worksans-bold-swamp-16px">
-//           <span>
-//             <span className="worksans-bold-swamp-16px">Sign up</span>
-//           </span>
-//         </div>
-//       </div>
-//     </div>
-//   </div>

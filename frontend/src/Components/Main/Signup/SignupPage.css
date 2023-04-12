@@ -28,7 +28,7 @@
 
 
 .loginText {
-  color: #542d31;
+  color: #3F52E3;
   font-family: 'work sans';
   font-size: 22px;
   margin: 0px;
@@ -36,7 +36,7 @@
 }
 
 .newHereText{
-  color: #4060AD;
+  color: #3F52E3;
   font-family: 'work sans';
   font-size: 45px;
   margin: 0px;
@@ -45,7 +45,7 @@
 }
 
 .welcomeText {
-  color: #4060AD;
+  color: #3F52E3;
   font-family: 'work sans';
   font-size: 45px;
   margin: 0px;
@@ -55,14 +55,14 @@
 .centerText {
   text-align: center;
   align-items: center;
-  color: #542d31;
+  color: #3F52E3;
   font-family: arial;
   font-size: 14px;
   margin: 0px;
   padding: 0px;
 }
 
-.loginArea {
+.signUp {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,16 +106,16 @@
   height: 45px;
   border-radius: 30px;
   border: 0px solid #3F52E3;
-  background: #4060AD;
+  background: #3F52E3;
 }
 
 .inputLabelSignUp {
   width: 600px;
   height: 50px;
   border-radius: 15px;
-  border-color: #4060AD;
+  border-color: black;
   box-shadow: none;
-
+  outline: none;
   font-size: 14px;
   font-family: 'work sans';
   text-align: left;
@@ -129,7 +129,7 @@
 }
 
 .bigSignUpDiv{
-  background-color: #4064AD;
+  background-color: #3F52E3;
   height: 100vh;
   display: block;
   margin-left: auto;

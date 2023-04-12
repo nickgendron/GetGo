@@ -20,8 +20,11 @@ public class Flights {
     private String totalPrice;
     private String optionNumber;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "flight")
-//    private List<Itineraries> itineraries;
+    private String originCode;
+    private String destCode;
+
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Itineraries> itineraries; // One-to-many relationship with Itineraries
 
 
     public Flights(JsonObject flight) {
@@ -29,6 +32,9 @@ public class Flights {
         this.optionNumber = flight.get("optionNumber").getAsString();
         this.totalPrice = flight.get("totalPrice").getAsString();
         this.offerID = flight.get("offerID").getAsString();
+        this.originCode = flight.get("originCode").getAsString();
+        this.destCode = flight.get("destCode").getAsString();
+
     }
 
     public Flights(){}

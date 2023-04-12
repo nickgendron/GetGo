@@ -3,91 +3,120 @@ import { Link, json, useLocation } from "react-router-dom";
 import VerticalLine from "../../../Images/verticalLine.png";
 import BlackPlane from "../../../Images/blackPlaneIcon.png";
 import axios from "axios";
-import SegmentRow from "./SegmentRow";
 import SegmentRowRight from "./SegmentRowRight";
 import SegmentRowLeft from "./SegmentRowLeft";
+import AddToTripButton from "./AddToTripButton";
 import "./FlightCard.css";
 import Flights from "../Flights";
 
+import { useDispatch } from "react-redux";
+
 function SegmentWrapper(flightID) {
-  //   var test = GetReturningSegments(flightID);
-  // console.log(test);
+  const [isClicked, setIsClicked] = useState(false); 
+  const [flightPrice, setFlightPrice] = useState();
+  const [originCode, setOriginCode] = useState("");
+  const [destCode, setDestCode] = useState("");
 
-  const [departingSegments, setDepartingSegments] = useState([]);
+  function handleAddToTrip() {
 
-  const [isLoading, setIsLoading] = useState(true);
-  const storedData = localStorage.getItem("departingSegments");
-  console.log(flightID);
-  //   useEffect(() => {
+    setIsClicked(!isClicked); 
 
-  //getPriceByFlightID
+    async function addObjectToVacation() { 
+      const url = "http://127.0.0.1:8080";
 
-  const [flightPrice, setFlightPrice] = useState([]);
+      var tmp;
+      // const hotelsEndpoin
+      const flightEndpoints =
+        "/api/vacations/addFlight?flightID=" +
+        flightID +
+        "&vacationID=" +
+        sessionStorage.getItem("vacationID");
 
-  // useEffect(() => {
-  //      function fetchData() {
-  //         const response = fetch("http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=" + flightID);
-  //         setFlightPrice(response);
-  //     }
-  //     fetchData();
-  // }, []);
+      const apiCall = url + flightEndpoints;
+      try {
+        const response = await axios.post(apiCall);
+        const data = response.json();
+
+
+        tmp = data;
+      } catch (error) {}
+
+      sessionStorage.removeItem("choosenFlightIDForVacation");
+      sessionStorage.setItem("choosenFlightIDForVacation", flightID);
+    }
+
+    addObjectToVacation();
+  }
 
   useEffect(() => {
     const fetchData = async () => {
+      const url =
+        "http://127.0.0.1:8080/api/flights/getDestCodeByFlightID?flightID=" +
+        flightID;
+      const originUrl =
+        "http://127.0.0.1:8080/api/flights/getOriginCodeByFlightID?flightID=" +
+        flightID;
       try {
         const response = await fetch(
-          `http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=${flightID}`,
+          `http://127.0.0.1:8080/api/flights/getPriceByFlightID?flightID=` +
+            flightID,
           {
-            mode: 'cors'
+            mode: "cors",
           }
         );
         const data = await response.json();
         setFlightPrice(data);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
+      }
+      try {
+        const response = await axios.get(url);
+        const data = response.data;
+        setDestCode(data);
+      } catch (error) {
+        // console.error(error);
+      }
+      try {
+        const response = await axios.get(originUrl);
+        const data = response.data;
+        setOriginCode(data);
+      } catch (error) {
+        // console.error(error);
       }
     };
-  
-    fetchData();
-  }, []);
 
-  if (!flightPrice) {
-    return <div>Loading...</div>;
-  }
-  console.log(flightPrice);
+    fetchData();
+  });
 
   return (
     <>
       <div>
-        {/* <hr
-          style={{
-            background: "black",
-            color: "black",
-            borderColor: "black",
-            height: "4px",
-            width: "93%",
-            marginLeft: "3%",
-          }}
-        /> */}
         <div className="flightsWraperContainer">
           <div className="leftSideRender">
-            <img src={BlackPlane} />
-            MSY to DBX
+
+          <img src={BlackPlane} />&nbsp;&nbsp;
+            <strong>{originCode} to {destCode}</strong>
             <div className="horidzontalGreyLine" />
             <SegmentRowLeft flightID={flightID} />
           </div>
           <div className="vertGreyLine" />
           <div className="rightSideRender">
-            <img src={BlackPlane} />
-            DBX to MSY
+            <img src={BlackPlane} />&nbsp;&nbsp;
+            <strong>{destCode} to {originCode}</strong>
             <SegmentRowRight flightID={flightID} />
-            {/* <SegmentRow segments={departingSegments} /> */}
           </div>
           <div className="addToTripDiv">
-            <p className="tripTotalCostText">
-              Flight total:</p> 
-              <p className="flightCostText"><strong><strong>{flightPrice}</strong></strong></p>
-            <button className="addToTripButton">Add to trip</button>
+            <p className="tripTotalCostText">Flight total:</p>
+            <p className="">{flightPrice}</p>
+            {/* <button
+              className={
+                isClicked ? "addToTripButtonSelected" : "addToTripButton"
+              }
+              onClick={handleAddToTrip}
+            >
+              {isClicked ? 'Added to trip' : 'Add to trip'}
+            </button> */}
+            <AddToTripButton flightID={flightID} />
           </div>
         </div>
         <br />

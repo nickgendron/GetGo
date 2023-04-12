@@ -13,7 +13,7 @@
   /* border-color: blue; */
   background-color: white;
   border-radius: 30px;
-  font-family: "Work Sans";
+  font-family: 'Work Sans', sans-serif;
   color: black;
   margin-left: 3%;
   padding-left: 4%;
@@ -28,7 +28,8 @@
 }
 
 /* .toFromText{
-  font-family: 'Work Sans';
+  font-family: 'Work Sans', sans-serif;
+
 } */
 
 .onlyCenterLastDiv {
@@ -158,6 +159,7 @@ align-items: center; */
 .div6 {
   grid-area: 2/2/3/5;
   padding-top: 15px;
+  padding-left: 8px;
   /* width: 100%; */
 }
 .div7 {
@@ -190,7 +192,7 @@ align-items: center; */
     font-size: 14px;
     font-weight: bold;
     color: black;
-    font-family: "work sans";
+    font-family: 'Work Sans', sans-serif;
     padding-left: 6%;
     align-items: center;
 }
@@ -252,16 +254,34 @@ align-items: center; */
   font-family: "work sans";
 }
 
-.addToTripButtonFlight {
+.addToTripButtonNew {
   color: black;
   background-color: white;
   border: solid;
-  width: 120px;
+  /* align-items: center;
+  display: flex;
+  text-align: center; */
+  width: 140px;
   height: 56px;
-  font: "work sans";
+  font-family: 'Work Sans';
   font-weight: bold;
   border-radius: 20px;
+  /* display: flex; */
+}
+
+.addToTripButtonSelectedNew{
+  color: white;
+  background-color: #3f52e3;
+  border: solid;
+  /* align-items: center;
   display: flex;
+  text-align: center; */
+  width: 140px;
+  height: 56px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: bold;
+  border-radius: 20px;
+  /* display: flex; */
 }
 
 .arrowIconGrid {
@@ -283,15 +303,12 @@ align-items: center; */
 }
 .segmentRowOne {
   grid-area: 2 / 1 / 3 / 5;
-  border: red;
 }
 .segmentRowTwo {
   grid-area: 3 / 1 / 4 / 5;
-  border: green;
 }
 .SegmentRowThree {
   grid-area: 4 / 1 / 5 / 5;
-  border: blue;
 }
 
 .segmentWrapper {
@@ -300,22 +317,24 @@ align-items: center; */
 
 .leftSideRender{
     flex-grow: 1;
-    font-family: 'work sans';
+    font-family: 'Work Sans', sans-serif;
 }
 .rightSideRender{
     flex-grow: 1;
-    font-family: 'work sans'; 
+    font-family: 'Work Sans'; 
 }
 
 .tripTotalCostText{
-    font-family: 'Work Sans';
+    font-family: 'Work Sans', sans-serif;
+
     font-weight: bold;
     font-size: 16px;
     
 }
 
 .flightCostText{
-    font-family: 'Work Sans';
+    font-family: 'Work Sans', sans-serif;
+
     font-weight: bold;
     font-size: 24px;
     font-weight: 100000;
@@ -344,4 +363,28 @@ align-items: center; */
     align-items: center;
     margin: auto;
     max-width: 600px;
+  }
+
+  .flightDateTimeText{
+    font-family: 'Work Sans', sans-serif;
+
+  }
+
+  .boldTheTimeText{
+    font-family: 'Work Sans', sans-serif;
+    text-decoration: underline;
+  }
+
+  .removeFromTripButton{
+    display: inline;
+    margin-left: 10%;
+    color: #E64646;
+    font-family: 'Work Sans', sans-serif;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent
+  }
+
+  .flightIconWrapper{
+    display: inline;
   }

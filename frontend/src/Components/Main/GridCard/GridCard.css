@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: auto;
 }
 .leftChildGridCard {
   /* max-width: 100%; */
@@ -22,10 +23,10 @@
   color: black;
   margin-left: 3%;
   padding-left: 4%;
-  max-width: 70%;
+  width: 70%;
   padding-top: 2%;
   display: inline-block;
-  float: left;
+  /* float: left; */
     
   padding-bottom: 2%;
   padding-right: 3%;
@@ -91,5 +92,3 @@
     color: #6C757D;
     font-family: "work sans"
 }
-
-

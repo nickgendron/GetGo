@@ -1,0 +1,356 @@
+.rootContainerFlight {
+    /* border: solid; */
+    /* border-color: red; */
+    background-color: grey;
+    position: fixed;
+  
+    height: auto;
+  }
+  
+  .leftChildGridCardFlight {
+    /* max-width: 100%; */
+    border: none;
+    /* border-color: blue; */
+    background-color: white;
+    border-radius: 30px;
+    font-family: "Work Sans";
+    color: black;
+    margin-left: 3%;
+    padding-left: 4%;
+    /* max-width: 500px; */
+    padding-top: 2%;
+    display: inline-block;
+    /* float: left; */
+    /*border-color: red;
+    padding-bottom: 2%;
+  
+    border: solid; */
+  }
+  
+  /* .toFromText{
+    font-family: 'Work Sans';
+  } */
+  
+  .onlyCenterLastDiv {
+  
+  }
+  
+  .flightsWraperContainerInSummary {
+    display: flex;
+    /* justify-content: center; */
+     /* align-items: center;  */
+    gap: 18px;
+    width: auto; 
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 15px;
+    /* padding-bottom: 15px; */
+    border: solid #EAEAEA;
+    /* margin-left: auto; */
+    /* flex-wrap: wrap;
+    justify-content: space-between; /* Space child elements evenly */
+    /* align-items: flex-start; */ 
+    /* text-align: center; */
+  
+    /* margin-left: 3%; */
+    /* margin-right: 3%; */
+    padding-left: 2%; 
+  }
+  
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  
+  .flightsWraperContainerNew {
+    /* display:flex;
+      background-color: white;
+      /* margin-left: auto; */
+    /* margin-left: 3%;
+      margin-right: 3%;
+      padding-left: 4%;
+      padding-top: 10%; */
+  }
+  .whiteAirportBubbleNew {
+    border-radius: 50px;
+    font-size: 20px;
+    height: 55px;
+    width: 100px;
+    background-color: white;
+    font-weight: bold;
+  
+    pointer-events: none;
+    border: solid;
+    color: black;
+  }
+  
+  .blueAirportBubbleNew {
+    /* border: solid; */
+    border-radius: 50px;
+    font-size: 20px;
+    height: 55px;
+    width: 100px;
+    text-align: center;
+    background-color: #3f52e3;
+    font-weight: bold;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    pointer-events: none;
+    position: relative;
+    border: none;
+    color: white;
+  }
+  .vertGreyLine {
+    border-left: 1px solid #EAEAEA;
+    height: auto;
+    /* padding-left: 28px; */
+  }
+  
+  .horizontalGreyLine {
+    width: 100%;
+  }
+  .segmentRowParent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+  }
+  
+  .addButtonTripDiv {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* margin-bottom: 50%; */
+    /* margin-right: 3%;
+      margin-top: 2%; */
+  }
+  
+  .div1 {
+    grid-area: 1/ 1 / 2 / 5;
+    /* padding-top: 10%;
+    padding-left"  */
+    text-align: left;
+      width: 15%;
+    /* border:solid; */
+  }
+  .div2 {
+    grid-area: 2 / 1 / 3 / 5;
+  }
+  .div3 {
+    grid-area: 3 / 1 / 4 / 5;
+    width:24%;
+    /* padding-right: px; */
+    /* border: solid; */
+    text-align: center;
+    /* padding-left: 18px; */
+    /* align-items: center; */
+  }
+  /* .div4 {
+    grid-area: 4 / 1 / 5 / 5;
+  } */
+  
+  .div5 {
+    grid-area: 1/2/2/5;
+  }
+  .div6 {
+    grid-area: 2/2/3/5;
+    padding-top: 15px;
+    /* width: 100%; */
+  }
+  .div7 {
+    grid-area: 3/2/4/5;
+  }
+  /* .div8 {
+    grid-area: 4/2/5/5;
+  } */
+  
+  .divButton {
+    grid-area: 0/0/0/0;
+  }
+  
+  .div9 {
+    grid-area: 1/3/2/5;
+  }
+  .div10 {
+    grid-area: 2/3/3/5;
+    
+  }
+  .div11 {
+    grid-area: 3/3/4/5;
+    width: 50%;
+    text-align: center;
+    
+  
+  }
+  
+  .airlineText {
+      font-size: 14px;
+      font-weight: bold;
+      color: black;
+      font-family: "work sans";
+      padding-left: 6%;
+      align-items: center;
+  }
+  /* .div12 {
+    grid-area: 4/3/5/5;
+  } */
+  
+  .div14 {
+    grid-area: 2/4/3/5;
+    
+  }
+  
+  .leftSideTextDivFlight {
+    border: solid;
+  }
+  
+  .boldLocationNameFlight {
+    font-family: "Work Sans";
+    font-weight: 600;
+  }
+  .leftHeaderTextFlight {
+    border: solid;
+    padding-left: 25%;
+  }
+  
+  .headerTextDivFlight {
+    display: inline-flex;
+    width: 100%;
+  }
+  
+  .rightChildGridCardFlight {
+    align-items: center;
+    width: 10%;
+    /* padding-left: 70%; */
+    border: solid;
+    /* padding-top: 10%; */
+  }
+  
+  .componentButtonDivFlight {
+    text-align: center;
+  }
+  .componentButtonsFlight {
+    color: white;
+    font: "Work Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 50px;
+    background-color: #3f52e3;
+    border: none;
+    border-radius: 20px;
+    height: 60px;
+    width: 182px;
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+  .greyTextFlight {
+    color: #6c757d;
+    font-family: "work sans";
+  }
+  
+  .addToTripButtonFlight {
+    color: black;
+    background-color: white;
+    border: solid;
+    width: 120px;
+    height: 56px;
+    font: "work sans";
+    font-weight: bold;
+    border-radius: 20px;
+    display: flex;
+  }
+  
+  .arrowIconGrid {
+    border: solid;
+    width: 100%;
+  }
+  
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 25px;
+  }
+  
+  .segmentContainer {
+    grid-area: 1 / 1 / 2 / 5;
+    border: solid;
+  }
+  .segmentRowOne {
+    grid-area: 2 / 1 / 3 / 5;
+    border: red;
+  }
+  .segmentRowTwo {
+    grid-area: 3 / 1 / 4 / 5;
+    border: green;
+  }
+  .SegmentRowThree {
+    grid-area: 4 / 1 / 5 / 5;
+    border: blue;
+  }
+  
+  .segmentWrapper {
+    display: inline-flex;
+  }
+  
+  .leftSideRender{
+      flex-grow: 1;
+      font-family: 'work sans';
+  }
+  .rightSideRender{
+      /* flex-grow: 1; */
+      font-family: 'work sans'; 
+  }
+  
+  .tripTotalCostText{
+      font-family: 'Work Sans';
+      font-weight: bold;
+      font-size: 16px;
+      
+  }
+  
+  .flightCostText{
+      font-family: 'Work Sans';
+      font-weight: bold;
+      font-size: 24px;
+      font-weight: 100000;
+  }
+  
+  .tripPriceTextDiv{
+    /* text-align: center; */
+  }
+  .addToTripDivInSummary{
+      /* text-align: center; */
+      /* padding-top: 20%; */
+      /* /* padding-left: 5%; */
+      padding-left: 5%;
+      padding-right: 5%;
+
+      background-color: white;
+      /* display: block; */
+      /* vertical-align: middle; */
+      /* display:inline-block; */
+      /* width: auto;  */
+      /* vertical-align: top; */
+      align-items: center;
+      text-align: center;
+      /* flex-wrap: nowrap;
+      text-overflow: ellipsis; */
+      /* justify-content: center; */
+      /* display:block; */
+      /* display: flex; */
+      /* flex-direction: column; */
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      width: auto;
+    padding-top: 2%;
+      /* margin-left: 3%;
+      margin-right: 3%;
+      padding-left: 4%;  */
+    }

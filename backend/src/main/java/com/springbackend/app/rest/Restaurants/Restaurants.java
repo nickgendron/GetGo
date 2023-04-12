@@ -20,7 +20,7 @@ public class Restaurants {
     private String locationID;
 
     @Nullable
-    public String restName;
+    private String restName;
 
     @Nullable
     private String rating;
@@ -43,8 +43,7 @@ public class Restaurants {
     @Nullable
     private double longitude;
 
-    @Nullable
-    private String testing;
+
 
     public Restaurants(RestaurantsBuilder restaurantsBuilder) {
         this.restName = restaurantsBuilder.restName;
@@ -58,7 +57,6 @@ public class Restaurants {
         this.photosURL = restaurantsBuilder.photosURL;
         this.websiteURL = restaurantsBuilder.websiteURL;
         this.priceLevel = restaurantsBuilder.priceLevel;
-        this.testing = restaurantsBuilder.testing;
     }
     public static class RestaurantsBuilder {
         private String fullAddress;
@@ -72,7 +70,6 @@ public class Restaurants {
         private String priceLevel;
         private double latitude;
         private double longitude;
-        private String testing;
 
         public Restaurants.RestaurantsBuilder restName(String restName) {
             this.restName = restName;
@@ -119,10 +116,6 @@ public class Restaurants {
             return this;
         }
 
-        public Restaurants.RestaurantsBuilder testing(String testing) {
-            this.testing = testing;
-            return this;
-        }
 
         public Restaurants.RestaurantsBuilder latitude(double latitude) {
             this.latitude = latitude;
@@ -134,13 +127,7 @@ public class Restaurants {
             return this;
         }
         public Restaurants build () {
-            if (this.testing == null) {
-                this.testing = "HEY, IT'S NULL";
-            }
 
-            if (this.testing.equals("HEY, IT WORKED!")) {
-                this.testing = "HEY! IT WORKED, AGAIN!";
-            }
             Restaurants restaurants = new Restaurants(this);
             return restaurants;
         }

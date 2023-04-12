@@ -1,6 +1,8 @@
 package com.springbackend.app.rest.Hotels;
 
+import com.amadeus.resources.HotelOffer;
 import com.google.gson.*;
+import com.springbackend.app.rest.Flights.FlightObjects.Flights;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -10,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.UUID;
 
 
-@RequestMapping(path="/api/hotel")
+@RequestMapping(path="/api/hotels")
 @RestController
 public class HotelController {
 
     @Autowired
     private HotelsRepo hotelsRepo;
 
-
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/latlong")
     public String getLatLong(@RequestParam String fullAddress) throws IOException {
 
@@ -60,17 +62,16 @@ public class HotelController {
         return returnString;
     }
 
-
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/nearbyHotels")
-    public JsonArray nearbyHotels(@RequestParam String location) throws IOException {
+    public String nearbyHotels(@RequestParam String location) throws IOException {
 
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
 
 
         /* Get API key */
-        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
+        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR_NEW");
 
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
@@ -92,8 +93,12 @@ public class HotelController {
         /* JsonArray that will be returned containing information of hotels at a given location */
         JsonArray hotelArray = new JsonArray();
 
+        String hotelOfferGroup = UUID.randomUUID().toString();
+
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
 
+            /* Generate unique hotelID */
+            String hotelID = UUID.randomUUID().toString();
 
             /*
                 Meet Bob! He will help you build your hotel!
@@ -121,13 +126,14 @@ public class HotelController {
             hotelJsonObject.addProperty("location_id", locationId);
             hotelJsonObject.addProperty("name", name);
             hotelJsonObject.addProperty("fullAddress", fullAddress);
+            hotelJsonObject.addProperty("hotelOfferGroup", hotelOfferGroup);
+
 
             /* Give Bob some information to pick up */
             bob.locationID(locationId);
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
-
-            //hotelJsonObject.addProperty("address_string", addressString);
+            bob.hotelOfferGroup(hotelOfferGroup);
 
             /*
                 Getting more information on each hotel returned by nearby_search API.
@@ -206,7 +212,11 @@ public class HotelController {
                 Bob has done a very good job, and he is about to build a beautiful Hotel for us, something that
                 Eve and Kim could only ever dream of doing. They are only worried about restaurants and fun things to do
             */
+
+            bob.hotelID();
             Hotels hotel = bob.build();
+
+
 
             /* Save the new hotel to the database */
             hotelsRepo.save(hotel);
@@ -217,19 +227,31 @@ public class HotelController {
             }
 
         /* Add the instance of hotelJsonObject to the returning json array */
-        return hotelArray;
+        return hotelOfferGroup;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/getHotelByHotelID")
-    public String getHotelByHotelID(@RequestParam String locationID){
+    public JsonElement getHotelByHotelID(@RequestParam String hotelID){
+        Iterable<Hotels> hotel = hotelsRepo.findByLocationID(hotelID);
+        return parseJson(hotel);
+    }
 
-        String hotel = hotelsRepo.findByLocationID(locationID);
-
-         return hotel;
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/getHotelByRandomID")
+    public JsonElement getHotelByHotelUUID(String hotelUUID){
+        Iterable<Hotels> hotels = hotelsRepo.findByHotelUuidID(hotelUUID);
+        return parseJson(hotels);
     }
 
 
 
+    private JsonElement parseJson(Iterable<Hotels> hotel){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement jsonElement = jp.parse(gson.toJson(hotel));
+        return jsonElement;
+    }
 }
 
 

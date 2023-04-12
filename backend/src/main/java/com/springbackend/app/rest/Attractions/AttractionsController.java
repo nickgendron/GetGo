@@ -1,5 +1,7 @@
 package com.springbackend.app.rest.Attractions;
 import com.google.gson.*;
+import com.springbackend.app.rest.Flights.FlightObjects.Flights;
+import com.springbackend.app.rest.Hotels.Hotels;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.UUID;
 
 @RequestMapping(path="/api/attractions")
 @RestController
@@ -57,12 +60,13 @@ public class AttractionsController {
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping(path = "/nearbyAttractions")
-    public JsonArray nearbyAttractions(@RequestParam String location) throws IOException{
+    public String nearbyAttractions(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
-//        String destCords = "30.4515, -91.1871";
+
         /* Get API key */
-        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
+        String tripAdvisorAPI = System.getenv("TRIP_ADVISOR_NEW");
+
 
         /* API call configuration for TripAdvisor nearby_search endpoint */
         OkHttpClient nearbySearchClient = new OkHttpClient();
@@ -83,7 +87,12 @@ public class AttractionsController {
 
         JsonArray attractionArray = new JsonArray();
 
+        String attractionsOfferGroup = UUID.randomUUID().toString();
+
         for (JsonElement jsonIterator : nearbyLocationSearchArray) {
+
+
+            String attractionsID = UUID.randomUUID().toString();
 
             /*Bob is man and lame, so this is Kim and she's better at building */
             Attractions.AttractionsBuilder kim = new Attractions.AttractionsBuilder();
@@ -101,15 +110,17 @@ public class AttractionsController {
 
             /* Add properties to attractionJsonObject */
             attractionJsonObject.addProperty("location_id", locationId);
-            attractionJsonObject.addProperty("name", name);
+            attractionJsonObject.addProperty("attractionsOfferGroup", attractionsOfferGroup);
+            attractionJsonObject.addProperty("attrName", name);
             attractionJsonObject.addProperty("address_string", fullAddress);
 
             /* Slay Kim pick up that information */
             kim.locationID(locationId);
             kim.attrName(name);
             kim.fullAddress(fullAddress);
-            //WHAT
-            attractionJsonObject.addProperty("address_string", addressString);
+            kim.attractionOfferGroup(attractionsOfferGroup);
+            kim.attractionsID(attractionsID);
+
             /*
                 Getting more information on each attraction returned by nearby_search API.
                 Use the location_id to query the location_details API and extract
@@ -147,8 +158,6 @@ public class AttractionsController {
 
                 kim.rating(rating);
             }
-
-
             /* KIM loves to get links to see more photos*/
             if(locationSearchJsonObject.has("see_all_photos")) {
                 String imagesUrl = locationSearchJsonObject.get("see_all_photos").getAsString();
@@ -156,8 +165,6 @@ public class AttractionsController {
 
                 kim.photosURL(imagesUrl);
             }
-
-
             /* Kim is very frugal so she wants to extract the price level*/
             if(locationSearchJsonObject.has("price_level")) {
                 String priceLevel = locationSearchJsonObject.get("price_level").getAsString();
@@ -165,8 +172,6 @@ public class AttractionsController {
 
                 kim.priceLevel(priceLevel);
             }
-
-
             /* Kim wants to go to the website*/
             if (locationSearchJsonObject.has("website")) {
                 String websiteURL = locationSearchJsonObject.get("website").getAsString();
@@ -183,8 +188,24 @@ public class AttractionsController {
 
         }
         /* Add the instance of attractionJsonObject to the returning json array */
-        return attractionArray;
+        return attractionsOfferGroup;
 
+    }
+
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/getAttractionsByOfferGroupID")
+    public JsonElement getAttractionsByOfferGroupID(String offerGroupID){
+        Iterable<Attractions> attractions = attractionsRepo.findByAttractionsGroup(offerGroupID);
+        return parseJson(attractions);
+    }
+
+    private JsonElement parseJson(Iterable<Attractions> attractions){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement jsonElement = jp.parse(gson.toJson(attractions));
+        return jsonElement;
     }
 
 }

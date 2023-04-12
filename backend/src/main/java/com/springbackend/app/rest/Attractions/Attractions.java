@@ -27,11 +27,16 @@ public class Attractions {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private String attractionID;
+
+    /* Uses a getter/setter method as this data is added much later from point of initialization */
+    private String selectedAttractionsGroup;
+
+
     @Nullable
     private String fullAddress;
 
-    @Nullable
-    private String offerId;
+    private String attractionOfferGroup;
 
     @Nullable
     private String locationID;
@@ -59,13 +64,12 @@ public class Attractions {
     private double latitude;
     @Nullable
     private double longitude;
-    @Nullable
-    private String testing;
 
+    public Attractions(){}
     public Attractions(AttractionsBuilder attractionBuilder) {
         this.attrName = attractionBuilder.attrName;
         this.fullAddress = attractionBuilder.fullAddress;
-        this.offerId = attractionBuilder.offerId;
+        this.attractionOfferGroup = attractionBuilder.attractionOfferGroup;
         this.latitude = attractionBuilder.latitude;
         this.longitude = attractionBuilder.longitude;
         this.locationID = attractionBuilder.locationID;
@@ -74,13 +78,24 @@ public class Attractions {
         this.photosURL = attractionBuilder.photosURL;
         this.websiteURL = attractionBuilder.websiteURL;
         this.priceLevel = attractionBuilder.priceLevel;
-        this.testing = attractionBuilder.testing;
+        this.attractionID = attractionBuilder.attractionID;
+    }
+
+    public String getSelectedAttractionsGroup() {
+        return selectedAttractionsGroup;
+    }
+
+    public Attractions setSelectedAttractionsGroup(String selectedAttractionsGroup) {
+        this.selectedAttractionsGroup = selectedAttractionsGroup;
+        return this;
     }
 
 
     public static class AttractionsBuilder {
         private String fullAddress;
-        private String offerId;
+        private String attractionOfferGroup;
+        private String attractionID;
+
         private String locationID;
         private String attrName;
         private String rating;
@@ -90,10 +105,14 @@ public class Attractions {
         private String priceLevel;
         private double latitude;
         private double longitude;
-        private String testing;
 
         public Attractions.AttractionsBuilder attrName(String attrName) {
             this.attrName = attrName;
+            return this;
+        }
+
+        public Attractions.AttractionsBuilder attractionsID(String attractionsID) {
+            this.attractionID = attractionsID;
             return this;
         }
 
@@ -102,8 +121,8 @@ public class Attractions {
             return this;
         }
 
-        public Attractions.AttractionsBuilder offerId(String offerId) {
-            this.offerId = offerId;
+        public Attractions.AttractionsBuilder attractionOfferGroup(String attractionOfferGroup) {
+            this.attractionOfferGroup = attractionOfferGroup;
             return this;
         }
 
@@ -137,10 +156,6 @@ public class Attractions {
             return this;
         }
 
-        public Attractions.AttractionsBuilder testing(String testing) {
-            this.testing = testing;
-            return this;
-        }
 
         public Attractions.AttractionsBuilder latitude(double latitude) {
             this.latitude = latitude;
@@ -152,13 +167,7 @@ public class Attractions {
             return this;
         }
         public Attractions build () {
-            if (this.testing == null) {
-                this.testing = "HEY, IT'S NULL";
-            }
 
-            if (this.testing.equals("HEY, IT WORKED!")) {
-                this.testing = "HEY! IT WORKED, AGAIN!";
-            }
             Attractions attractions = new Attractions(this);
             return attractions;
         }

@@ -8,7 +8,7 @@
 
 .hotelsContent {
   margin-left: 300px;
-  background-color: #cdcdcd;
+  background-color: #e3e3e3;
   height: auto;
   margin-top: 50px;
   margin-right: 45px;
@@ -21,9 +21,8 @@
   padding-left: 4%;
   padding-top: 2%;
   color: #e64646;
-  font-family: 'work sans';
+  font-family: 'Work Sans' sans-serif;
   font-size: 26px;
-  font: "work sans";
 }
 
 .gridCardHoldingDiv{

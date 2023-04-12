@@ -1,23 +1,13 @@
 // I recommend using react bootstrap for easier styling and formatting
-import React, { Component } from "react";
+import React from "react";
 import "./HomePage.css";
 import SmallLogo from "../Images/SmallLogo.png";
 import TextLogo from "../Images/TextLogo.png";
 import ImageOverlay from "../Images/imageOverlay.png";
 import ImageUnderlay from "../Images/imageUnderlay.png";
 import { useNavigate } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 // React router to route to different pages from the homepage
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-  Link,
-} from "react-router-dom";
-// import Login from "../Login/LoginPage.js";
-import Signup from "../Main/Signup/SignupPage.jsx";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -28,7 +18,7 @@ function HomePage() {
     } else if (buttonType === "sign-up") {
       navigate("/signup"); // Replace "/signup" with the URL path of your sign up page
     } else if (buttonType === "begin") {
-      navigate("/details"); // Replace "/signup" with the URL path of your sign up page
+      navigate("/login"); // Replace "/signup" with the URL path of your sign up page
     }
   }
 
@@ -38,28 +28,21 @@ function HomePage() {
     <div className="container-center-horizontal">
       <div className="macbook-pro-14-1 screen">
         <div className="flex-row worksans-bold-swamp-16px">
+          <br />
+          <br />
           <img className="all_work" src={SmallLogo} alt="All_work" />
           <img className="all_work-1" src={TextLogo} alt="All_work" />
           <div className="log-in valign-text-middle">
             <span>
-              <button
+              {/* <button
                 onClick={() => handleButtonClick("sign-in")}
                 className="worksans-bold-swamp-16px homeButtons"
               >
                 Log in
-              </button>
+              </button> */}
             </span>
           </div>
-          <div className="sign-up valign-text-middle">
-            <span>
-              <button
-                onClick={() => handleButtonClick("sign-up")}
-                className="worksans-bold-swamp-16px homeButtons"
-              >
-                Sign up
-              </button>
-            </span>
-          </div>
+          <div className="sign-up valign-text-middle"></div>
         </div>
         <div className="flex-row-1">
           <div className="flex-col">

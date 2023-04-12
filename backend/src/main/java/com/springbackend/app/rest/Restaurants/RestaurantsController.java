@@ -60,7 +60,7 @@ public class RestaurantsController {
     public JsonArray nearbyRestaurants(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
-//        String destCords = "30.4515, -91.1871";
+
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR");
 

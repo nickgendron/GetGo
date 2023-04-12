@@ -1,0 +1,108 @@
+.gridCardContainerDivSummary {
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+
+    border: solid #EAEAEA;
+    border-radius: 15px;
+
+    padding: 2%;
+  }
+
+  .componentButtonDivSummary{
+    border: solid;
+    display: block;
+  }
+  
+  .boldLocationNameSummary {
+    font-family: 'Work Sans';
+    font-weight: 600;
+  }
+  .leftHeaderText {
+    padding-left: 25%;
+  }
+  
+  .headerTextDivSummary {
+    display: inline-flex;
+    width: 100%;
+  }
+  
+  .rightChildGridCardSummary {
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    height: 100%;
+    padding-left: 5%;
+  }
+  
+  .componentButtonDivSummary {
+    width: auto;
+    margin-left: 70%;
+
+    border: none;
+
+  }
+  .removeFromTripDiv{}
+  .addToTripButtonSummary {
+    color: black;
+    background-color: white;
+    border: solid;
+    width: 120px;
+    height: 56px;
+    font: 'work sans';
+    font-weight: bold;
+    border-radius: 20px;
+    margin: auto;
+  }
+  
+  
+  .componentButtonsSummary {
+      color: white;
+      font: 'Work Sans';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 50px;
+      background-color:#3F52E3;
+      border: none;
+      border-radius: 20px;
+      height: 60px;
+      width: 182px; 
+      /* margin-left: 90px;
+      margin-right: 90px; */
+  }
+
+  .componentButtonsSummaryInvert {
+    color: #3F52E3;
+    font: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 50px;
+    background-color:white;
+    border: solid;
+    border-color: #3F52E3;
+    border-radius: 20px;
+    height: 60px;
+    width: 182px; 
+    /* margin-left: 90px;
+    margin-right: 90px; */
+}
+
+  .greyTextSummary {
+      color: #6C757D;
+      font-family: "work sans"
+  }
+  
+  .removeFromTripDiv{
+    color: #E64646;
+    font-family: "work sans";
+    text-decoration: underline;
+
+    margin-left: 75%;
+    background: transparent;
+    border: none;
+}
+
+  
+  

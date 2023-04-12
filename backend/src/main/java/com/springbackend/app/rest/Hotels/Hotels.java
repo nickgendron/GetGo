@@ -1,6 +1,5 @@
 package com.springbackend.app.rest.Hotels;
 
-//package com.springbackend.app.rest.Hotels;
 /*
     @TODO:
     - Link with Amadeus API for finding hotels near a given area that a user is traveling to
@@ -14,89 +13,51 @@ package com.springbackend.app.rest.Hotels;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import java.util.Random;
+import java.util.UUID;
 
 @Entity
 @Data
+@Table(name = "hotels")
 public class Hotels {
 
-    /* Testing git repo */
-   // private String hotelName;
-
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Nullable
+
+    private String hotelID;
     private String fullAddress;
-    @Nullable
     private String checkInDate;
-    @Nullable
     private String checkOutDate;
-    @Nullable
     private String offerId;
 
-    @Nullable
     private String locationID;
-
-    @Nullable
     private String hotelName;
-
-    @Nullable
     private String rating;
-    @Nullable
+
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
-    @Nullable
     private String photosURL;
-    @Nullable
     private String websiteURL;
-    @Nullable
     private String priceLevel;
-    @Nullable
     private int numBeds;
-    @Nullable
-    private String bedType;
 
-    @Nullable
+    private String hotelOfferGroup;
     private int numOfGuests;
-    @Nullable
     private double totalPrice;
-    @Nullable
-    private double latitude;
-    @Nullable
-    private double longitude;
 
-    @Nullable
-    private String testing;
-
-//    public Hotels(String hotelName, String checkInDate,
-//                  String checkOutDate, String offerId,
-//
-//                  int numBeds, String bedType,
-//                  int numOfGuests, double totalPrice,
-//                  double latitude, double longitude) {
-//        this.hotelName = hotelName;
-//        this.checkInDate = checkInDate;
-//        this.checkOutDate = checkOutDate;
-//        this.offerId = offerId;
-//        this.numBeds = numBeds;
-//        this.bedType = bedType;
-//        this.numOfGuests = numOfGuests;
-//        this.totalPrice = totalPrice;
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//    }
 
     public Hotels(HotelsBuilder hotelBuilder) {
+        this.hotelID = hotelBuilder.hotelID;
         this.hotelName = hotelBuilder.hotelName;
         this.checkInDate = hotelBuilder.checkInDate;
         this.checkOutDate = hotelBuilder.checkOutDate;
         this.offerId = hotelBuilder.offerId;
         this.numBeds = hotelBuilder.numBeds;
-        this.bedType = hotelBuilder.bedType;
         this.numOfGuests = hotelBuilder.numOfGuests;
         this.totalPrice = hotelBuilder.totalPrice;
-        this.latitude = hotelBuilder.latitude;
-        this.longitude = hotelBuilder.longitude;
         this.locationID = hotelBuilder.locationID;
         this.rating = hotelBuilder.rating;
         this.fullAddress = hotelBuilder.fullAddress;
@@ -104,17 +65,18 @@ public class Hotels {
         this.websiteURL = hotelBuilder.websiteURL;
         this.priceLevel = hotelBuilder.priceLevel;
         this.description = hotelBuilder.description;
-        this.testing = hotelBuilder.testing;
-
+        this.hotelOfferGroup = hotelBuilder.hotelOfferGroup;
     }
     public Hotels(){}
 
     public static class HotelsBuilder {
 
+        private String hotelID;
         private String fullAddress;
         private String checkInDate;
         private String checkOutDate;
         private String offerId;
+        private String hotelOfferGroup;
         private String locationID;
         public String hotelName;
         private String rating;
@@ -128,7 +90,12 @@ public class Hotels {
         private double totalPrice;
         private double latitude;
         private double longitude;
-        private String testing;
+
+        public HotelsBuilder hotelID(){
+            this.hotelID = UUID.randomUUID().toString();
+            return this;
+        }
+
 
         public HotelsBuilder fullAddress(String fullAddress) {
             this.fullAddress = fullAddress;
@@ -142,6 +109,11 @@ public class Hotels {
 
         public HotelsBuilder checkOutDate(String checkOutDate) {
             this.checkOutDate = checkOutDate;
+            return this;
+        }
+
+        public HotelsBuilder hotelOfferGroup(String hotelOfferGroup){
+            this.hotelOfferGroup = hotelOfferGroup;
             return this;
         }
 
@@ -214,24 +186,10 @@ public class Hotels {
             this.longitude = longitude;
             return this;
         }
-        public HotelsBuilder testing(String testing){
-            this.testing = testing;
-            return this;
-        }
-
 
         public Hotels build(){
-
-            if(this.testing == null){
-                this.testing = "HEY, IT'S NULL";
-            }
-
-            if(this.testing.equals("HEY, IT WORKED!")){
-                this.testing = "HEY! IT WORKED, AGAIN!";
-            }
-
             Hotels hotels = new Hotels(this);
             return hotels;
         }
     }
-    }
+}

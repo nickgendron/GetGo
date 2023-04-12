@@ -1,0 +1,52 @@
+.mainApiLoadingRootDiv {
+  background-color: #3f52e3;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+
+.loadingDiv {
+  /* display: flex block; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  text-align: center;
+  /* padding-top: 20%; */
+  width: 800px;
+  margin: auto;
+  margin-top: 12%;
+  border: solid;
+  border-radius: 50px;
+  background-color: rgba(199, 199, 199, 0.92);
+}
+
+.aboveLoadingDiv{
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8%;
+}
+
+.imageLogoWhite{
+  /* margin-left: 100px; */
+}
+
+.loadingBar {
+  left: 12%;
+}
+
+.topLineBoldText {
+  font-family: "Work Sans";
+  font-weight: bold;
+}
+
+.regularSmallerText {
+  font-family: "Work Sans";
+  font-size: 14px;
+}
+
+.regularSmallerGreyText {
+  font-family: "Work Sans";
+  font-size: 18px;
+
+  color: rgb(79, 79, 79);
+}

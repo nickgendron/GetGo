@@ -8,8 +8,6 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation().pathname;
 
-  console.log(location.pathname);
-
   function handleFlightsNavigation(event) {
     event.preventDefault();
     navigate("/flights");
@@ -25,13 +23,18 @@ function Navbar() {
     navigate("/attractions");
   }
 
+  function handleSavingsNavigation(event) {
+    event.preventDefault();
+    navigate("/savings");
+  }
+
   function handleSummaryNavigation(event) {
     event.preventDefault();
     navigate("/summary");
   }
   function handleHomeNavigation(event) {
     event.preventDefault();
-    navigate("/home");
+    navigate("/");
   }
   return (
     <>
@@ -89,13 +92,11 @@ function Navbar() {
           />
         </div>
         <div className="buttonTextGrey">
-          <button className="bottomButtons">Vacation Summary</button>
+          <button onClick={handleSavingsNavigation} className="bottomButtons">
+            Trip Planner
+          </button>
           <br />
           <br />
-          <button className="bottomButtons">Budget Calculator</button>
-          <br />
-          <br />
-          <button className="bottomButtons">Savings Plan</button>
         </div>
       </div>
     </>

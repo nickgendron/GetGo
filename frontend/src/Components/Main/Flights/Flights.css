@@ -26,8 +26,11 @@
   text-align: left;
   padding-left: 4%;
   padding-top: 2%;
-  color: #f05d5d;
-  font: "work sans";
+  color: #e64646;
+  /* font-weight: bold; */
+  /* color: #f05d5d; */
+  font: "Work Sans" sans-serif;
+  font-size: 26px;
 }
 .clear {
   clear: both;
@@ -36,6 +39,7 @@
 .reusableFlightDisplayRoot {
   background-color: #ffffff;
   height: auto;
+  font-weight: 100;
   border: solid;
   background-color: white;
   border-radius: 50px;
@@ -72,7 +76,7 @@
   font-weight: bold;
   color: black;
   text-decoration: underline;
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
   padding-left: 8%;
   display: inline-block;
 }
@@ -108,7 +112,7 @@
   font-size: 14px;
   font-weight: bold bolder;
   color: black;
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
   padding-left: 8%;
   align-items: center;
   justify-content: center;
@@ -124,7 +128,7 @@
 }
 
 .airportTextLeft {
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
   justify-content: center;
   text-align: center;
   
@@ -132,8 +136,8 @@
 }
 
 .airportTextRight {
-    font-family: "work sans";
-    justify-content: center;
+  font-family: 'Work Sans', sans-serif;
+  justify-content: center;
     text-align: center;
     position: relative;
     left: 75%;
@@ -146,7 +150,7 @@
   font-size: 14px;
   font-weight: bold;
   color: black;
-  font-family: "work sans";
+  font-family: 'Work Sans', sans-serif;
 }
 
 

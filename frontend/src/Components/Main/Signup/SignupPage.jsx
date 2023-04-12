@@ -28,13 +28,13 @@ function Signup() {
 
     const url = `http://127.0.0.1:8080/api/user/add?firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}`;
 
-    console.log(url);
     axios
       .post(url)
       .then((response) => {
         // Handle the response data here
-        console.log(response.data);
-        navigate("/home");
+        sessionStorage.removeItem("userID");
+        sessionStorage.setItem("userID", response.data);
+        navigate("/details");
       })
       .catch((error) => {
         // Handle the error here
@@ -64,7 +64,7 @@ function Signup() {
         <br />
         <div className="signUpFormDiv">
           {/* <img src={image} className="imageLogin" /> */}
-          <form className="loginArea" onSubmit={handleSubmit}>
+          <form className="signUp" onSubmit={handleSubmit}>
             <br />
             <h1 className="welcomeText">
               <strong>Sign Up Now!</strong>
