@@ -63,7 +63,7 @@ public class AttractionsController {
     public String nearbyAttractions(@RequestParam String location) throws IOException{
         /* Determine the coordinates of location */
         String destCords = getLatLong(location);
-//        String destCords = "30.4515, -91.1871";
+
         /* Get API key */
         String tripAdvisorAPI = System.getenv("TRIP_ADVISOR_NEW");
 
@@ -121,8 +121,6 @@ public class AttractionsController {
             kim.attractionOfferGroup(attractionsOfferGroup);
             kim.attractionsID(attractionsID);
 
-            //WHAT
-//            attractionJsonObject.addProperty("address_string", addressString);
             /*
                 Getting more information on each attraction returned by nearby_search API.
                 Use the location_id to query the location_details API and extract

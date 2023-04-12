@@ -56,11 +56,8 @@ public class Hotels {
         this.checkOutDate = hotelBuilder.checkOutDate;
         this.offerId = hotelBuilder.offerId;
         this.numBeds = hotelBuilder.numBeds;
-//        this.bedType = hotelBuilder.bedType;
         this.numOfGuests = hotelBuilder.numOfGuests;
         this.totalPrice = hotelBuilder.totalPrice;
-//        this.latitude = hotelBuilder.latitude;
-//        this.longitude = hotelBuilder.longitude;
         this.locationID = hotelBuilder.locationID;
         this.rating = hotelBuilder.rating;
         this.fullAddress = hotelBuilder.fullAddress;
@@ -99,9 +96,6 @@ public class Hotels {
             return this;
         }
 
-//        public String getHotelID(){
-//            return this.hotelID;
-//        }
 
         public HotelsBuilder fullAddress(String fullAddress) {
             this.fullAddress = fullAddress;

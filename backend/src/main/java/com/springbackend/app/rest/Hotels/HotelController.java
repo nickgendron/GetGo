@@ -134,7 +134,6 @@ public class HotelController {
             bob.hotelName(name);
             bob.fullAddress(fullAddress);
             bob.hotelOfferGroup(hotelOfferGroup);
-            //hotelJsonObject.addProperty("address_string", addressString);
 
             /*
                 Getting more information on each hotel returned by nearby_search API.
@@ -228,7 +227,6 @@ public class HotelController {
             }
 
         /* Add the instance of hotelJsonObject to the returning json array */
-//        return hotelArray;
         return hotelOfferGroup;
     }
 

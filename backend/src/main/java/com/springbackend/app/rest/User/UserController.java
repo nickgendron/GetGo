@@ -16,9 +16,6 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-    @Autowired
-    private UserRepoOAuth userRepoOAuth;
-
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/add")
     public @ResponseBody String saveUser(@RequestParam String firstName, @RequestParam String lastName,

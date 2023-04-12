@@ -38,9 +38,7 @@ public class VacationController {
             String attractionSelectedGroup = UUID.randomUUID().toString();
 
             Vacation vacation = new Vacation(userID, attractionSelectedGroup);
-//
-//            vacation.setUserID(userID);
-//            vacation.setSelectedAttractionsGroup(attractionSelectedGroup);
+
             vacationRepo.save(vacation);
             return ResponseEntity.ok(vacation.getVacationID());
 
@@ -67,7 +65,6 @@ public class VacationController {
 
             String attractionsGroup = vacation.getSelectedAttractionsGroup();
             attraction.setSelectedAttractionsGroup(attractionsGroup);
-//             attractionsRepo.addAttractionToSelected(attractionsGroup, attractionID);
             attractionsRepo.save(attraction);
             return attraction.getSelectedAttractionsGroup();
         }
@@ -86,7 +83,6 @@ public class VacationController {
 
             String attractionsGroup = vacation.getSelectedAttractionsGroup();
             attraction.setSelectedAttractionsGroup(null);
-//             attractionsRepo.addAttractionToSelected(attractionsGroup, attractionID);
             attractionsRepo.save(attraction);
             return "success";
         }
@@ -137,7 +133,6 @@ public class VacationController {
         Vacation vacation = vacationRepo.findVacationByID(vacationID);
         vacation.setHotelID(hotelID);
         vacationRepo.save(vacation);
-//        if(!(vacation.getHotelID().equals(hotelID))) { return "Error"; }
         return "Success";
 
     }
@@ -146,7 +141,6 @@ public class VacationController {
     public String addAttraction(@RequestParam String attractionID, @RequestParam String vacationID){
 
         Vacation vacation = vacationRepo.findVacationByID(vacationID);
-//        attractionsRepo.save(attraction);
 
         return "Success";
     }

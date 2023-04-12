@@ -20,7 +20,7 @@ public class Restaurants {
     private String locationID;
 
     @Nullable
-    public String restName;
+    private String restName;
 
     @Nullable
     private String rating;

@@ -3,27 +3,32 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 @Entity
 public class TripPlanner {
-    //need place to store budget inputs, calculate, store total for budget calculator
-    //need place to store savings bar money also manage addition and subtraction
-    //need place to store long notes user write
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    private String plannerID;
     @Nullable
     private String vacationID;
     @Nullable
     private double grandTripTotal;
+
+    /* Piggy bank variable where values are added/subbed from */
     @Nullable
     private double savingsGoal;
 
 
-    public TripPlanner(String vacationID, double grandTotal, double savingsTotal) {
+    public TripPlanner(String vacationID) {
         this.vacationID = vacationID;
-        this.grandTripTotal = grandTotal;
-        this.savingsGoal = savingsTotal;
+        this.grandTripTotal = 0;
+        this.savingsGoal = 0;
+        this.plannerID = UUID.randomUUID().toString();
     }
 
     public TripPlanner() {
@@ -53,7 +58,7 @@ public class TripPlanner {
     }
 
     public double getSavingsGoal() {
-        return savingsGoal;
+        return this.savingsGoal;
     }
 
     public TripPlanner setSavingsGoal(double savingsGoal) {
@@ -71,4 +76,7 @@ public class TripPlanner {
     }
 
 
+    public String getPlannerID() {
+        return this.plannerID;
+    }
 }

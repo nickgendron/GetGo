@@ -31,8 +31,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import static org.aspectj.bridge.Version.time;
-
 @RequestMapping(path="/api/flights")
 @RestController
 public class FlightsController {
@@ -129,7 +127,6 @@ public class FlightsController {
                 offerJson.addProperty("originCode", originCode);
                 offerJson.addProperty("destCode", destCode);
 
-
                 /* JsonArray to hold all segments within an itinerary */
                 JsonArray itineraryArray = new JsonArray();
 
@@ -141,8 +138,6 @@ public class FlightsController {
                 /* Iterate each itinerary from each flight offer */
                 for (Itinerary itinerary : offer.getItineraries()) {
 
-
-
                     /* Counter for tracking the number of flights in each segment */
                     AtomicReference<AtomicInteger> numOfFlights = new AtomicReference<>(new AtomicInteger());
 
@@ -152,11 +147,6 @@ public class FlightsController {
                     /* Generate itineraryID */
                     String itineraryID = UUID.randomUUID().toString();
 
-
-//                    Segments segmentSave;
-
-//                    /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
-//                    JsonObject segmentJson = new JsonObject();
 
                     /* Iterate each JsonObject to extract information on the flight segments */
                     List<JsonObject> segmentJsonObjects = Arrays.stream(itinerary.getSegments())
@@ -183,8 +173,7 @@ public class FlightsController {
 
                                 String convertedDepartureDateTime = departureDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
 
-//                                /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
-//                                JsonObject segmentJson = new JsonObject();
+                                /* JsonObject for each segment (flight) on a given itinerary (departing/returning) */
 
                                 /* Unique ID for each segment */
                                 String segmentID = UUID.randomUUID().toString();
@@ -218,7 +207,6 @@ public class FlightsController {
 
                                 String departureTime = departureDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
                                 String arrivalTime = arrivalDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-//                                 arrivalTime = convertTimeToDigital(arrivalDateString.format(DateTimeFormatter.ofPattern("HH:mm:ss").toString()));
 
                                  String formattedArrivalTime = convertTimeToDigital(arrivalTime);
                                 DateFormat dateFormat24Hour = new SimpleDateFormat("HH:mm:ss");
@@ -269,11 +257,6 @@ public class FlightsController {
                                 Segments segmentSave = new Segments(segmentJson);
                                 segmentRepo.save(segmentSave);
 
-
-                                /* Clean up Json returned to front end */
-                                //segmentJson.remove("flightID");
-                                //segmentJson.remove("segmentID");
-
                                 return segmentJson;
                             }).collect(Collectors.toList());
 
@@ -301,12 +284,10 @@ public class FlightsController {
 
                     tmp[0] = true;
 
-//                    segmentSave = new Segments(segmentJson);
-//                    segmentRepo.save(segmentSave);
+
 
                     /* Clean up Json returned to front end */
                     itineraryJson.remove("flightID");
-//                    itineraryJson.remove("itineraryID");
 
                     /* Add the new itineraryJsonObject to the itineraryArray */
                     itineraryArray.add(itineraryJson);
@@ -324,9 +305,15 @@ public class FlightsController {
                 JsonParser jp = new JsonParser();
                 JsonElement jsonElement = jp.parse(gsonReturn.toJson(offerID));
             }
+
+            if(offerID.isEmpty() || offerID.isBlank() || offerID == null){
+
+
+                return "yo shit broke";
+            }
             return offerID;
         }
-        return null;
+        return getFlightInformation(originCode, destCode, departDate, returnDate, adults, numFlights);
 
         /* Return completed flightOfferArray */
 //        return "error";
@@ -421,19 +408,6 @@ public class FlightsController {
         Iterable<Flights> flight = flightsRepo.findSegmentBySegmentID(segmentID);
         return parseJson(flight);
     }
-
-
-
-
-    /*
-
-        @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(path = "/getPriceByFlightID")
-    public JsonElement getPriceByFlightID(String flightID){
-        Iterable<Flights> flight = flightsRepo.getFlightsByOfferID(offerID);
-        return parseJson(flight);
-    }
-     */
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping (path = "/getSegmentIDFromFlightID")
