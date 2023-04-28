@@ -4,7 +4,7 @@ Have you ever found yourself struggling to plan a great vacation? Well, look no 
 
 ## About this application:
 GetGo is built using the below stack:
-  - Backend: Spring Framework
+  - Backend: Springboot
   - Frontend: React.js
   - Database: MySQL
   - APIs: Amadeus Flights, TripAdvisor Nearby location search (hotels and attrications), TripAdvisor location details (hotels and attrications)
