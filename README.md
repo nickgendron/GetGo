@@ -1,2 +1,5 @@
-# CSC-3380-RainbowTeam
-Repository for team project in CSC 3380
+#GetGo
+
+Have you ever found yourself struggling to plan a great vacation? Well, look no further! GetGo makes planning your dream vacation easy so that you can GetGoing quicker!
+
+
