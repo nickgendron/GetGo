@@ -2,8 +2,11 @@
 
 Have you ever found yourself struggling to plan a great vacation? Well, look no further! GetGo makes planning your dream vacation easy so that you can GetGoing quicker!
 
-## About this application:
-GetGo is built using the below stack:
+## About:
+
+This app was built as part of CSC 3380 (Object Oriented Programming) at Louisiana State University during the Spring 2023 semester by the contributors listed below. 
+
+GetGo utilizes below stack:
   - Backend: Springboot
   - Frontend: React.js
   - Database: MySQL
