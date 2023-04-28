@@ -11,5 +11,7 @@ GetGo is built using the below stack:
   
 ## Contributors:
   - Nick Gendron (@nickgendron)
+    - Full stack developer
   - Chloe Heitmeier (@cjh2001)
+    - Backend developer & UI/UX designer
 
