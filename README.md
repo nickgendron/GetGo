@@ -14,7 +14,7 @@ GetGo utilizes below stack:
   
 ## Contributors:
   - Nick Gendron (@nickgendron)
-    - Full stack developer
+    - Full stack developer & software architect 
   - Chloe Heitmeier (@cjh2001)
     - Backend developer & UI/UX designer
 
