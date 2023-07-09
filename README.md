@@ -17,4 +17,6 @@ GetGo utilizes below stack:
     - Full stack developer & software architect 
   - Chloe Heitmeier (@cjh2001)
     - Backend developer & UI/UX designer
+  - Adam Elkhanoufi
+    - Software design consultant
 
